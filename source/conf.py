@@ -52,7 +52,7 @@ math_number_all = True # 为所有块级公式编号
 # -- Options for HTML output -------------------------------------------------
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
-html_logo = "_images/logo.cpp.iso.svg"
+html_logo = "_images/logo.cpp.iso.webp"
 html_favicon = "_images/logo.cpp.iso.ico"
 html_sourcelink_suffix = ".rst"
 html_experimental_html5_writer = True
@@ -73,7 +73,7 @@ epub_show_urls = 'footnote'
 # -- Options for PDF output --------------------------------------------------
 # 不在 readthedocs 上编译
 latex_engine = 'xelatex'
-latex_logo = '_images/logo.cpp.iso.svg'
+# latex_logo = '_images/logo.cpp.iso.svg'
 latex_show_pagerefs = True # 渲染内部引用时增加对应的行号
 latex_show_urls = 'footnote' # 在页面脚注中显示 URL 链接
 latex_elements = {

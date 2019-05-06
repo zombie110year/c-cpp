@@ -1,5 +1,9 @@
 # C 与 C++
 
+<div style="text-align: center;">
+   <img src="source/_images/logo.cpp.iso.svg" style="width: 128px;" />
+</div>
+
 这本书的内容包含:
 
 1. C 与 C++ 的基本语法 (C99, C++11)
