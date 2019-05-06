@@ -39,3 +39,5 @@ C 与 C++ 有很多重叠的部分, 例如
 -  :ref:`包管理`
 
 这些也放在附录中了.
+
+.. graphviz:: _static/graphviz/index.gv
