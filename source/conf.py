@@ -15,7 +15,7 @@ release = '0.1.0rc'
 # http://www.sphinx-doc.org/en/master/usage/extensions/
 extensions = [
     'sphinx.ext.graphviz', # graphviz
-    'sphinx.ext.imgmath',  # 渲染数学公式
+    'sphinx.ext.mathjax',  # 渲染数学公式
     'sphinx.ext.todo',     # to do 指令
     'sphinx.ext.autosectionlabel', # 为标题自动生成标签, 可通过 ref 角色引用
 ]
