@@ -1,0 +1,33 @@
+digraph compile {
+   bgcolor = "#ffffff00";
+   graph [fontname = "Sarasa UI SC"];
+   node [fontname = "Sarasa UI SC"];
+   edge [fontname = "Sarasa UI SC"];
+
+   source_code [label="源代码.c"];
+   preprocessed_code [label="预处理后代码.i"];
+   ir_code [label="IR 中间码"];
+   assembly_code [label="汇编代码.s"];
+   object_code [label="目标代码.o"];
+   executable [label="可执行文件.out"];
+   preprocesser [label="预处理器", shape="rect"];
+   compiler [label="LLVM IR 码生成器", shape="rect"];
+   ir_parser [label="LLVM IR 码解析器", shape="rect"];
+   assembler [label="汇编器", shape="rect"];
+   linker [label="链接器", shape="rect"];
+
+   source_code -> preprocesser;
+   subgraph cluster_frontend {
+      label = "LLVM 前端";
+      preprocesser -> preprocessed_code -> compiler;
+   }
+
+   compiler -> ir_code -> ir_parser;
+
+   subgraph cluster_backend{
+      label = "LLVM 后端";
+      ir_parser -> assembly_code -> assembler;
+   }
+   assembler -> object_code;
+   object_code -> linker -> executable;
+}

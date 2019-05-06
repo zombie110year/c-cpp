@@ -3,3 +3,8 @@
 ##########
 C 语言入门
 ##########
+
+.. toctree::
+   :maxdepth: 2
+
+   compile
