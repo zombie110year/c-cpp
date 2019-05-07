@@ -9,3 +9,5 @@ C 与 C++
    start/index
    standard-lib/c/index
    standard-lib/cpp/index
+
+   glossary
