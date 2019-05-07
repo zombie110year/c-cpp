@@ -8,3 +8,9 @@ C 语言入门
    :maxdepth: 2
 
    compile
+   grammar
+   variable-const-expr
+   control-statement
+   array-pointer
+   function
+   scope
