@@ -36,3 +36,9 @@
       -  Character
    *  -  字符串
       -  String
+   *  -  定义
+      -  Define
+   *  -  声明
+      -  Declare
+   *  -  初始化
+      -  Initialization
