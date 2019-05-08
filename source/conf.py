@@ -52,7 +52,7 @@ math_number_all = True # 为所有块级公式编号
 # -- Options for HTML output -------------------------------------------------
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
-html_logo = "_images/logo.cpp.iso.webp"
+# html_logo = "_images/logo.cpp.iso.webp"
 html_favicon = "_images/logo.cpp.iso.ico"
 html_sourcelink_suffix = ".rst"
 html_experimental_html5_writer = True
