@@ -22,3 +22,17 @@
       -  Token
    *  -  字面
       -  Literal
+   *  -  注释
+      -  Comment
+   *  -  浮点数
+      -  Floating
+   *  -  整数
+      -  Integer
+   *  -  溢出
+      -  Overflow
+   *  -  字节
+      -  Byte
+   *  -  字符
+      -  Character
+   *  -  字符串
+      -  String
