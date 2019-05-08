@@ -38,8 +38,11 @@
 
    对于大多数命令行, 都是以一个换行输入一条命令.
 
-编译过程
-========
+如何编写一个 C 程序
+===================
+
+一个 C 程序通常由 C 代码和 C 标准库提供的功能组成.
+C 标准库提供的功能需要通过在自己编写的 C 代码中包含对应的头文件才能使用.
 
 先准备一个可编译的 C 代码源文件:
 
@@ -50,9 +53,17 @@
    :caption: hello.c
    :linenos:
 
-.. sidebar:: 编译过程图示
+第一行的 ``#include <stdio.h>`` 是一个 *预处理* 指令,
+作用就是包含 C 标准库头文件 ``stdio.h`` 中的内容.
+在这个文件中, 提供了 C 标准库与输入输出有关的函数声明.
 
-   .. graphviz:: ../_static/graphviz/intro.compile.gv
+通过引入头文件中的声明, 才能在编译过程中正确地链接到 C 标准库中的符号.
+
+之后的内容就是编辑的 C 代码, C 代码从一个 ``main`` 函数开始,
+这被称为 `程序入口`_.
+
+编译过程
+========
 
 对于传统的编译过程, 如使用 gcc 进行编译, 我们会
 
@@ -84,7 +95,7 @@
    因此, 也是整个编译过程最重要的一步. 也是以这一步来命名了整个编译过程.
 
 .. literalinclude:: _code/hello.s
-   :language: c
+   :language: asm
    :caption: hello.s
    :linenos:
 
@@ -92,7 +103,8 @@
    这一步之后, 得到了二进制目标代码 ``hello.o`` (有删减, 只保留了消息较密集的部分).
 
 .. literalinclude:: _code/hello.o.txt
-   :caption: hello.o
+   :language: hexdump
+   :caption: hello.o(有删减)
    :lines: 1-15,34-43
    :emphasize-lines: 8-9
 
@@ -111,12 +123,11 @@
    因此, 还需要将中间代码与 C 标准库相链接, 把 printf 的代码与 printf 这个符号相关联.
 
 .. literalinclude:: _code/hello.txt
-   :caption: hello
-   :lines: 1,43-46,63-71,257-289,513-529,771-777,873-921
+   :language: hexdump
+   :caption: hello(有删减)
+   :lines: 1,43-46
 
-.. sidebar:: Clang 编译流程
-
-   .. graphviz:: ../_static/graphviz/intro.compile.clang.gv
+.. 觉得太长, 后面的行就不要显示了 63-71,257-289,513-529,771-777,873-921
 
 链接完成了之后, 终于得到可执行程序 ``hello`` 了.
 现在, 让我们在终端运行它一下:
@@ -131,3 +142,56 @@
 
 另外, clang 还会生成一个 ``hello.bc`` 文件, 那是 LLVM 的中间码.
 它的生成是 LLVM 调用后端编译之前的一步.
+
+.. list-table::
+
+   *  -  编译过程
+      -  Clang 编译过程
+   *  -  .. graphviz:: ../_static/graphviz/intro.compile.gv
+      -  .. graphviz:: ../_static/graphviz/intro.compile.clang.gv
+
+程序入口
+========
+
+一个程序必须要有一个开始执行的位置, 对于 C 程序来说, 这个入口就是函数 ``main``,
+所以你能在所有 **编译得到可执行文件的源代码** 中看到一个名为 ``main`` 的函数.
+
+为什么要强调是 **得到可执行文件的源代码** ?
+
+还记得在 `编译过程`_ 中提到的最后一个步骤: *链接* 吗,
+在这个步骤中, 链接的目标 -- libc 就是一个链接库文件,
+在链接库文件中, 可以不包含 ``main`` 函数.
+
+链接库中存储了编译后的程序代码以及它们的符号,
+可以链接到其他函数中使用. 具体的用法见 :doc:`library`.
+
+继续说主函数, 在 :ref:`hello.c` 中, 主函数的 *形参(Parameter)* 表为 ``int argc, char *argv[]``:
+
+.. literalinclude:: _code/hello.c
+   :language: c
+   :lines: 3
+
+这是为了能够从命令行接收参数. ``argc`` 是所传入参数的数目,
+``argv`` 则是存储了指向每一个参数的首地址的指针.
+参数的类型都是字符串.
+你可以使用 C 标准库提供的 :c:func:`atoi`, :c:func:`atof` 来将字符串解析为对应的整数或浮点数.
+这两个函数的声明包含在头文件 ``stdlib.h`` 中.
+
+当从终端调用程序时, 可以这样向程序传递参数:
+
+.. code-block:: sh
+
+   ./hello arg1 arg2 arg3
+
+如此, 则 ``argc`` 的值将会为 4, ``argv`` 则是一个指向四个字符串的指针数组:
+
+.. code::
+
+   argv[0] -> "./hello"
+   argv[1] -> "arg1"
+   argv[2] -> "arg2"
+   argv[3] -> "arg3"
+
+``argc`` 和 ``argv`` 都是惯用名, 并非必须这么做, 你也可以这么命名::
+
+   int main(int argument_counts, char *argment_variables[]) {

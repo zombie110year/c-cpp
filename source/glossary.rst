@@ -42,3 +42,7 @@
       -  Declare
    *  -  初始化
       -  Initialization
+   *  -  形式参数/形参
+      -  Parameter
+   *  -  实际参数/实参/参数
+      -  Argument
