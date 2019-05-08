@@ -18,27 +18,9 @@ main:                                   # @main
 	leaq	.L.str(%rip), %rdi
 	movb	$0, %al
 	callq	printf@PLT
-	movl	$0, -20(%rbp)
-	movl	%eax, -24(%rbp)         # 4-byte Spill
-.LBB0_1:                                # =>This Inner Loop Header: Depth=1
-	movl	-20(%rbp), %eax
-	cmpl	-8(%rbp), %eax
-	jge	.LBB0_4
-# %bb.2:                                #   in Loop: Header=BB0_1 Depth=1
-	movq	-16(%rbp), %rax
-	movslq	-20(%rbp), %rcx
-	movq	(%rax,%rcx,8), %rsi
-	leaq	.L.str.1(%rip), %rdi
-	movb	$0, %al
-	callq	printf@PLT
-	movl	%eax, -28(%rbp)         # 4-byte Spill
-# %bb.3:                                #   in Loop: Header=BB0_1 Depth=1
-	movl	-20(%rbp), %eax
-	addl	$1, %eax
-	movl	%eax, -20(%rbp)
-	jmp	.LBB0_1
-.LBB0_4:
-	xorl	%eax, %eax
+	xorl	%ecx, %ecx
+	movl	%eax, -20(%rbp)         # 4-byte Spill
+	movl	%ecx, %eax
 	addq	$32, %rsp
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
@@ -52,11 +34,6 @@ main:                                   # @main
 .L.str:
 	.asciz	"Hello World!\n"
 	.size	.L.str, 14
-
-	.type	.L.str.1,@object        # @.str.1
-.L.str.1:
-	.asciz	"%s\n"
-	.size	.L.str.1, 4
 
 
 	.ident	"clang version 8.0.0 (tags/RELEASE_800/final)"

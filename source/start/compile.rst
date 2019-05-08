@@ -91,10 +91,10 @@
 3. **汇编**: 得到汇编代码之后, 就直接一步一步地将它翻译成机器码就好了.
    这一步之后, 得到了二进制目标代码 ``hello.o`` (有删减, 只保留了消息较密集的部分).
 
-.. literalinclude:: _code/hello.o
+.. literalinclude:: _code/hello.o.txt
    :caption: hello.o
    :lines: 1-15,34-43
-   :emphasize-lines: 11-12
+   :emphasize-lines: 8-9
 
 使用 Linux 程序 xxd 将整个文件转换成了可读性更好的形式,
 整个文件被分为三栏::
@@ -110,9 +110,9 @@
    可没有定义对应的实现呢(在 hello.o 中, 编译器留下了 ``llvm_addrsig.printf`` 记号).
    因此, 还需要将中间代码与 C 标准库相链接, 把 printf 的代码与 printf 这个符号相关联.
 
-.. literalinclude:: _code/hello
+.. literalinclude:: _code/hello.txt
    :caption: hello
-   :lines: 1,38-41,52-60,76-128,168-173,269-
+   :lines: 1,43-46,63-71,257-289,513-529,771-777,873-921
 
 .. sidebar:: Clang 编译流程
 
