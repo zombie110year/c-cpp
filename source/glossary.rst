@@ -46,3 +46,5 @@
       -  Parameter
    *  -  实际参数/实参/参数
       -  Argument
+   *  -  寄存器
+      -  Register
