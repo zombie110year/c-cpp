@@ -126,3 +126,71 @@ extern
 
 但实际上, 常量仅仅是 "无法通过此标识符修改目标内存" 而已,
 通过指针运算仍然可以定位到将常量所表示的内存空间进行修改.
+
+枚举常量
+========
+
+在某些时候, 会需要用到一系列常量, 例如用来表示一周的星期名::
+
+   const int Monday = 1;
+   const int Tuesday = 2;
+   // ...
+
+或者, 定义错误处理时所需要的错误码::
+
+   const int PASS = 0;
+   const int UNKNOWN_ERROR = -1;
+   // ...
+
+这些都可以使用一个 ``enum`` 枚举体来进行定义:
+
+.. literalinclude:: _code/show.enum.c
+   :language: c
+   :lines: 3-8
+
+enum 枚举体从 0 开始为其中的成员赋值. 每一个成员都是可直接使用的常量.
+它们的大小和数据解读方式和 ``int`` 一致.
+
+也可以为其中的某几个成员赋值, 接下来的成员会按照前一个成员的值进行递增:
+
+.. literalinclude:: _code/show.enum.c
+   :language: c
+   :lines: 10-18
+
+每一个 enum 结构体的成员实际上都是 int 类型, 因此不同的 enum 结构体中定义的常量可以互相比较:
+
+.. literalinclude:: _code/show.enum.c
+   :language: c
+   :linenos:
+   :caption: show.enum.c
+
+运行结果如下
+
+.. code::
+
+   0 1 2 3
+   0 1 2 3 4 5 6
+   1
+
+变量的类型转换
+==============
+
+变量的类型具有两个大类: 整数和浮点数,
+在这两个大类之下, 分了 int, unsigned int, long int, char; float, double 等小类.
+
+当一个变量将值赋给另一个变量时, 如果这两个变量的类型不同, 则有可能发生自动类型转换或者编译错误.
+
+自动类型转换时, 编译器会向不损失信息的方向进行转换. 也就是从尺寸小的类型向尺寸长的类型转换.
+
+char 可以向 int 自动转换, float 可以向 double 自动转换. 但反过来就会发出警告.
+
+可以手动指定转换格式, 采用在值前添加 ``(类型名)`` 的语法::
+
+   char ch = (char) 10.0;
+   // 否则会发出 double -> char 的警告
+
+这常常用于对 void 指针进行显式转换::
+
+   void *getItem(/* 形式参数 */);
+
+   int value = *(int *)getItem(/* 实际参数 */);

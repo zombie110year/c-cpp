@@ -75,6 +75,7 @@ DLL(Dynamic Linked Library) 是一种可在运行时被其他程序链接并执�
 在编译时, 动态链接:
 
 .. code-block:: sh
+
    clang -o main.out -L. -lswap main.c
 
 ``-L.``

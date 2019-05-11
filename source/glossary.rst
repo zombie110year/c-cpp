@@ -48,3 +48,7 @@
       -  Argument
    *  -  寄存器
       -  Register
+   *  -  数组
+      -  Array
+   *  -  变长数组/VLA
+      -  Variable Length Array

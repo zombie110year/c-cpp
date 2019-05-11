@@ -445,3 +445,41 @@ C 语言中的字符只有一个字节, 所以只能存入 0~256 范围内的值
       0[1]
 
    实际上, 下标访问会被转换为指针访问, 见 :doc:`array-pointer`.
+
+类型别名
+========
+
+可以使用 ``typedef`` 关键字为一个类型定义别名, 例如::
+
+   typedef double ElementType;
+
+上面这个语句给 ``double`` 类型定义了一个别名 ``ElementType``,
+之后可以使用 ElementType 来声明 double 类型的实体.
+
+它的语法可以这么表示::
+
+   typedef /* 原类型名 */ /* 类型别名 */;
+
+别名通常用在这些场景中:
+
+-  便于维护与升级. 例如, 需要将 ElementType 类型修改从 double 修改为 float 时,
+   只需要重新定义别名 ``typedef float ElementType`` 即可.
+-  为复合类型定义简短的别名. 例如, 为一个结构体(或联合体, 枚举体)定义别名::
+
+      struct matrix {
+         int width;
+         int height;
+         ElementType *body;
+      };
+
+      typedef struct matrix matrix_t;
+
+   或者直接为匿名结构体定义别名::
+
+      typedef struct {
+         int width;
+         int height;
+         ElementType *body;
+      } matrix_t;
+
+-  模仿 Windows.
