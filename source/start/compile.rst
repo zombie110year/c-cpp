@@ -194,4 +194,4 @@ C 标准库提供的功能需要通过在自己编写的 C 代码中包含对应
 
 ``argc`` 和 ``argv`` 都是惯用名, 并非必须这么做, 你也可以这么命名::
 
-   int main(int argument_counts, char *argment_variables[]) {
+   int main(int argument_counts, char *argument_variables[]) {

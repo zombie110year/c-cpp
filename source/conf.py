@@ -18,6 +18,7 @@ extensions = [
     'sphinx.ext.mathjax',  # 渲染数学公式
     'sphinx.ext.todo',     # to do 指令
     'sphinx.ext.autosectionlabel', # 为标题自动生成标签, 可通过 ref 角色引用
+    'sphinx.ext.imgconverter', # 自动将 svg 转换成 latex 可用的格式, 需要 imagemagick
 ]
 
 templates_path = ['_templates']
