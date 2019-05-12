@@ -52,3 +52,5 @@
       -  Array
    *  -  变长数组/VLA
       -  Variable Length Array
+   *  -  内存对齐
+      -  Memory Align
