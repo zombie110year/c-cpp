@@ -46,10 +46,24 @@ xxx_t 是 GNU 的命名习惯, 实际上可以命名为任何标识符.
       double x;
    };
 
-用例
-====
+展示语法与基本特性的用例
+========================
 
 .. literalinclude:: _code/show.struct-union.c
    :language: c
    :caption: show.struct-union
    :linenos:
+
+结构体的实际用例
+================
+
+结构体适合存储关联性很强的一系列数据. 例如,
+在使用 :ref:`动态数组` 时, 可以将数组的实体首地址与尺寸存储在一个结构体中::
+
+   typedef struct {
+      int length;
+      int *body;
+   } array_t;
+
+联合体的实际用例
+================

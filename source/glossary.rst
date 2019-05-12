@@ -54,3 +54,7 @@
       -  Variable Length Array
    *  -  内存对齐
       -  Memory Align
+   *  -  栈
+      -  Stack
+   *  -  堆
+      -  Heap

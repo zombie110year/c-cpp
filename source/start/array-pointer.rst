@@ -229,6 +229,8 @@ void 指针
    :language: c
    :caption: test.sizeof.c
 
+.. _`动态数组`:
+
 动态数组
 ========
 
