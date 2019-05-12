@@ -158,3 +158,20 @@ break 可以使用在 switch 分支和 while, do-while, for 循环之中,
 
 continue 可以使用在循环结构中, 作用是在此处中断, 并提前进入下一回合循环.
 对于 for 语句, loop-end 仍然会被执行.
+
+.. _`三目条件表达式`:
+
+三目条件表达式
+==============
+
+操作符 ``?:`` 可以起到类似于 if-else 语句的效果::
+
+   result = c ? x : y;
+
+等价于::
+
+   if(c) {
+      result = x;
+   } else {
+      result = y;
+   }
