@@ -18,7 +18,7 @@ extensions = [
     'sphinx.ext.mathjax',  # 渲染数学公式
     'sphinx.ext.todo',     # to do 指令
     'sphinx.ext.autosectionlabel', # 为标题自动生成标签, 可通过 ref 角色引用
-    'sphinx.ext.imgconverter', # 自动将 svg 转换成 latex 可用的格式, 需要 imagemagick
+   #  'sphinx.ext.imgconverter', # 自动将 svg 转换成 latex 可用的格式, 需要 imagemagick
 ]
 
 templates_path = ['_templates']
@@ -59,7 +59,7 @@ html_sourcelink_suffix = ".rst"
 html_experimental_html5_writer = True
 
 # -- Options for EPUB output -------------------------------------------------
-epub_basename = "c-and-cpp.v{}".format(release) # 生成的文件名
+epub_basename = "c-cpp.v{}".format(release) # 生成的文件名
 epub_title = "C 与 C++"
 epub_description = "从 C 到 C++ 的语法, 设计模式, 以及 *nix 操作系统上的编程"
 epub_contributor = "Zombie110year"
@@ -94,5 +94,5 @@ latex_elements = {
 }
 latex_documents = [
     # 主页, 输出文件名, 标题, 作者, 文档类型
-    ("index", "c-and-cpp.v{}.tex".format(release), "C 与 C++", author, "book")
+    ("index", "c-cpp.v{}.tex".format(release), "C 与 C++", author, "book")
 ]
