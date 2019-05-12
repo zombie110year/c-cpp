@@ -10,6 +10,7 @@ C 语言入门
    compile
    grammar
    variable-const-expr
+   struct-union
    control-statement
    array-pointer
    function
