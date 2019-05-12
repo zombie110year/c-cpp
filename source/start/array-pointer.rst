@@ -76,9 +76,10 @@
 多维数组的内存分配是按照先行规律进行分配的.
 所有的数组实际上在内存中都是一维存储, 但是根据定义时确定的大小, 能够将其划分为不同的部分:
 
-.. image:: _images/show.2darray.svg
-   :alt: show.2darray.svg
+.. figure:: _images/show.2darray.svg
    :align: center
+
+   show.2darray.svg
 
 同样地, 可以定义 3 维, 4 维 数组. 不过高维数组太过抽象, 使用起来太过困难,
 在遇到这种情形时, 需要考虑降维.
@@ -101,7 +102,7 @@
 指针也具有类型, 虽然所有指针的大小都是一样的一个字长大小,
 但是指针的类型决定了它所指向的数据的解读方式.
 
-声明一个指针类型的变量, 需要使用对应的类型名并在变量名前添加一个 ``\*`` 号::
+声明一个指针类型的变量, 需要使用对应的类型名并在变量名前添加一个 ``*`` 号::
 
    int *a_ptr;
 
@@ -121,9 +122,10 @@
 
    *a_ptr   // 这个表达式的值为 18
 
-.. image:: _images/intro.pointer.svg
-   :alt: intro.pointer
+.. figure:: _images/intro.pointer.svg
    :align: center
+
+   intro.pointer
 
 指针运算
 ========
@@ -139,9 +141,10 @@
 
 指针的移动如图:
 
-.. image:: _images/show.pointer.move.svg
+.. figure:: _images/show.pointer.move.svg
    :align: center
-   :alt: show.pointer.move
+
+   show.pointer.move
 
 多维指针
 ========
@@ -152,9 +155,10 @@
    int *a_ptr = &a;
    int **a_pp = &a_ptr;
 
-.. image:: _images/intro.pointer.2d.svg
-   :alt: intro.pointer.2d
+.. figure:: _images/intro.pointer.2d.svg
    :align: center
+
+   intro.pointer.2d
 
 如果要从二维指针直接解引用到最后的变量, 可以连续使用解引用操作符::
 
