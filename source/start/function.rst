@@ -209,3 +209,21 @@ C 语言中的函数都是 "值传递" 的.
 修饰返回值::
 
    const int add(int a, int b);
+
+内联函数
+========
+
+C99 提供了 ``inline`` 关键字用于声明内联函数::
+
+.. literalinclude:: _code/show.function.inline.c
+   :language: c
+   :linenos:
+   :caption: show.function.inline
+
+.. warning:: 只能用于声明, 不能用于定义
+
+内联函数的调用将在编译期间被展开为代码块, 而不像普通的函数一样被调用.
+由于没有调用函数时生成帧与销毁帧的损耗, 内联函数有助于提高运行效率,
+但由于生成了代码, 会导致目标代码文件的体积增加.
+
+适用于经常调用并且比较简短的代码.

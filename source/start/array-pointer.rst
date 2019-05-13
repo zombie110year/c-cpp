@@ -261,3 +261,9 @@ void 指针
    :language: c
    :linenos:
    :caption: show.array.dynamic
+
+restrict 指针
+=============
+
+restrict 指针表示所声明的指针是访问对应元素的唯一途径,
+两个 restrict 指针不允许指向同一地址
