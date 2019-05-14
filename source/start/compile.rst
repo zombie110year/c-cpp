@@ -179,3 +179,34 @@ C 标准库提供的功能需要通过在自己编写的 C 代码中包含对应
 ``argc`` 和 ``argv`` 都是惯用名, 并非必须这么做, 你也可以这么命名::
 
    int main(int argument_counts, char *argument_variables[]) {
+
+练习
+====
+
+1. 在自己的机器上编译并运行 hello.c 程序::
+
+   #include <stdio.h>
+
+   int main(int argc, char *argv[]) {
+      printf("Hello World!\n");
+      return 0;
+   }
+
+
+2. 去掉 :ref:`hello.c` 中的 ``#include <stdio.h>``, 看看编译器报错是什么.
+3. 用 ``extern int printf(const char *restrict, ...);``
+   代替 ``#include <stdio.h>``, 看看能否重新编译. 思考头文件的作用::
+
+   extern int printf(const char *restrict, ...);
+
+   int main(int argc, char *argv[]) {
+      printf("Hello World!\n");
+      return 0;
+   }
+
+.. todo:: 练习的参考答案
+
+   1. 使用命令行 ``clang hello.c`` 生成的 ``a.out`` 就是可执行文件.
+   2. 由链接器报出 undefined label 之类的错误
+   3. 此代码应当能成功编译, 并正常运行. 头文件就是提供了相关的函数以及变量声明,
+      在链接步骤后, 这些符号将指向标准库中的代码.
