@@ -181,3 +181,20 @@ ldd
       linux-vdso.so.1 (0x00007ffcbed0d000)
       libc.so.6 => /usr/lib/libc.so.6 (0x00007f316de60000)
       /usr/lib64/ld-linux-x86-64.so.2 (0x00007f316e042000)
+
+鸣谢
+====
+
+感谢以下项目或人员帮助了我的程序学习经历:
+
+.. list-table::
+   :header-rows: 1
+
+   *  -  项目或人员
+      -  主页或联系方式
+   *  -  Linux C 编程一站式学习
+      -  http://docs.linuxtone.org/ebooks/C&CPP/c/
+   *  -  free-programming-books-zh_CN
+      -  `GitHub <https://github.com/justjavac/free-programming-books-zh_CN>`_
+   *  -  free-programming-books
+      -  `GitHub <https://github.com/EbookFoundation/free-programming-books>`_

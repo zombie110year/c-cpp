@@ -213,7 +213,7 @@ C 语言中的函数都是 "值传递" 的.
 内联函数
 ========
 
-C99 提供了 ``inline`` 关键字用于声明内联函数::
+C99 提供了 ``inline`` 关键字用于声明内联函数:
 
 .. literalinclude:: _code/show.function.inline.c
    :language: c

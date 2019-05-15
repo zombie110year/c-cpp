@@ -3,6 +3,7 @@
 ##########
 
 .. list-table::
+   :header-rows: 1
 
    *  -  词法
       -  Lexical
