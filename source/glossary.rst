@@ -58,3 +58,37 @@
       -  Stack
    *  -  堆
       -  Heap
+   *  -  生命周期
+      -  Life Cycle
+   *  -  作用域
+      -  Scope
+   *  -  花括号/``{}``
+      -  Braces
+   *  -  段
+      -  Segment
+   *  -  节
+      -  Section
+   *  -  程序
+      -  Program
+   *  -  指令
+      -  Instruction
+   *  -  语句
+      -  Statement
+   *  -  助记符
+      -  Mnemonic
+   *  -  汇编器
+      -  Assembler
+   *  -  编译
+      -  Compile
+   *  -  编译器
+      -  Compiler
+   *  -  可移植的
+      -  Portable
+   *  -  平台无关的
+      -  Platform Independent
+   *  -  计算机体系结构
+      -  Architecture
+   *  -  操作系统/OS
+      -  Operating System
+   *  -  指令集
+      -  Instruction Set
