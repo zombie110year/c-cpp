@@ -21,3 +21,31 @@
 
 未完成 ...
 ===========
+
+在 C 可执行文件中嵌入资源文件
+=============================
+
+例如, 图片, 文本文件, 音频等.
+
+最简单的做法是将文件保存在独立的文件中,
+但是这样的话, 在发布程序时需要保持目录结构, 只能发送一个文件夹(或压缩包).
+
+而要编译出一个包含了所有资源文件的可执行文件,
+可以考虑将其转化为字节数组, 以 const 限定存储在 static 段中.
+
+1. 使用程序 xxd 将文件转为 C include 形式, 保存在 ``resource_name.inc`` 文件中:
+
+.. code-block:: sh
+
+   xxd -i example.png > example.png.inc
+
+添加 ``inc`` 后缀是一种习惯命名.
+
+2. 创建一个 ``resource.c`` 文件, 在其中 ``include`` 所有 ``inc`` 文件.
+3. 为 ``resource.c`` 文件创建 ``.h`` 头文件,
+   将资源在程序中的标识符以 ``extern`` 修饰.
+   注意不能使用 ``const``, 它和 ``extern`` 是冲突的.
+4. 在需要引用资源的源代码中 ``include`` ``resource.h``.
+5. 在编译时链接 ``resource.o`` 目标代码.
+
+你可以下载 :download:`sphinx-conf <_static/zip/sphinx-conf.master.zip>` 的源代码来看看这个例子.

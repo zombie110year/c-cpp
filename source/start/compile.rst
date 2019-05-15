@@ -185,24 +185,24 @@ C 标准库提供的功能需要通过在自己编写的 C 代码中包含对应
 
 1. 在自己的机器上编译并运行 hello.c 程序::
 
-   #include <stdio.h>
+      #include <stdio.h>
 
-   int main(int argc, char *argv[]) {
-      printf("Hello World!\n");
-      return 0;
-   }
+      int main(int argc, char *argv[]) {
+         printf("Hello World!\n");
+         return 0;
+      }
 
 
 2. 去掉 :ref:`hello.c` 中的 ``#include <stdio.h>``, 看看编译器报错是什么.
 3. 用 ``extern int printf(const char *restrict, ...);``
    代替 ``#include <stdio.h>``, 看看能否重新编译. 思考头文件的作用::
 
-   extern int printf(const char *restrict, ...);
+      extern int printf(const char *restrict, ...);
 
-   int main(int argc, char *argv[]) {
-      printf("Hello World!\n");
-      return 0;
-   }
+      int main(int argc, char *argv[]) {
+         printf("Hello World!\n");
+         return 0;
+      }
 
 .. todo:: 练习的参考答案
 
