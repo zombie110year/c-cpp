@@ -92,3 +92,5 @@
       -  Operating System
    *  -  指令集
       -  Instruction Set
+   *  -  调试
+      -  Debug

@@ -15,4 +15,5 @@ C 语言入门
    function
    struct-union
    scope
+   debug
    library
