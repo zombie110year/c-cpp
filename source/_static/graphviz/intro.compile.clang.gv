@@ -30,4 +30,5 @@ digraph compile {
    }
    assembler -> object_code;
    object_code -> linker -> executable;
+   "其他目标代码" -> linker;
 }
