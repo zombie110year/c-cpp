@@ -23,4 +23,4 @@
 
 # LECENSE
 
-MIT
+[GLPLv3](LICENSE)
