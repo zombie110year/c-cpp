@@ -18,6 +18,7 @@ extensions = [
     'sphinx.ext.mathjax',  # 渲染数学公式
     'sphinx.ext.todo',     # to do 指令
     'sphinx.ext.autosectionlabel', # 为标题自动生成标签, 可通过 ref 角色引用
+    'sphinx.ext.githubpages', # 生成 .nojekyll file, 禁用 GitHub Page 的 jekyll 引擎
    #  'sphinx.ext.imgconverter', # 自动将 svg 转换成 latex 可用的格式, 需要 imagemagick
    # 'sphinxcontrib.inkscapeconverter' # 使用 inkscape 将 svg 图像转换为 PDF
 ]
