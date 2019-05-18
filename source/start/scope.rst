@@ -69,6 +69,8 @@ stack
    而其中 stack 和 heap 的大小会发生变化.
 
 .. figure:: _images/intro.memory.layout.typical.svg
+   :height: 400px
+   :align: center
 
    典型内存布局
 

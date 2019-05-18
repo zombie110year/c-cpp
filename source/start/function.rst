@@ -129,6 +129,7 @@ main 函数的形参设为 :c:type:`void`,
 调用了这个函数, 具体的流程如下:
 
 .. figure:: _images/show.frame.function.svg
+   :width: 400px
    :align: center
 
    show.frame.function

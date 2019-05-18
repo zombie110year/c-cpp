@@ -79,6 +79,7 @@
 所有的数组实际上在内存中都是一维存储, 但是根据定义时确定的大小, 能够将其划分为不同的部分:
 
 .. figure:: _images/show.2darray.svg
+   :width: 600px
    :align: center
 
    show.2darray.svg
@@ -125,6 +126,7 @@
    *a_ptr   // 这个表达式的值为 18
 
 .. figure:: _images/intro.pointer.svg
+   :width: 400px
    :align: center
 
    intro.pointer
@@ -144,6 +146,7 @@
 指针的移动如图:
 
 .. figure:: _images/show.pointer.move.svg
+   :width: 400px
    :align: center
 
    show.pointer.move
@@ -158,6 +161,7 @@
    int **a_pp = &a_ptr;
 
 .. figure:: _images/intro.pointer.2d.svg
+   :width: 400px
    :align: center
 
    intro.pointer.2d
