@@ -195,6 +195,6 @@ ldd
    *  -  Linux C 编程一站式学习
       -  http://docs.linuxtone.org/ebooks/C&CPP/c/
    *  -  free-programming-books-zh_CN
-      -  `GitHub <https://github.com/justjavac/free-programming-books-zh_CN>`_
+      -  https://github.com/justjavac/free-programming-books-zh_CN
    *  -  free-programming-books
-      -  `GitHub <https://github.com/EbookFoundation/free-programming-books>`_
+      -  https://github.com/EbookFoundation/free-programming-books
