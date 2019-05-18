@@ -1,0 +1,486 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>math.h &mdash; C 与 C++ 0.1.0rc 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/logo.cpp.iso.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="stdarg.h" href="stdarg.html" />
+    <link rel="prev" title="assert.h" href="assert.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> C 与 C++
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../prepost.html">前言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../start/index.html">C 语言入门</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C 语言标准库</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="assert.html">assert.h</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">math.h</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">概览</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">宏</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">函数</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">三角函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">双曲函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">指数对数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">其他</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="stdarg.html">stdarg.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stddef.html">stddef.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stdio.html">stdio.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stdlib.html">stdlib.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="string.html">string.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="time.html">time.h</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C++ 标准库与标准模板库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">词汇对照表</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">C 与 C++</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">C 语言标准库</a> &raquo;</li>
+        
+      <li>math.h</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/standard-lib/c/math.rst" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="math-h">
+<h1>math.h<a class="headerlink" href="#math-h" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id1">
+<h2>概览<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<p>math.h 提供了一系列数学计算相关的函数,
+在某些版本的 GCC 中, 需要在链接时指定 libm 才能使用:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="n">test_math</span><span class="p">.</span><span class="n">c</span> <span class="o">-</span><span class="n">lm</span>
+</pre></div>
+</div>
+<p>math.h 中的函数传入的参数和返回值都是 <code class="xref c c-type docutils literal notranslate"><span class="pre">double</span></code> 类型的.</p>
+</div>
+<div class="section" id="id2">
+<h2>宏<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<dl class="macro">
+<dt id="c.HUGE_VAL">
+<code class="descname">HUGE_VAL</code><a class="headerlink" href="#c.HUGE_VAL" title="永久链接至目标">¶</a></dt>
+<dd><p>用来表示一个无法用浮点数表示的数,
+可以认为代表 “无穷大”</p>
+<p>当数值超出浮点数范围时, errno 被设为 ERANGE,
+并返回 <code class="docutils literal notranslate"><span class="pre">HUGE_VAL</span></code> 或 <code class="docutils literal notranslate"><span class="pre">-</span> <span class="pre">HUGE_VAL</span></code>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id3">
+<h2>函数<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id4">
+<h3>三角函数<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<dl class="function">
+<dt id="c.acos">
+double <code class="descname">acos</code><span class="sig-paren">(</span>double<span class="sig-paren">)</span><a class="headerlink" href="#c.acos" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>反余弦 <span class="math notranslate nohighlight">\(\arccos\)</span>, 弧度制</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.asin">
+double <code class="descname">asin</code><span class="sig-paren">(</span>double<span class="sig-paren">)</span><a class="headerlink" href="#c.asin" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>反正弦 <span class="math notranslate nohighlight">\(\arcsin\)</span>, 弧度制</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.atan">
+double <code class="descname">atan</code><span class="sig-paren">(</span>double<span class="sig-paren">)</span><a class="headerlink" href="#c.atan" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>反正切 <span class="math notranslate nohighlight">\(\arctan\)</span>, 弧度制</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.atan2">
+double <code class="descname">atan2</code><span class="sig-paren">(</span>double<em> y</em>, double<em> x</em><span class="sig-paren">)</span><a class="headerlink" href="#c.atan2" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>点 (x, y) 对应的角度, 弧度制</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.sin">
+double <code class="descname">sin</code><span class="sig-paren">(</span>double<span class="sig-paren">)</span><a class="headerlink" href="#c.sin" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>正弦 <span class="math notranslate nohighlight">\(\sin\)</span>, 弧度制</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.cos">
+double <code class="descname">cos</code><span class="sig-paren">(</span>double<span class="sig-paren">)</span><a class="headerlink" href="#c.cos" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>余弦 <span class="math notranslate nohighlight">\(\cos\)</span>, 弧度制</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.tan">
+double <code class="descname">tan</code><span class="sig-paren">(</span>double<span class="sig-paren">)</span><a class="headerlink" href="#c.tan" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>正切 <span class="math notranslate nohighlight">\(\tan\)</span>, 弧度制</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="id5">
+<h3>双曲函数<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<dl class="function">
+<dt id="c.cosh">
+double <code class="descname">cosh</code><span class="sig-paren">(</span>double<span class="sig-paren">)</span><a class="headerlink" href="#c.cosh" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>双曲余弦 <span class="math notranslate nohighlight">\(\cosh\)</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.sinh">
+double <code class="descname">sinh</code><span class="sig-paren">(</span>double<span class="sig-paren">)</span><a class="headerlink" href="#c.sinh" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>双曲正弦 <span class="math notranslate nohighlight">\(\sinh\)</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.tanh">
+double <code class="descname">tanh</code><span class="sig-paren">(</span>double<span class="sig-paren">)</span><a class="headerlink" href="#c.tanh" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>双曲正切 <span class="math notranslate nohighlight">\(\tanh\)</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="id6">
+<h3>指数对数<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<dl class="function">
+<dt id="c.exp">
+double <code class="descname">exp</code><span class="sig-paren">(</span>double<em> x</em><span class="sig-paren">)</span><a class="headerlink" href="#c.exp" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>指数 <span class="math notranslate nohighlight">\(e^x\)</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.frexp">
+double <code class="descname">frexp</code><span class="sig-paren">(</span>double<em> x</em>, int<em> *n</em><span class="sig-paren">)</span><a class="headerlink" href="#c.frexp" title="永久链接至目标">¶</a></dt>
+<dd><p>分解浮点数 <span class="math notranslate nohighlight">\(x = a \times 2^n\)</span></p>
+<p>返回值为 <span class="math notranslate nohighlight">\(a\)</span>, 将指数存入整数指针 <code class="docutils literal notranslate"><span class="pre">n</span></code> 所指的内存.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.ldexp">
+double <code class="descname">ldexp</code><span class="sig-paren">(</span>double<em> x</em>, int<em> n</em><span class="sig-paren">)</span><a class="headerlink" href="#c.ldexp" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p><span class="math notranslate nohighlight">\(x \times 2^n\)</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.log">
+double <code class="descname">log</code><span class="sig-paren">(</span>double<em> x</em><span class="sig-paren">)</span><a class="headerlink" href="#c.log" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>自然对数 <span class="math notranslate nohighlight">\(\ln x\)</span> (基数为 <span class="math notranslate nohighlight">\(e\)</span>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.log10">
+double <code class="descname">log10</code><span class="sig-paren">(</span>double<em> x</em><span class="sig-paren">)</span><a class="headerlink" href="#c.log10" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>常用对数 <span class="math notranslate nohighlight">\(\log x\)</span>, (基数为 10)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.pow">
+double <code class="descname">pow</code><span class="sig-paren">(</span>double<em> x</em>, double<em> y</em><span class="sig-paren">)</span><a class="headerlink" href="#c.pow" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p><span class="math notranslate nohighlight">\(x^y\)</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="id7">
+<h3>其他<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
+<dl class="function">
+<dt id="c.sqrt">
+double <code class="descname">sqrt</code><span class="sig-paren">(</span>double<em> x</em><span class="sig-paren">)</span><a class="headerlink" href="#c.sqrt" title="永久链接至目标">¶</a></dt>
+<dd><p>平方根.</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p><span class="math notranslate nohighlight">\(\sqrt{x}\)</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.fmod">
+double <code class="descname">fmod</code><span class="sig-paren">(</span>double<em> x</em>, double<em> *a</em><span class="sig-paren">)</span><a class="headerlink" href="#c.fmod" title="永久链接至目标">¶</a></dt>
+<dd><p>分解浮点数为整数与小数部分 <span class="math notranslate nohighlight">\(x = a + b\)</span></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">a</span></code> 为整数部分</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">b</span></code> 为小数部分</p></li>
+</ul>
+<p>小数部分被返回, 整数部分通过指针赋值.</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>b</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.modf">
+double <code class="descname">modf</code><span class="sig-paren">(</span>double<em> x</em>, double<em> y</em><span class="sig-paren">)</span><a class="headerlink" href="#c.modf" title="永久链接至目标">¶</a></dt>
+<dd><p>返回 <span class="math notranslate nohighlight">\(x / y\)</span> 的余数.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.ceil">
+double <code class="descname">ceil</code><span class="sig-paren">(</span>double<em> x</em><span class="sig-paren">)</span><a class="headerlink" href="#c.ceil" title="永久链接至目标">¶</a></dt>
+<dd><p>向上取整</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">ceil</span><span class="p">(</span><span class="mf">123.9</span><span class="p">)</span> <span class="o">==</span> <span class="mf">124.0</span><span class="p">;</span>
+<span class="n">ceil</span><span class="p">(</span><span class="mf">123.1</span><span class="p">)</span> <span class="o">==</span> <span class="mf">124.0</span><span class="p">;</span>
+<span class="n">ceil</span><span class="p">(</span><span class="mf">122.9</span><span class="p">)</span> <span class="o">==</span> <span class="mf">123.0</span><span class="p">;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.fabs">
+double <code class="descname">fabs</code><span class="sig-paren">(</span>double<em> x</em><span class="sig-paren">)</span><a class="headerlink" href="#c.fabs" title="永久链接至目标">¶</a></dt>
+<dd><p>绝对值</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p><span class="math notranslate nohighlight">\(|x|\)</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="stdarg.html" class="btn btn-neutral float-right" title="stdarg.h" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="assert.html" class="btn btn-neutral float-left" title="assert.h" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Zombie110year
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

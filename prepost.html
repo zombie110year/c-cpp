@@ -1,0 +1,443 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>前言 &mdash; C 与 C++ 0.1.0rc 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/logo.cpp.iso.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="C 语言入门" href="start/index.html" />
+    <link rel="prev" title="C 与 C++" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> C 与 C++
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">前言</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">本书主要内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#c-c">C/C++ 开发环境的选择</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">鸣谢</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="start/index.html">C 语言入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="standard-lib/c/index.html">C 语言标准库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="standard-lib/cpp/index.html">C++ 标准库与标准模板库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">词汇对照表</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">C 与 C++</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>前言</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/prepost.rst" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>前言<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id2">
+<h2>本书主要内容<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>本书的内容组织首先从 <a class="reference internal" href="start/index.html#c"><span class="std std-ref">C 语言入门</span></a> 开始, 在此卷中, 讲解 C 语言的语法,
+编译程序的步骤, 以及对可执行程序和内存结构的简单科普. 并且学习 <a class="reference internal" href="standard-lib/c/index.html#c"><span class="std std-ref">C 语言标准库</span></a> 的使用.</p>
+<p>然后, 进入两个分支, 一个分支是进入 C++ 的学习, 从 <a class="reference internal" href="todo.html#c-c"><span class="std std-ref">未完成 …</span></a> 开始, 然后按照:</p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="todo.html#id1"><span class="std std-ref">未完成 …</span></a></p></li>
+<li><p><a class="reference internal" href="standard-lib/cpp/index.html#c"><span class="std std-ref">C++ 标准库与标准模板库</span></a></p></li>
+<li><p><a class="reference internal" href="todo.html#c"><span class="std std-ref">未完成 …</span></a></p></li>
+<li><p><a class="reference internal" href="todo.html#id2"><span class="std std-ref">未完成 …</span></a></p></li>
+</ol>
+<p>的顺序学习 C++ 语言.</p>
+<p>或者通过 C 语言了解计算机、 操作系统以及简单的数据结构与算法.</p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="todo.html#id3"><span class="std std-ref">未完成 …</span></a></p></li>
+<li><p><a class="reference internal" href="todo.html#id4"><span class="std std-ref">未完成 …</span></a></p></li>
+<li><p><a class="reference internal" href="todo.html#id5"><span class="std std-ref">未完成 …</span></a></p></li>
+</ol>
+<p>C 与 C++ 有很多重叠的部分, 例如</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="todo.html#id6"><span class="std std-ref">未完成 …</span></a></p></li>
+<li><p><a class="reference internal" href="todo.html#id7"><span class="std std-ref">未完成 …</span></a></p></li>
+</ul>
+<p>这些都以附录的形式放在书末了.</p>
+<p>另外, 还有一些难以组织到学习主线, 但是掌握了之后能提升编程体验的知识, 例如:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="todo.html#id12"><span class="std std-ref">未完成 …</span></a></p></li>
+<li><p><a class="reference internal" href="todo.html#id8"><span class="std std-ref">未完成 …</span></a></p></li>
+<li><p><a class="reference internal" href="todo.html#id10"><span class="std std-ref">未完成 …</span></a></p></li>
+<li><p><a class="reference internal" href="todo.html#id9"><span class="std std-ref">未完成 …</span></a></p></li>
+<li><p><a class="reference internal" href="todo.html#id11"><span class="std std-ref">未完成 …</span></a></p></li>
+</ul>
+<p>这些也放在附录中了.</p>
+<div class="graphviz"><object data="_images/graphviz-5490b6ca58bc2e636aa57035e492a39ca9f82614.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph index {
+   label = &quot;书籍大纲&quot;;
+   bgcolor = &quot;#ffffff00&quot;;
+   graph [fontname = &quot;Sarasa UI SC&quot;];
+   node [fontname = &quot;Sarasa UI SC&quot;];
+   edge [fontname = &quot;Sarasa UI SC&quot;];
+
+   c_start [label=&quot;C 语言入门&quot;];
+   c_stdlib [label=&quot;C 语言标准库&quot;];
+   c_to_cpp [label=&quot;从 C 扩展到 C++&quot;];
+   cpp_remove_c [label=&quot;在 C++ 中摆脱 C&quot;];
+   cpp_stl [label=&quot;C++ 标准库与标准模板库&quot;];
+   cpp_feature [label=&quot;C++ 新特性&quot;];
+   cpp_programing_mode [label=&quot;C++ 编程模式&quot;];
+   c_programing_mode [label=&quot;C 编程模式&quot;];
+   c_learn_computer [label=&quot;通过 C 语言认识计算机&quot;];
+   c_ds_algo [label=&quot;C 数据结构与算法&quot;];
+   assembly [label=&quot;C/C++ 内联汇编&quot;];
+   web [label=&quot;C/C++ 网络编程&quot;];
+
+   c_start -&gt; c_stdlib;
+   c_stdlib -&gt; c_to_cpp;
+   c_stdlib -&gt; c_programing_mode;
+
+   subgraph cluster_cpp {
+      label = &quot;C++ 路线&quot;;
+      c_to_cpp -&gt; cpp_remove_c -&gt; cpp_stl -&gt; cpp_feature -&gt; cpp_programing_mode;
+   }
+
+   subgraph cluster_c {
+      label = &quot;C 路线&quot;;
+      c_programing_mode -&gt; c_learn_computer -&gt; c_ds_algo;
+   }
+
+   cpp_programing_mode -&gt; assembly;
+   c_ds_algo -&gt; assembly;
+
+   assembly -&gt; web;
+}</p></object></div>
+</div>
+<div class="section" id="c-c">
+<h2>C/C++ 开发环境的选择<a class="headerlink" href="#c-c" title="永久链接至标题">¶</a></h2>
+<p>本文大部分内容都是基于 Linux 上的 C/C++ 开发.
+对于 Windows 上的 C++ 开发只是在必要时略提.</p>
+<p>C/C++ 程序的开发, 需要编译器以及标准库的支持.
+在 Linux 上, 系统已经自带了 GCC 编译器套件以及 glibc 标准库.
+GCC 是和 Linux 同时代的产物.</p>
+<p>Clang 是一个较新的产物, 基于 LLVM 构建. LLVM 是一个用于编写编译器的项目.
+已经有许多编程语言的编译器, 解释器和代码分析工具依靠它建立了起来.
+Clang 也是其中之一.</p>
+<p>Clang 除了用于编译 C/C++ 的前端可执行程序 clang, clang++ 之外,
+还提供了 clang-fmt 用于代码格式化,
+lldb 用于调试,
+clangd 用于语言服务器 (Language Server).</p>
+<p>语言服务器也是一个新产物, 它是对微软提出的 LSP(Language Server Protocol) 的实现.
+LSP 是连接代码分析工具与编译器的通讯协议,
+它方便了不同编辑器对代码分析功能的共用.
+理论上语言服务器可以为任何实现了 LSP 客户端的编辑器提供
+代码补全, 格式化, 查找定义等 IDE 所实现的功能.</p>
+<p>Clang 的编译过程分为前端的词法分析,语法分析,语义分析等, 以及后端的代码生成.
+它将 C/C++ 源代码解析为 LLVM 中间语言,
+然后通过后端生成二进制目标代码.</p>
+<p>根据不同的操作系统以及 CPU 架构, Clang 会选择不同的后端.
+在 Linux 上, Clang 默认以 GCC 为后端, 在 Windows 上, 则默认以 MSVC 为后端.
+现在大部分个人电脑都是 64 位 x86 架构处理器, 这种架构被称作 <code class="docutils literal notranslate"><span class="pre">x86_64</span></code>.
+在终端中执行命令:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>clang -v
+</pre></div>
+</div>
+<p>接下来就能在输出中看到:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">clang</span> <span class="n">version</span> <span class="mf">8.0.0</span> <span class="p">(</span><span class="n">tags</span><span class="o">/</span><span class="n">RELEASE_800</span><span class="o">/</span><span class="k">final</span><span class="p">)</span>
+<span class="nl">Target</span><span class="p">:</span> <span class="n">x86_64</span><span class="o">-</span><span class="n">pc</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span>
+<span class="n">Thread</span> <span class="nl">model</span><span class="p">:</span> <span class="n">posix</span>
+<span class="nl">InstalledDir</span><span class="p">:</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span>
+<span class="n">Found</span> <span class="n">candidate</span> <span class="n">GCC</span> <span class="nl">installation</span><span class="p">:</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">gcc</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">pc</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="mf">8.3.0</span>
+<span class="n">Found</span> <span class="n">candidate</span> <span class="n">GCC</span> <span class="nl">installation</span><span class="p">:</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">gcc</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">pc</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="mf">8.3.0</span>
+<span class="n">Found</span> <span class="n">candidate</span> <span class="n">GCC</span> <span class="nl">installation</span><span class="p">:</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">gcc</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">pc</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="mf">8.3.0</span>
+<span class="n">Found</span> <span class="n">candidate</span> <span class="n">GCC</span> <span class="nl">installation</span><span class="p">:</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">gcc</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">pc</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="mf">8.3.0</span>
+<span class="n">Selected</span> <span class="n">GCC</span> <span class="nl">installation</span><span class="p">:</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">gcc</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">pc</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="mf">8.3.0</span>
+</pre></div>
+</div>
+<p>等信息.</p>
+<p>Clang 相比 GCC 的劣势, 就是历史积淀不足, 少了一些代码优化的能力.
+不过对于学习者来说, 这点劣势没什么影响.</p>
+<p>因此, 推荐使用 Clang 作为 C/C++ 开发环境.</p>
+<dl>
+<dt>xxd</dt><dd><p>xxd 是系统自带的 二进制文件 &lt;-&gt; hexdump 转换工具.
+使用:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>xxd <span class="si">${</span><span class="nv">filename</span><span class="si">}</span> <span class="si">${</span><span class="nv">output_filename</span><span class="si">}</span>
+</pre></div>
+</div>
+<p>或者从 stdin 输入, 向 stdout 输出.</p>
+<p>将文件转换为 hexdump 的形式:</p>
+<div class="highlight-hexdump notranslate"><div class="highlight"><pre><span></span>&lt;地址&gt;:   &lt;各地址上的字节&gt;                         &lt;字节对应的字符&gt;
+00000000: 7f45 4c46 0201 0100 0000 0000 0000 0000  .ELF............
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>$ xxd --help
+Usage:
+      xxd [options] [infile [outfile]]
+   or
+      xxd -r [-s [-]offset] [-c cols] [-ps] [infile [outfile]]
+Options:
+   -a          触发自动跳过: 单个 &#39;*&#39; 代替空行. 默认 off.
+   -b          使用二进制 dump (和 -ps,-i,-r 不相容). 默认十六进制.
+   -c cols     每一行显示的字节数目. Default 16 (-i: 12, -ps: 30).
+   -E          用 EBCDIC 编码显示字符. Default ASCII.
+   -e          字节小端显示 (和 -ps,-i,-r 不相容).
+   -g num      一组中的字节数目. Default 2 (-e: 4).
+   -i          用 C 头文件包含的格式输出.
+   -l len      在 &lt;len&gt; 个字节后停止.
+   -o off      在显示的文件中增加 &lt;off&gt; 个字节的偏移量.
+   -ps         纯文本打印样式, 去掉了行号列和显示字符列.
+   -r          逆向操作, 将 hexdump 转换为二进制文件.
+   -r -s off   逆向操作时增加 &lt;off&gt; 个字节的偏移量.
+   -s [+][-]seek  从 &lt;seek&gt; 个字节处开始, (使用 + 启用相对位置)
+   -u          使用大写字母
+</pre></div>
+</div>
+</dd>
+<dt>objdump</dt><dd><p>显示目标代码文件的信息. 可用于反汇编.</p>
+</dd>
+<dt>objcopy</dt><dd><p>复制一个二进制文件, 有可能在进程中转换它.</p>
+</dd>
+<dt>readelf</dt><dd><p>解析 ELF 文件格式.</p>
+</dd>
+<dt>nm</dt><dd><p>列出文件中的符号, 默认操作文件 a.out. 输出信息由三列表格组成, 分别为 value, type, name</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code> 都是无符号整数, 默认 16 进制显示, 对一些特殊的类型, 可能有不同的基数.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">type</span></code> 该符号的类型:</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">A</span></code> 此符号的值是绝对的, 在之后的链接中也不会改变</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">b</span></code>, <code class="docutils literal notranslate"><span class="pre">B</span></code> 符号位于BSS数据部分, 此部分通常包含零初始化或未初始化的数据, 但确切的行为取决于系统.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">C</span></code> 普通符号, 是未初始化的数据, 在链接时, 多个普通符号可能同名. 此符号被视作未定义的引用.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">D</span></code>, <code class="docutils literal notranslate"><span class="pre">d</span></code> 此符号在初始化数据段.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">G</span></code>, <code class="docutils literal notranslate"><span class="pre">g</span></code> 符号位于小对象的初始化数据部分中. 某些目标文件格式允许更有效地访问小数据对象, 例如全局 int 变量而不是大型全局数组.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">i</span></code> 对于PE格式文件, 这表示该符号位于特定于DLL实现的部分中.  对于ELF格式文件, 这表示该符号是间接函数.  这是标准ELF符号类型集的GNU扩展.  它表示一个符号, 如果由重定位引用, 则不会计算其地址, 而是必须在运行时调用.  然后, 运行时执行将返回要在重定位中使用的值.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">I</span></code> 此符号是其他符号的间接引用.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">N</span></code> 这是一个调试符号</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p</span></code> 符号位于堆栈展开部分</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">R</span></code>, <code class="docutils literal notranslate"><span class="pre">r</span></code> 符号位于只读数据段</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">S</span></code>, <code class="docutils literal notranslate"><span class="pre">s</span></code> 符号位于小对象的未初始化或零初始化数据段</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T</span></code>, <code class="docutils literal notranslate"><span class="pre">t</span></code> 符号在 text(code) 数据段中. 这是机器指令数据段, 虽然它起了个令人误会的 “text” 名字.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">U</span></code> 未定义符号</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">u</span></code> 这是一个独特的全局符号。 这是标准ELF符号绑定集的GNU扩展。 对于这样的符号，动态链接器将确保在整个过程中只有一个符号具有此名称和类型。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">V</span></code>, <code class="docutils literal notranslate"><span class="pre">v</span></code> 不报错的弱对象</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">W</span></code>, <code class="docutils literal notranslate"><span class="pre">w</span></code> 未被标记的弱对象</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-</span></code> stabs 对象, 只会在 <code class="docutils literal notranslate"><span class="pre">.out</span></code> 文件中定义, 提供调试信息.</p></li>
+</ul>
+</div></blockquote>
+</dd>
+<dt>ldd</dt><dd><p>查看链接库文件的依赖关系</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ldd libswap.so
+linux-vdso.so.1 <span class="o">(</span>0x00007ffcbed0d000<span class="o">)</span>
+libc.so.6 <span class="o">=</span>&gt; /usr/lib/libc.so.6 <span class="o">(</span>0x00007f316de60000<span class="o">)</span>
+/usr/lib64/ld-linux-x86-64.so.2 <span class="o">(</span>0x00007f316e042000<span class="o">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="id3">
+<h2>鸣谢<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>感谢以下项目或人员帮助了我的程序学习经历:</p>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>项目或人员</p></th>
+<th class="head"><p>主页或联系方式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Linux C 编程一站式学习</p></td>
+<td><p><a class="reference external" href="http://docs.linuxtone.org/ebooks/C&amp;CPP/c/">http://docs.linuxtone.org/ebooks/C&amp;CPP/c/</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>free-programming-books-zh_CN</p></td>
+<td><p><a class="reference external" href="https://github.com/justjavac/free-programming-books-zh_CN">GitHub</a></p></td>
+</tr>
+<tr class="row-even"><td><p>free-programming-books</p></td>
+<td><p><a class="reference external" href="https://github.com/EbookFoundation/free-programming-books">GitHub</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="start/index.html" class="btn btn-neutral float-right" title="C 语言入门" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="C 与 C++" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Zombie110year
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

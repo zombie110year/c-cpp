@@ -1,0 +1,39 @@
+digraph index {
+   label = "书籍大纲";
+   bgcolor = "#ffffff00";
+   graph [fontname = "Sarasa UI SC"];
+   node [fontname = "Sarasa UI SC"];
+   edge [fontname = "Sarasa UI SC"];
+
+   c_start [label="C 语言入门"];
+   c_stdlib [label="C 语言标准库"];
+   c_to_cpp [label="从 C 扩展到 C++"];
+   cpp_remove_c [label="在 C++ 中摆脱 C"];
+   cpp_stl [label="C++ 标准库与标准模板库"];
+   cpp_feature [label="C++ 新特性"];
+   cpp_programing_mode [label="C++ 编程模式"];
+   c_programing_mode [label="C 编程模式"];
+   c_learn_computer [label="通过 C 语言认识计算机"];
+   c_ds_algo [label="C 数据结构与算法"];
+   assembly [label="C/C++ 内联汇编"];
+   web [label="C/C++ 网络编程"];
+
+   c_start -> c_stdlib;
+   c_stdlib -> c_to_cpp;
+   c_stdlib -> c_programing_mode;
+
+   subgraph cluster_cpp {
+      label = "C++ 路线";
+      c_to_cpp -> cpp_remove_c -> cpp_stl -> cpp_feature -> cpp_programing_mode;
+   }
+
+   subgraph cluster_c {
+      label = "C 路线";
+      c_programing_mode -> c_learn_computer -> c_ds_algo;
+   }
+
+   cpp_programing_mode -> assembly;
+   c_ds_algo -> assembly;
+
+   assembly -> web;
+}

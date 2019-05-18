@@ -1,0 +1,598 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>stdlib.h &mdash; C 与 C++ 0.1.0rc 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/logo.cpp.iso.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="string.h" href="string.html" />
+    <link rel="prev" title="stdio.h" href="stdio.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> C 与 C++
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../prepost.html">前言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../start/index.html">C 语言入门</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C 语言标准库</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="assert.html">assert.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math.html">math.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stdarg.html">stdarg.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stddef.html">stddef.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stdio.html">stdio.h</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">stdlib.h</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">宏</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">类型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">函数</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">字符转换</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">内存</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">随机数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">操作系统</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">搜索与排序</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">绝对值</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12">整数除法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">宽字符</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="string.html">string.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="time.html">time.h</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C++ 标准库与标准模板库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">词汇对照表</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">C 与 C++</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">C 语言标准库</a> &raquo;</li>
+        
+      <li>stdlib.h</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/standard-lib/c/stdlib.rst" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="stdlib-h">
+<h1>stdlib.h<a class="headerlink" href="#stdlib-h" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id1">
+<h2>宏<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<dl class="macro">
+<dt id="c.EXIT_FAILURE">
+<code class="descname">EXIT_FAILURE</code><a class="headerlink" href="#c.EXIT_FAILURE" title="永久链接至目标">¶</a></dt>
+<dd><p>当程序出错时, 调用 <a class="reference internal" href="#c.exit" title="exit"><code class="xref c c-func docutils literal notranslate"><span class="pre">exit()</span></code></a> 传入此值:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define EXIT_FAILURE 1</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.EXIT_SUCCESS">
+<code class="descname">EXIT_SUCCESS</code><a class="headerlink" href="#c.EXIT_SUCCESS" title="永久链接至目标">¶</a></dt>
+<dd><p>当程序顺利运行完成时, 调用 <a class="reference internal" href="#c.exit" title="exit"><code class="xref c c-func docutils literal notranslate"><span class="pre">exit()</span></code></a> 传入此值:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define EXIT_SUCCESS 0</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.RAND_MAX">
+<code class="descname">RAND_MAX</code><a class="headerlink" href="#c.RAND_MAX" title="永久链接至目标">¶</a></dt>
+<dd><p><a class="reference internal" href="#c.rand" title="rand"><code class="xref c c-func docutils literal notranslate"><span class="pre">rand()</span></code></a> 返回的最大值. 资讯型常量, 修改无用.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.MB_CUR_MAX">
+<code class="descname">MB_CUR_MAX</code><a class="headerlink" href="#c.MB_CUR_MAX" title="永久链接至目标">¶</a></dt>
+<dd><p>多字符字符集中的最大字符数.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id2">
+<h2>类型<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<dl class="type">
+<dt id="c.div_t">
+<code class="descname">div_t</code><a class="headerlink" href="#c.div_t" title="永久链接至目标">¶</a></dt>
+<dd><dl class="member">
+<dt id="c.div_t.quot">
+int <code class="descname">quot</code><a class="headerlink" href="#c.div_t.quot" title="永久链接至目标">¶</a></dt>
+<dd><p>除法的商</p>
+</dd></dl>
+
+<dl class="member">
+<dt id="c.div_t.rem">
+int <code class="descname">rem</code><a class="headerlink" href="#c.div_t.rem" title="永久链接至目标">¶</a></dt>
+<dd><p>除法的余数</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="type">
+<dt id="c.ldiv_t">
+<code class="descname">ldiv_t</code><a class="headerlink" href="#c.ldiv_t" title="永久链接至目标">¶</a></dt>
+<dd><dl class="member">
+<dt id="c.ldiv_t.quot">
+long int <code class="descname">quot</code><a class="headerlink" href="#c.ldiv_t.quot" title="永久链接至目标">¶</a></dt>
+<dd><p>除法的商</p>
+</dd></dl>
+
+<dl class="member">
+<dt id="c.ldiv_t.rem">
+long int <code class="descname">rem</code><a class="headerlink" href="#c.ldiv_t.rem" title="永久链接至目标">¶</a></dt>
+<dd><p>除法的余数</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="id3">
+<h2>函数<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id4">
+<h3>字符转换<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<dl class="function">
+<dt id="c.atof">
+double <code class="descname">atof</code><span class="sig-paren">(</span>char<em> *str</em><span class="sig-paren">)</span><a class="headerlink" href="#c.atof" title="永久链接至目标">¶</a></dt>
+<dd><p>将 str 指向的字符串解析为浮点数:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">atof</span><span class="p">(</span><span class="s">&quot;3.1415926&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mf">3.1415926</span><span class="p">;</span>
+<span class="n">atof</span><span class="p">(</span><span class="s">&quot;3.1415926e10&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mf">3.1415926e10</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>如果无法解析, 则返回 <code class="docutils literal notranslate"><span class="pre">0.0</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.atoi">
+int <code class="descname">atoi</code><span class="sig-paren">(</span>char<em> *str</em><span class="sig-paren">)</span><a class="headerlink" href="#c.atoi" title="永久链接至目标">¶</a></dt>
+<dd><p>将 str 指向的字符串解析为整数:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">atoi</span><span class="p">(</span><span class="s">&quot;123123&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">123123</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>如果无法解析, 则返回 <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<p>如果要解析其他进制表示的整数, 用 <code class="xref c c-func docutils literal notranslate"><span class="pre">strtoi()</span></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.atol">
+long int <code class="descname">atol</code><span class="sig-paren">(</span>char<em> *str</em><span class="sig-paren">)</span><a class="headerlink" href="#c.atol" title="永久链接至目标">¶</a></dt>
+<dd><p>解析长整数</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.strtod">
+double <code class="descname">strtod</code><span class="sig-paren">(</span>char<em> *str</em>, char<em> **endp</em><span class="sig-paren">)</span><a class="headerlink" href="#c.strtod" title="永久链接至目标">¶</a></dt>
+<dd><p>将一个字符串解析为一个浮点数,
+如果字符串尾部有不可解析的字符, 则会将其地址存入 <code class="docutils literal notranslate"><span class="pre">endp</span></code>
+如果字符串完全不可解析, 则返回 <code class="docutils literal notranslate"><span class="pre">0.0</span></code>:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">char</span> <span class="o">**</span><span class="n">p</span><span class="p">;</span>
+<span class="n">strtod</span><span class="p">(</span><span class="s">&quot;1.4e9 people in China&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span> <span class="o">==</span> <span class="mf">1.4e9</span><span class="p">;</span>
+<span class="c1">// p -&gt; char *pointer -&gt; &quot; people in China&quot;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.strtol">
+long int <code class="descname">strtol</code><span class="sig-paren">(</span>char<em> *str</em>, char<em> **endp</em>, int<em> base</em><span class="sig-paren">)</span><a class="headerlink" href="#c.strtol" title="永久链接至目标">¶</a></dt>
+<dd><p>将一个字符串解析为一个长整数,
+如果字符串尾部有不可解析的字符, 则会将其地址存入 <code class="docutils literal notranslate"><span class="pre">endpointer</span></code>
+如果字符串完全不可解析, 则返回 <code class="docutils literal notranslate"><span class="pre">0`;</span>
+<span class="pre">``base</span></code> 可接受 0, 2~32 为基底:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">strtol</span><span class="p">(</span><span class="s">&quot;100&quot;</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="o">==</span> <span class="mi">100</span><span class="p">;</span>
+<span class="n">strtol</span><span class="p">(</span><span class="s">&quot;100&quot;</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="o">==</span> <span class="mo">0100</span><span class="p">;</span>
+<span class="n">strtol</span><span class="p">(</span><span class="s">&quot;100&quot;</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span> <span class="o">==</span> <span class="mh">0x100</span><span class="p">;</span>
+<span class="n">strtol</span><span class="p">(</span><span class="s">&quot;100&quot;</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">;</span>
+<span class="n">strtol</span><span class="p">(</span><span class="s">&quot;100&quot;</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">100</span><span class="p">;</span> <span class="c1">// 十进制</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.strtoul">
+unsigned long int <code class="descname">strtoul</code><span class="sig-paren">(</span>char<em> *str</em>, char<em> **endp</em>, int<em> base</em><span class="sig-paren">)</span><a class="headerlink" href="#c.strtoul" title="永久链接至目标">¶</a></dt>
+<dd><p>类似 <a class="reference internal" href="#c.strtol" title="strtol"><code class="xref c c-func docutils literal notranslate"><span class="pre">strtol()</span></code></a>, 不过解析的是无符号长整型.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id5">
+<h3>内存<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<dl class="function">
+<dt id="c.calloc">
+void *<code class="descname">calloc</code><span class="sig-paren">(</span>size_t<em> items</em>, size_t<em> size</em><span class="sig-paren">)</span><a class="headerlink" href="#c.calloc" title="永久链接至目标">¶</a></dt>
+<dd><p>在堆中分配 <code class="docutils literal notranslate"><span class="pre">items</span> <span class="pre">*</span> <span class="pre">size</span></code> 字节大小的连续内存,
+返回其首地址, 并将内存置零.
+如果失败, 返回 <a class="reference internal" href="stddef.html#c.NULL" title="NULL"><code class="xref c c-macro docutils literal notranslate"><span class="pre">NULL</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>items</strong> (<em>size_t</em>) – 为 items 个元素分配内存</p></li>
+<li><p><strong>size</strong> (<em>size_t</em>) – 每一个元素的内存大小, 单位字节.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.malloc">
+void *<code class="descname">malloc</code><span class="sig-paren">(</span>size_t<em> size</em><span class="sig-paren">)</span><a class="headerlink" href="#c.malloc" title="永久链接至目标">¶</a></dt>
+<dd><p>在堆中分配 <code class="docutils literal notranslate"><span class="pre">size</span></code> 字节大小的连续内存,
+返回其首地址, <strong>不会</strong> 将内存置零.
+如果失败, 返回 <a class="reference internal" href="stddef.html#c.NULL" title="NULL"><code class="xref c c-macro docutils literal notranslate"><span class="pre">NULL</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>size</strong> (<em>size_t</em>) – 将分配的内存大小, 单位字节.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.realloc">
+void *<code class="descname">realloc</code><span class="sig-paren">(</span>void<em> *p</em>, size_t<em> new_size</em><span class="sig-paren">)</span><a class="headerlink" href="#c.realloc" title="永久链接至目标">¶</a></dt>
+<dd><p>将 <code class="docutils literal notranslate"><span class="pre">p</span></code> 所指的内存释放, 分配一块新的 <code class="docutils literal notranslate"><span class="pre">new_size</span></code> 字节大小的内存,
+并返回新的地址.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.free">
+void <code class="descname">free</code><span class="sig-paren">(</span>void<em> *p</em><span class="sig-paren">)</span><a class="headerlink" href="#c.free" title="永久链接至目标">¶</a></dt>
+<dd><p>释放 <code class="docutils literal notranslate"><span class="pre">p</span></code> 所指向的内存,
+无论它是通过 <a class="reference internal" href="#c.calloc" title="calloc"><code class="xref c c-func docutils literal notranslate"><span class="pre">calloc()</span></code></a>, <a class="reference internal" href="#c.malloc" title="malloc"><code class="xref c c-func docutils literal notranslate"><span class="pre">malloc()</span></code></a> 还是 <a class="reference internal" href="#c.realloc" title="realloc"><code class="xref c c-func docutils literal notranslate"><span class="pre">realloc()</span></code></a> 分配的.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id6">
+<h3>随机数<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<dl class="function">
+<dt id="c.srand">
+void <code class="descname">srand</code><span class="sig-paren">(</span>unsigned int<em> seed</em><span class="sig-paren">)</span><a class="headerlink" href="#c.srand" title="永久链接至目标">¶</a></dt>
+<dd><p>用 <code class="docutils literal notranslate"><span class="pre">seed</span></code> 初始化随机数生成器.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.rand">
+int <code class="descname">rand</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#c.rand" title="永久链接至目标">¶</a></dt>
+<dd><p>返回 0 ~ <a class="reference internal" href="#c.RAND_MAX" title="RAND_MAX"><code class="xref c c-macro docutils literal notranslate"><span class="pre">RAND_MAX</span></code></a> 之间的随机整数.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id7">
+<h3>操作系统<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
+<dl class="function">
+<dt id="c.exit">
+void <code class="descname">exit</code><span class="sig-paren">(</span>int<em> status_code</em><span class="sig-paren">)</span><a class="headerlink" href="#c.exit" title="永久链接至目标">¶</a></dt>
+<dd><p>终止当前进程, 关闭所有相关的文件描述符, 向父进程发送信号.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>status_code</strong> (<em>int</em>) – 发送的信号值</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.abort">
+void <code class="descname">abort</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#c.abort" title="永久链接至目标">¶</a></dt>
+<dd><p>终止当前进程, 发送 SIGABRT 信号而不进行善后工作 <a class="footnote-reference brackets" href="#id9" id="id8">1</a> .</p>
+</dd></dl>
+
+<dl class="footnote brackets">
+<dt class="label" id="id9"><span class="brackets"><a class="fn-backref" href="#id8">1</a></span></dt>
+<dd><p><a class="reference external" href="https://stackoverflow.com/questions/397075/what-is-the-difference-between-exit-and-abort">https://stackoverflow.com/questions/397075/what-is-the-difference-between-exit-and-abort</a></p>
+</dd>
+</dl>
+<dl class="function">
+<dt id="c.atexit">
+int <code class="descname">atexit</code><span class="sig-paren">(</span>void (<em>*func</em>)(void)<span class="sig-paren">)</span><a class="headerlink" href="#c.atexit" title="永久链接至目标">¶</a></dt>
+<dd><p>注册一个函数, 让这个函数在程序结束时调用.</p>
+<p>这个函数必须是无返回值, 无参数的函数.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.getenv">
+char *<code class="descname">getenv</code><span class="sig-paren">(</span>const char<em> *envname</em><span class="sig-paren">)</span><a class="headerlink" href="#c.getenv" title="永久链接至目标">¶</a></dt>
+<dd><p>读取一个环境变量.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.system">
+int <code class="descname">system</code><span class="sig-paren">(</span>char<em> *command</em><span class="sig-paren">)</span><a class="headerlink" href="#c.system" title="永久链接至目标">¶</a></dt>
+<dd><p>在主机的 Shell 环境中运行 command 指令.
+返回系统指令的退出码.</p>
+<p>无法连接输入输出.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id10">
+<h3>搜索与排序<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
+<p>C 标准库提供了快速排序和二分查找.</p>
+<dl class="function">
+<dt id="c.binsearch">
+void *<code class="descname">binsearch</code><span class="sig-paren">(</span>const void<em> *key</em>, void<em> *base</em>, size_t<em> items</em>, size_t<em> size</em>, int (<em>*compare</em>)(const void *, const void *)<span class="sig-paren">)</span><a class="headerlink" href="#c.binsearch" title="永久链接至目标">¶</a></dt>
+<dd><p>二分查找, 所有的操作都基于指针.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> – 查找目标的指针, 指向一个已定义的对象.</p></li>
+<li><p><strong>base</strong> – 指针, 指向查找区域的起点</p></li>
+<li><p><strong>items</strong> (<em>size_t</em>) – 查找范围, 元素的数目</p></li>
+<li><p><strong>size</strong> (<em>size_t</em>) – 查找范围, 元素的尺寸, 单位字节.</p></li>
+<li><p><strong>compare</strong> – 用于对比两个元素大小的函数.</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>指向找到的值的指针.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.qsort">
+void <code class="descname">qsort</code><span class="sig-paren">(</span>void<em> *base</em>, size_t<em> items</em>, size_t<em> size</em>, int (<em>*compare</em>)(const void *, const void *)<span class="sig-paren">)</span><a class="headerlink" href="#c.qsort" title="永久链接至目标">¶</a></dt>
+<dd><p>快速排序, 所有操作都基于指针.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>base</strong> – 指针, 排序区域的起点</p></li>
+<li><p><strong>items</strong> (<em>size_t</em>) – 排序范围, 元素个数</p></li>
+<li><p><strong>size</strong> (<em>size_t</em>) – 排序范围, 元素尺寸, 单位字节</p></li>
+<li><p><strong>compare</strong> – 对比两个元素大小的函数</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>关于函数 <code class="docutils literal notranslate"><span class="pre">compare</span></code>:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">compare</span><span class="p">(</span><span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">y</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="k">return</span> <span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">x</span> <span class="o">-</span> <span class="o">*</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">y</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>compare 的单调性对排序查找的影响</dt><dd><p>如果 x &lt; y, 返回负值, (单调递增) 那么,
+排序后的数组将会从小到大排列, 反之从大到小排列;
+可以查找一个从小到大排序的数组.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="id11">
+<h3>绝对值<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h3>
+<dl class="function">
+<dt id="c.abs">
+int <code class="descname">abs</code><span class="sig-paren">(</span>int<em> x</em><span class="sig-paren">)</span><a class="headerlink" href="#c.abs" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p><span class="math notranslate nohighlight">\(|x|\)</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.labs">
+long int <code class="descname">labs</code><span class="sig-paren">(</span>long int<em> x</em><span class="sig-paren">)</span><a class="headerlink" href="#c.labs" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p><span class="math notranslate nohighlight">\(|x|\)</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="id12">
+<h3>整数除法<a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h3>
+<dl class="function">
+<dt id="c.div">
+<a class="reference internal" href="#c.div_t" title="div_t">div_t</a> <code class="descname">div</code><span class="sig-paren">(</span>int<em> a</em>, int<em> b</em><span class="sig-paren">)</span><a class="headerlink" href="#c.div" title="永久链接至目标">¶</a></dt>
+<dd><p>整数除法, 返回一个 <a class="reference internal" href="#c.div_t" title="div_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">div_t</span></code></a> 结构体, 储存了商与余数.</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p><span class="math notranslate nohighlight">\(a \div b\)</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<a class="reference internal" href="#c.ldiv_t" title="ldiv_t">ldiv_t</a> <code class="descname">div</code><span class="sig-paren">(</span>long int<em> a</em>, long int<em> b</em><span class="sig-paren">)</span></dt>
+<dd><p>整数除法, 返回一个 <a class="reference internal" href="#c.ldiv_t" title="ldiv_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">ldiv_t</span></code></a> 结构体, 储存了商与余数.
+与 <a class="reference internal" href="#c.div" title="div"><code class="xref c c-func docutils literal notranslate"><span class="pre">div()</span></code></a> 不同的是, 此函数处理长整型.</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p><span class="math notranslate nohighlight">\(a \div b\)</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="id13">
+<h3>宽字符<a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h3>
+<p>由于字符编码不统一, 不建议使用. 建议使用 ICU 等第三方库.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="string.html" class="btn btn-neutral float-right" title="string.h" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="stdio.html" class="btn btn-neutral float-left" title="stdio.h" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Zombie110year
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

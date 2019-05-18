@@ -1,0 +1,685 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>time.h &mdash; C 与 C++ 0.1.0rc 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/logo.cpp.iso.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="C++ 标准库与标准模板库" href="../cpp/index.html" />
+    <link rel="prev" title="string.h" href="string.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> C 与 C++
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../prepost.html">前言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../start/index.html">C 语言入门</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C 语言标准库</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="assert.html">assert.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math.html">math.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stdarg.html">stdarg.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stddef.html">stddef.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stdio.html">stdio.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stdlib.html">stdlib.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="string.html">string.h</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">time.h</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">类型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">宏</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">示例</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C++ 标准库与标准模板库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">词汇对照表</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">C 与 C++</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">C 语言标准库</a> &raquo;</li>
+        
+      <li>time.h</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/standard-lib/c/time.rst" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="time-h">
+<h1>time.h<a class="headerlink" href="#time-h" title="永久链接至标题">¶</a></h1>
+<p>time.h 头文件提供了与时间日期相关的类型, 函数, 结构体.</p>
+<div class="section" id="id1">
+<h2>类型<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<dl class="type">
+<dt id="c.time_t">
+<code class="descname">time_t</code><a class="headerlink" href="#c.time_t" title="永久链接至目标">¶</a></dt>
+<dd><p>time_t 是适合存储时间的类型,
+一般为 unsigned int.
+是 <a class="reference internal" href="#c.time" title="time"><code class="xref c c-func docutils literal notranslate"><span class="pre">time()</span></code></a> 的返回值的类型.</p>
+<p>time.h 中声明的许多函数都会接受一个名为 timer 的 time_t 类型参数.</p>
+</dd></dl>
+
+<dl class="type">
+<dt id="c.clock_t">
+<code class="descname">clock_t</code><a class="headerlink" href="#c.clock_t" title="永久链接至目标">¶</a></dt>
+<dd><p>适合于存储处理器计时的类型.
+一般为 long int.</p>
+</dd></dl>
+
+<dl class="type">
+<dt id="c.tm">
+struct <code class="descname">tm</code><a class="headerlink" href="#c.tm" title="永久链接至目标">¶</a></dt>
+<dd><p>一个存储时间日期信息的结构体. 由 <a class="reference internal" href="#c.localtime" title="localtime"><code class="xref c c-func docutils literal notranslate"><span class="pre">localtime()</span></code></a> 返回.
+具有以下成员:</p>
+<dl class="member">
+<dt id="c.tm.tm_year">
+int <code class="descname">tm_year</code><a class="headerlink" href="#c.tm.tm_year" title="永久链接至目标">¶</a></dt>
+<dd><p>年. 注意, 是从 1900 年开始计算的.
+例如, 若得到的值为 119, 则实际上表示 2019 年.</p>
+</dd></dl>
+
+<dl class="member">
+<dt id="c.tm.tm_mon">
+int <code class="descname">tm_mon</code><a class="headerlink" href="#c.tm.tm_mon" title="永久链接至目标">¶</a></dt>
+<dd><p>月. 范围 0~11. 是从 0 开始计算的. 需要注意.</p>
+</dd></dl>
+
+<dl class="member">
+<dt id="c.tm.tm_mday">
+int <code class="descname">tm_mday</code><a class="headerlink" href="#c.tm.tm_mday" title="永久链接至目标">¶</a></dt>
+<dd><p>在某月的第几日. 范围 1~31.
+除了这个成员, 其他都是从 0 开始计算.</p>
+</dd></dl>
+
+<dl class="member">
+<dt id="c.tm.tm_wday">
+int <code class="descname">tm_wday</code><a class="headerlink" href="#c.tm.tm_wday" title="永久链接至目标">¶</a></dt>
+<dd><p>在某一周的第几日. 范围 0~6.</p>
+</dd></dl>
+
+<dl class="member">
+<dt id="c.tm.tm_yday">
+int <code class="descname">tm_yday</code><a class="headerlink" href="#c.tm.tm_yday" title="永久链接至目标">¶</a></dt>
+<dd><p>在某一年的第几日. 范围 0~365.</p>
+</dd></dl>
+
+<dl class="member">
+<dt id="c.tm.tm_hour">
+int <code class="descname">tm_hour</code><a class="headerlink" href="#c.tm.tm_hour" title="永久链接至目标">¶</a></dt>
+<dd><p>二十四小时制. 0~23.</p>
+</dd></dl>
+
+<dl class="member">
+<dt id="c.tm.tm_min">
+int <code class="descname">tm_min</code><a class="headerlink" href="#c.tm.tm_min" title="永久链接至目标">¶</a></dt>
+<dd><p>分钟. 0~59.</p>
+</dd></dl>
+
+<dl class="member">
+<dt id="c.tm.tm_sec">
+int <code class="descname">tm_sec</code><a class="headerlink" href="#c.tm.tm_sec" title="永久链接至目标">¶</a></dt>
+<dd><p>秒. 0~59.</p>
+</dd></dl>
+
+<dl class="member">
+<dt id="c.tm.tm_isdst">
+int <code class="descname">tm_isdst</code><a class="headerlink" href="#c.tm.tm_isdst" title="永久链接至目标">¶</a></dt>
+<dd><p>是否为夏令时. 返回 1 或 0.</p>
+</dd></dl>
+
+<p>下面两个成员在定义了 <code class="xref c c-macro docutils literal notranslate"><span class="pre">__USE_MISC</span></code> 后才会被定义.</p>
+<dl class="member">
+<dt id="c.tm.tm_zone">
+char* <code class="descname">tm_zone</code><a class="headerlink" href="#c.tm.tm_zone" title="永久链接至目标">¶</a></dt>
+<dd><p>显示当前时区.</p>
+</dd></dl>
+
+<dl class="member">
+<dt id="c.tm.tm_gmtoff">
+long int <code class="descname">tm_gmtoff</code><a class="headerlink" href="#c.tm.tm_gmtoff" title="永久链接至目标">¶</a></dt>
+<dd><p>与 UTC (太平洋标准时间) 相差的秒数.
+东为正, 西为负.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="id2">
+<h2>宏<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<dl class="macro">
+<dt id="c.CLOCKS_PER_SEC">
+long int <code class="descname">CLOCKS_PER_SEC</code><a class="headerlink" href="#c.CLOCKS_PER_SEC" title="永久链接至目标">¶</a></dt>
+<dd><p>当前处理器每秒对应的时钟个数.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id3">
+<h2>函数<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<dl class="function">
+<dt id="c.clock">
+clock_t <code class="descname">clock</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#c.clock" title="永久链接至目标">¶</a></dt>
+<dd><p>返回从程序开始运行到此时的 CPU 时钟数.
+进程挂起的时间不计算在内.</p>
+<p>算式 返回值 / <a class="reference internal" href="#c.CLOCKS_PER_SEC" title="CLOCKS_PER_SEC"><code class="xref c c-macro docutils literal notranslate"><span class="pre">CLOCKS_PER_SEC</span></code></a> 将数值单位转化为秒.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.time">
+time_t <code class="descname">time</code><span class="sig-paren">(</span>time_t*<em> timer</em><span class="sig-paren">)</span><a class="headerlink" href="#c.time" title="永久链接至目标">¶</a></dt>
+<dd><p>返回当前系统时间. (Unix 时间戳).
+如果指针 timer 不是 NULL, 则会将返回值存储在 timer 中.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timer</strong> (<em>time_t*</em>) – time_t 的指针.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.difftime">
+double <code class="descname">difftime</code><span class="sig-paren">(</span>time_t<em> time1</em>, time_t<em> time0</em><span class="sig-paren">)</span><a class="headerlink" href="#c.difftime" title="永久链接至目标">¶</a></dt>
+<dd><p>返回 time1 - time0 的值. 单位为秒.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.gmtime">
+struct <a class="reference internal" href="#c.tm" title="tm">tm</a>* <code class="descname">gmtime</code><span class="sig-paren">(</span>time_t<em> *timer</em><span class="sig-paren">)</span><a class="headerlink" href="#c.gmtime" title="永久链接至目标">¶</a></dt>
+<dd><p>将 timer 解析为 tm 结构体, 使用 UTC 时区(格林威治时间)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.localtime">
+struct <a class="reference internal" href="#c.tm" title="tm">tm</a>* <code class="descname">localtime</code><span class="sig-paren">(</span>time_t<em> *timer</em><span class="sig-paren">)</span><a class="headerlink" href="#c.localtime" title="永久链接至目标">¶</a></dt>
+<dd><p>将 timer 解析为 tm 结构体, 使用 本地 时区</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.mktime">
+time_t <code class="descname">mktime</code><span class="sig-paren">(</span>struct <a class="reference internal" href="#c.tm" title="tm">tm</a><em> *tp</em><span class="sig-paren">)</span><a class="headerlink" href="#c.mktime" title="永久链接至目标">¶</a></dt>
+<dd><p>将 tm 结构体解析为依据本地时区的 time_t 时间戳.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.strftime">
+size_t <code class="descname">strftime</code><span class="sig-paren">(</span>char<em> *str</em>, size_t<em> maxsize</em>, char<em> *fmt</em>, struct <a class="reference internal" href="#c.tm" title="tm">tm</a><em> *tp</em><span class="sig-paren">)</span><a class="headerlink" href="#c.strftime" title="永久链接至目标">¶</a></dt>
+<dd><p>根据 fmt 将 tm 结构体转化为字符串.</p>
+<p>格式字符串支持的转义符号:</p>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 67%" />
+<col style="width: 14%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>符号</p></td>
+<td><p>含义</p></td>
+<td><p>举例</p></td>
+</tr>
+<tr class="row-even"><td><p>%Y</p></td>
+<td><p>年</p></td>
+<td><p>2019</p></td>
+</tr>
+<tr class="row-odd"><td><p>%m</p></td>
+<td><p>月 (01-12)</p></td>
+<td><p>03</p></td>
+</tr>
+<tr class="row-even"><td><p>%d</p></td>
+<td><p>日 (01-31)</p></td>
+<td><p>07</p></td>
+</tr>
+<tr class="row-odd"><td><p>%H</p></td>
+<td><p>时 (00-23)</p></td>
+<td><p>00</p></td>
+</tr>
+<tr class="row-even"><td><p>%M</p></td>
+<td><p>分 (00-59)</p></td>
+<td><p>07</p></td>
+</tr>
+<tr class="row-odd"><td><p>%S</p></td>
+<td><p>秒 (00-59)</p></td>
+<td><p>55</p></td>
+</tr>
+<tr class="row-even"><td><p>%A</p></td>
+<td><p>星期名称</p></td>
+<td><p>Thursday</p></td>
+</tr>
+<tr class="row-odd"><td><p>%a</p></td>
+<td><p>星期缩写</p></td>
+<td><p>Thu</p></td>
+</tr>
+<tr class="row-even"><td><p>%B</p></td>
+<td><p>月份名称</p></td>
+<td><p>March</p></td>
+</tr>
+<tr class="row-odd"><td><p>%c</p></td>
+<td><p>完整的日期时间表示</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>%I</p></td>
+<td><p>12 小时制小时 (01-12)</p></td>
+<td><p>12</p></td>
+</tr>
+<tr class="row-odd"><td><p>%j</p></td>
+<td><p>一年的第几天 (01-366)</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>%p</p></td>
+<td><p>AM 或 PM</p></td>
+<td><p>AM</p></td>
+</tr>
+<tr class="row-odd"><td><p>%U</p></td>
+<td><p>一年的第几周 (00-53) 以第一个星期日开始</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>%w</p></td>
+<td><p>一周的星期几 (0-6)</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p>%W</p></td>
+<td><p>一年的第几周 (00-53) 以第一个星期一开始</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>%x</p></td>
+<td><p>日期</p></td>
+<td><p>07/03/19</p></td>
+</tr>
+<tr class="row-odd"><td><p>%X</p></td>
+<td><p>时间</p></td>
+<td><p>00:18:22</p></td>
+</tr>
+<tr class="row-even"><td><p>%y</p></td>
+<td><p>年份, 后两位.</p></td>
+<td><p>19</p></td>
+</tr>
+<tr class="row-odd"><td><p>%Z</p></td>
+<td><p>时区.</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>str</strong> (<em>char *</em>) – 将生成的字符串存入目标字符数组.</p></li>
+<li><p><strong>maxsize</strong> (<em>size_t</em>) – 最大可写入的字符数, 一般传入字符数组的长度.</p></li>
+<li><p><strong>fmt</strong> (<em>char *</em>) – 格式字符串.</p></li>
+<li><p><strong>tp</strong> (struct <a class="reference internal" href="#c.tm" title="tm"><code class="xref c c-type docutils literal notranslate"><span class="pre">tm</span></code></a> *) – 存储日期时间信息的 tm 结构体.</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>如果写入的字符数(包括结束符)小于 maxsize,
+则返回去除结束符的写入字符数. 否则返回 0.</p>
+</dd>
+<dt class="field-odd">返回类型</dt>
+<dd class="field-odd"><p>size_t</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="id4">
+<h2>示例<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<div class="highlight-c notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;time.h&gt;</span><span class="cp"></span>
+
+<span class="cp">#ifdef _WIN32</span>
+<span class="cp">#include</span> <span class="cpf">&lt;Windows.h&gt;</span><span class="cp"></span>
+<span class="cp">#define sleep(ms) Sleep((ms) * 1000)</span>
+<span class="cm">/**</span>
+<span class="cm"> * 挂起操作和操作系统有关,</span>
+<span class="cm"> * 而且 GCC 与 MSVC 分别使用秒和毫秒</span>
+<span class="cm"> */</span>
+<span class="cp">#else</span>
+<span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
+<span class="cp">#endif </span><span class="cm">/* _WIN32 */</span><span class="cp"></span>
+
+<span class="kt">void</span> <span class="nf">show_struct_tm</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">time_t</span> <span class="n">timer</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">tm</span><span class="o">*</span> <span class="n">date</span><span class="p">;</span>
+    <span class="n">time</span><span class="p">(</span><span class="o">&amp;</span><span class="n">timer</span><span class="p">);</span>
+    <span class="n">date</span> <span class="o">=</span> <span class="n">localtime</span><span class="p">(</span><span class="o">&amp;</span><span class="n">timer</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;year is %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">date</span><span class="o">-&gt;</span><span class="n">tm_year</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;mon is %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">date</span><span class="o">-&gt;</span><span class="n">tm_mon</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;mday is %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">date</span><span class="o">-&gt;</span><span class="n">tm_mday</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;wday is %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">date</span><span class="o">-&gt;</span><span class="n">tm_wday</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;yday is %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">date</span><span class="o">-&gt;</span><span class="n">tm_yday</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;hour is %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">date</span><span class="o">-&gt;</span><span class="n">tm_hour</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;min is %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">date</span><span class="o">-&gt;</span><span class="n">tm_min</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;sec is %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">date</span><span class="o">-&gt;</span><span class="n">tm_sec</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;isdst is %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">date</span><span class="o">-&gt;</span><span class="n">tm_isdst</span><span class="p">);</span>
+    <span class="c1">// GLIBC 才包含以下两个成员, 非 C 标准.</span>
+    <span class="c1">// printf(&quot;zone is %s\n&quot;, date-&gt;tm_zone);</span>
+    <span class="c1">// printf(&quot;gmtoff is %ld\n&quot;, date-&gt;tm_gmtoff);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;::::%s</span><span class="se">\n\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">__func__</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">show_clock_per_sec</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">clock_t</span> <span class="n">clocker</span><span class="p">;</span>
+    <span class="n">clocker</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;clock: %ld</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">clocker</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;CLOCKS_PER_SEC = %ld</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">CLOCKS_PER_SEC</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;::::%s</span><span class="se">\n\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">__func__</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">show_difftime</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">time_t</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span>
+    <span class="n">time</span><span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">);</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+    <span class="n">time</span><span class="p">(</span><span class="o">&amp;</span><span class="n">b</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;TIME1 - TIME2 = %lf</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">difftime</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">));</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;::::%s</span><span class="se">\n\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">__func__</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">show_strtime</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">time_t</span> <span class="n">timer</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">tm</span> <span class="o">*</span><span class="n">tp</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">255</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="sc">&#39;\0&#39;</span><span class="p">};</span>
+    <span class="n">time</span><span class="p">(</span><span class="o">&amp;</span><span class="n">timer</span><span class="p">);</span>
+    <span class="n">tp</span> <span class="o">=</span> <span class="n">localtime</span><span class="p">(</span><span class="o">&amp;</span><span class="n">timer</span><span class="p">);</span>
+
+    <span class="n">strftime</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="s">&quot;%Y-%m-%d %H:%M:%S&quot;</span><span class="p">,</span> <span class="n">tp</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s:::: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="s">&quot;%Y-%m-%d %H:%M:%S&quot;</span><span class="p">,</span> <span class="n">buffer</span><span class="p">);</span>
+    <span class="n">strftime</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="s">&quot;%c&quot;</span><span class="p">,</span> <span class="n">tp</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s:::: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="s">&quot;%c&quot;</span><span class="p">,</span> <span class="n">buffer</span><span class="p">);</span>
+    <span class="n">strftime</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="s">&quot;%x, %X&quot;</span><span class="p">,</span> <span class="n">tp</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s:::: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="s">&quot;%x, %X&quot;</span><span class="p">,</span> <span class="n">buffer</span><span class="p">);</span>
+    <span class="n">strftime</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="s">&quot;%y&quot;</span><span class="p">,</span> <span class="n">tp</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s:::: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="s">&quot;%y&quot;</span><span class="p">,</span> <span class="n">buffer</span><span class="p">);</span>
+    <span class="n">strftime</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="s">&quot;%I %p&quot;</span><span class="p">,</span> <span class="n">tp</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s:::: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="s">&quot;%I %p&quot;</span><span class="p">,</span> <span class="n">buffer</span><span class="p">);</span>
+    <span class="n">strftime</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="s">&quot;%A, %a, %B&quot;</span><span class="p">,</span> <span class="n">tp</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s:::: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="s">&quot;%A, %a, %B&quot;</span><span class="p">,</span> <span class="n">buffer</span><span class="p">);</span>
+    <span class="n">strftime</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="s">&quot;%Z&quot;</span><span class="p">,</span> <span class="n">tp</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s:::: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="s">&quot;%Z&quot;</span><span class="p">,</span> <span class="n">buffer</span><span class="p">);</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;::::%s</span><span class="se">\n\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">__func__</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="n">show_struct_tm</span><span class="p">();</span>
+    <span class="n">show_clock_per_sec</span><span class="p">();</span>
+    <span class="n">show_difftime</span><span class="p">();</span>
+    <span class="n">show_strtime</span><span class="p">();</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../cpp/index.html" class="btn btn-neutral float-right" title="C++ 标准库与标准模板库" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="string.html" class="btn btn-neutral float-left" title="string.h" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Zombie110year
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

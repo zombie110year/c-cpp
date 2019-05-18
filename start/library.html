@@ -1,0 +1,342 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>链接库文件 &mdash; C 与 C++ 0.1.0rc 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/logo.cpp.iso.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="C 语言标准库" href="../standard-lib/c/index.html" />
+    <link rel="prev" title="调试" href="debug.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> C 与 C++
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../prepost.html">前言</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C 语言入门</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="compile.html">编译 C 程序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grammar.html">C 语言语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variable-const-expr.html">变量、常量与表达式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="control-statement.html">控制语句</a></li>
+<li class="toctree-l2"><a class="reference internal" href="array-pointer.html">数组与指针</a></li>
+<li class="toctree-l2"><a class="reference internal" href="function.html">函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct-union.html">结构体与联合体</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scope.html">作用域</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debug.html">调试</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">链接库文件</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">创建动态链接库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">动态链接库的链接</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ld-library-path">LD_LIBRARY_PATH</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../standard-lib/c/index.html">C 语言标准库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../standard-lib/cpp/index.html">C++ 标准库与标准模板库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">词汇对照表</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">C 与 C++</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">C 语言入门</a> &raquo;</li>
+        
+      <li>链接库文件</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/start/library.rst" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>链接库文件<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id2">
+<h2>创建动态链接库<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>DLL(Dynamic Linked Library) 是一种可在运行时被其他程序链接并执行的代码.</p>
+<p>先以单个源文件为例, 将以下代码编译为动态链接库:</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">代码清单 15 </span><span class="caption-text">swap.c</span><a class="headerlink" href="#id4" title="永久链接至代码">¶</a></div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">swap</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="o">*</span><span class="n">a</span> <span class="o">^=</span> <span class="o">*</span><span class="n">b</span><span class="p">;</span>
+   <span class="o">*</span><span class="n">b</span> <span class="o">^=</span> <span class="o">*</span><span class="n">a</span><span class="p">;</span>
+   <span class="o">*</span><span class="n">a</span> <span class="o">^=</span> <span class="o">*</span><span class="n">b</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>可以使用 <code class="docutils literal notranslate"><span class="pre">-fPIC</span></code>, <code class="docutils literal notranslate"><span class="pre">-shared</span></code> 等参数直接创建 <code class="docutils literal notranslate"><span class="pre">.so</span></code> (Shared Object) 文件:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gcc -fPIC -shared -Wl,-soname,libswap.so -o libswap.so swap.c
+<span class="c1"># 得到 libswap.so 文件</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">-fPIC</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">-f</span></code> 选项是很多拥有长名称的 flag 的前缀,
+PIC(Position Independent Code) 表示生成的代码不依赖于绝对地址,
+这样生成的可执行程序可以在一个动态的内存空间中执行相关的代码.
+与之相对的还有 <cite>PIE</cite> (Position Independent Executable)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-shared</span></code></dt><dd><p>表示创建共享库.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-Wl,-soname,libswap.so</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">-Wl</span></code> 表示之后的参数传递给链接器, 用逗号作为分隔符;
+而 <code class="docutils literal notranslate"><span class="pre">-soname,libswap.so</span></code> 则是命名动态库, 这不是命名生成的文件,
+而是填写生成文件中的一个字段, 以便调用者识别动态库的版本.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-o</span> <span class="pre">libswap.so</span></code></dt><dd><p>将输出写入文件 libswap.so 中</p>
+</dd>
+</dl>
+<p>类似于单源文件, 只不过将编译和链接步骤分开执行:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># 以 PIC 模式生成代码</span>
+gcc -c -fPIC *.c
+<span class="c1"># 将所有代码链接成动态链接库</span>
+gcc -shared -Wl,-soname,libexample.so -o libexample.so *.o
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>动态链接库的链接<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>使用相关的编译器参数, 下面以显示数字的程序为例.</p>
+<div class="highlight-c notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+
+<span class="c1">// 外部引用函数声明, 这会创建一个在链接时指向 libswap.so 中 swap 函数的符号.</span>
+<span class="c1">// 一般来说, 编译一个链接库时需要将它的头文件也共享出来</span>
+<span class="c1">// 像标准库头文件 stdio.h 等, 里面都是类似的声明</span>
+<span class="k">extern</span> <span class="kt">void</span> <span class="nf">swap</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">,</span> <span class="kt">int</span><span class="o">*</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span>
+   <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d %d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">);</span>
+   <span class="n">swap</span><span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">);</span>
+   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>在编译时, 动态链接:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>clang -o main.out -L. -lswap main.c
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">-L.</span></code></dt><dd><p>添加当前工作路径到链接库搜索路径, 如果将共享库文件保存到了其他路径, 则设置为对应的路径.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-lswap</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">-l</span></code> 表示链接某库. <code class="docutils literal notranslate"><span class="pre">swap</span></code> 是库的名字, 文件命名规则为 <code class="docutils literal notranslate"><span class="pre">lib{name}.so[.{version}]</span></code></p>
+</dd>
+</dl>
+<p>要运行程序, 还需要定义环境变量 <a class="reference internal" href="#ld-library-path">LD_LIBRARY_PATH</a>,
+将 <code class="docutils literal notranslate"><span class="pre">libswap.so</span></code> 的路径添加到其中, 否则 <code class="docutils literal notranslate"><span class="pre">main.out</span></code> 仍然无法找到动态库.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>.:<span class="nv">$LD_LIBRARY_PATH</span>
+</pre></div>
+</div>
+<div class="section" id="ld-library-path">
+<h3>LD_LIBRARY_PATH<a class="headerlink" href="#ld-library-path" title="永久链接至标题">¶</a></h3>
+<p>一般来讲. linux系统的 <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> 都是未设置的. echo 出来也是空值；
+这个环境变量其实是用户添加 “额外的” so 查找路径时使用. 并不会影响到系统默认的 so 查找路径;
+真正的系统默认查找路径是配置在文件里的：看看你的 <code class="docutils literal notranslate"><span class="pre">/etc/ld.so.conf</span></code> ,
+里面就配置了系统安装时. 默认的 so 查找路径. 不过这个文件一般都不直接配置查找路径.
+而是简单地 import 了 <code class="docutils literal notranslate"><span class="pre">/etc/ld.so.conf.d</span></code> 下的所有配置文件；
+再去 <code class="docutils literal notranslate"><span class="pre">/etc/ld.so.conf.d</span></code> 目录下看.
+就会有一些 <code class="docutils literal notranslate"><span class="pre">.conf</span></code> 配置文件了, 这些文件里记载的路径.
+就是你当前系统的 so 默认查找路径了. 这些配置跟 <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> 是无关的</p>
+<p>除了设置 <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> 之外. 你还可以自己编辑一个 <code class="docutils literal notranslate"><span class="pre">.conf</span></code> 文件.
+扔到 <code class="docutils literal notranslate"><span class="pre">/etc/ld.so.conf.d</span></code> 目录下, 也能达到添加别的路径到 <code class="docutils literal notranslate"><span class="pre">so</span></code> 默认查找路径的目的.  记得文件扔过去之后以 root 权限执行 <code class="docutils literal notranslate"><span class="pre">ldconfig</span></code> 以刷新配置</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../standard-lib/c/index.html" class="btn btn-neutral float-right" title="C 语言标准库" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="debug.html" class="btn btn-neutral float-left" title="调试" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Zombie110year
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

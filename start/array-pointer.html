@@ -1,0 +1,595 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>数组与指针 &mdash; C 与 C++ 0.1.0rc 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/logo.cpp.iso.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="函数" href="function.html" />
+    <link rel="prev" title="控制语句" href="control-statement.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> C 与 C++
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../prepost.html">前言</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C 语言入门</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="compile.html">编译 C 程序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grammar.html">C 语言语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variable-const-expr.html">变量、常量与表达式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="control-statement.html">控制语句</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">数组与指针</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">数组</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">字符串</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">多维数组</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">指针</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">指针运算</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">多维指针</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#void">void 指针</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">常量指针与指针常量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">指针与数组的关系</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">动态数组</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#restrict">restrict 指针</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="function.html">函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct-union.html">结构体与联合体</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scope.html">作用域</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debug.html">调试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="library.html">链接库文件</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../standard-lib/c/index.html">C 语言标准库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../standard-lib/cpp/index.html">C++ 标准库与标准模板库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">词汇对照表</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">C 与 C++</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">C 语言入门</a> &raquo;</li>
+        
+      <li>数组与指针</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/start/array-pointer.rst" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>数组与指针<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id2">
+<h2>数组<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>为了存储多个相同类型的数据, 出现了 <em>数组(Array)</em> 这样的数据结构.
+一个数组是一块连续的内存空间, 其大小足以容纳规定数目的元素.
+在划分出空间后, 此空间的大小与位置不再变化.</p>
+<p>数组所分配的空间位于 <em>栈</em> 上.</p>
+<p>在定义数组时, 需要设定数组的大小与类型,
+例如, 定义一个 10 个元素大小的 int 数组:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">array</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+</pre></div>
+</div>
+<p>在旧的 C 标准(C89) 中, 定义数组时, 数组的长度必须是一个在编译期间能确定的常量,
+例如字面量或静态存储的 const 常量. 而在 C99 之后,
+允许使用 <em>变长数组(Variable Length Array)</em>, 简称 VLA,
+这里的 “变长” 不是指长度可变, 而是说可以用运行时才确定的 <strong>变量</strong> 来设置数组的长度.</p>
+<p>数组在定义时不会被初始化, 需要显式初始化, 可以使用一个初始化列表:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">array</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">};</span>
+</pre></div>
+</div>
+<p>当存在显式初始化时, 数组将从头到尾一一设置为初始化列表中的值,
+如果初始化列表太短, 则剩下的位置将被置零.</p>
+<p>上面的 array 被初始化后的值为:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>要访问一个数组中的元素, 可以使用下标语法:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span> <span class="c1">// 得到 3</span>
+</pre></div>
+</div>
+<p>需要注意的是, 下标从 0 开始.</p>
+<p>可以在定义数组时提供初始化列表但省略数组长度:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">array</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">};</span>
+</pre></div>
+</div>
+<p>这将定义一个长度为 3, 具有初始值 1, 2, 3 的 int 类型数组.</p>
+</div>
+<div class="section" id="id3">
+<h2>字符串<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>字符串是一个用 <code class="docutils literal notranslate"><span class="pre">0x00</span></code> (常用转义序列 <code class="docutils literal notranslate"><span class="pre">\0</span></code> 表示) 结尾的字符数组.</p>
+</div>
+<div class="section" id="id4">
+<h2>多维数组<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>可以定义多维数组:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">array</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">},</span>
+   <span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">},</span>
+   <span class="p">{</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">},</span>
+   <span class="p">{</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">array</span><span class="p">[</span><span class="cm">/* 第一维长度 */</span><span class="p">][</span><span class="cm">/* 第二维长度 */</span><span class="p">];</span>
+</pre></div>
+</div>
+<p>多维数组必须给定每一维度的长度.</p>
+<p>可以通过下标访问:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">3</span><span class="p">];</span> <span class="c1">// 8</span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">[</span><span class="cm">/* 第一维坐标 */</span><span class="p">][</span><span class="cm">/* 第二维坐标 */</span><span class="p">];</span>
+</pre></div>
+</div>
+<p>多维数组的内存分配是按照先行规律进行分配的.
+所有的数组实际上在内存中都是一维存储, 但是根据定义时确定的大小, 能够将其划分为不同的部分:</p>
+<div class="figure align-center" id="id15">
+<a class="reference internal image-reference" href="../_images/show.2darray.svg"><img alt="../_images/show.2darray.svg" src="../_images/show.2darray.svg" width="600px" /></a>
+<p class="caption"><span class="caption-number">图 1 </span><span class="caption-text">show.2darray.svg</span><a class="headerlink" href="#id15" title="永久链接至图片">¶</a></p>
+</div>
+<p>同样地, 可以定义 3 维, 4 维 数组. 不过高维数组太过抽象, 使用起来太过困难,
+在遇到这种情形时, 需要考虑降维.</p>
+</div>
+<div class="section" id="id5">
+<span id="id6"></span><h2>指针<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>指针是一种存储了内存地址的变量.
+普通的变量表示一块存储数值的内存区域, 指针也是.
+不过指针所表示的内存区域中存储的值比较特殊, 是一个内存地址.</p>
+<p>可以将内存想象为棋盘, 在格子中存储了数据, 每一个格子都按照从 0 到 n 的顺序编上号码,
+这个号码就是地址, 可以通过地址找到确定的格子.
+用变量表示一个格子, 则指针变量所表示的格子中存储了能用于找到另一个格子的地址.
+指针的大小为一个 CPU 的字长. 字长也就是 CPU 寄存器的大小, 它决定了 CPU 能够操作多大的值.
+对应到指针, 也就限制了 CPU 能 “够得着” 多远处的内存.</p>
+<p>指针也具有类型, 虽然所有指针的大小都是一样的一个字长大小,
+但是指针的类型决定了它所指向的数据的解读方式.</p>
+<p>声明一个指针类型的变量, 需要使用对应的类型名并在变量名前添加一个 <code class="docutils literal notranslate"><span class="pre">*</span></code> 号:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="o">*</span><span class="n">a_ptr</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>如果使用逗号表达式, 则需要在每一个要声明的指针变量前使用星号:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">*</span><span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>否则, 对应的变量就会被声明为普通的变量.
+上例中, <code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">b</span></code> 是 int 的指针变量, 而 <code class="docutils literal notranslate"><span class="pre">c</span></code> 是普通变量.</p>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> 引用操作符得到一个实体的地址:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">18</span><span class="p">;</span>
+<span class="kt">int</span><span class="o">*</span> <span class="n">a_ptr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>而用 <code class="docutils literal notranslate"><span class="pre">*</span></code> 解引用操作符访问对应的内存:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="n">a_ptr</span>   <span class="c1">// 这个表达式的值为 18</span>
+</pre></div>
+</div>
+<div class="figure align-center" id="id16">
+<a class="reference internal image-reference" href="../_images/intro.pointer.svg"><img alt="../_images/intro.pointer.svg" src="../_images/intro.pointer.svg" width="400px" /></a>
+<p class="caption"><span class="caption-number">图 2 </span><span class="caption-text">intro.pointer</span><a class="headerlink" href="#id16" title="永久链接至图片">¶</a></p>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>指针运算<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
+<p>指针的运算, 就是进行指针的移动. 它只能进行加法或减法, 加法就是向后移动, 减法就是向前.
+一次移动的单位是指针解引用后的类型的长度.</p>
+<p>例如:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">18</span><span class="p">;</span>
+<span class="kt">int</span> <span class="o">*</span><span class="n">a_ptr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
+<span class="n">a_ptr</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>指针的移动如图:</p>
+<div class="figure align-center" id="id17">
+<a class="reference internal image-reference" href="../_images/show.pointer.move.svg"><img alt="../_images/show.pointer.move.svg" src="../_images/show.pointer.move.svg" width="400px" /></a>
+<p class="caption"><span class="caption-number">图 3 </span><span class="caption-text">show.pointer.move</span><a class="headerlink" href="#id17" title="永久链接至图片">¶</a></p>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>多维指针<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h2>
+<p>指针同样可以指向指针:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">18</span><span class="p">;</span>
+<span class="kt">int</span> <span class="o">*</span><span class="n">a_ptr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
+<span class="kt">int</span> <span class="o">**</span><span class="n">a_pp</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">a_ptr</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="figure align-center" id="id18">
+<a class="reference internal image-reference" href="../_images/intro.pointer.2d.svg"><img alt="../_images/intro.pointer.2d.svg" src="../_images/intro.pointer.2d.svg" width="400px" /></a>
+<p class="caption"><span class="caption-number">图 4 </span><span class="caption-text">intro.pointer.2d</span><a class="headerlink" href="#id18" title="永久链接至图片">¶</a></p>
+</div>
+<p>如果要从二维指针直接解引用到最后的变量, 可以连续使用解引用操作符:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="o">**</span><span class="n">a_pp</span> <span class="c1">// 18</span>
+</pre></div>
+</div>
+<p>也可以定义更高维度的指针. 不过和多维数组类似, 维度越高越难想象.</p>
+</div>
+<div class="section" id="void">
+<span id="id9"></span><h2>void 指针<a class="headerlink" href="#void" title="永久链接至标题">¶</a></h2>
+<p>和确定类型的指针不同, void 指针可以指向任何位置.
+但是, 由于不知道解引用后的类型, void 指针不能参与指针运算或解引用.</p>
+<p>通常用在函数的形参或者返回值上, 在得到结果后先进行显式类型转换, 再参与指针运算或解引用.</p>
+</div>
+<div class="section" id="id10">
+<span id="id11"></span><h2>常量指针与指针常量<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h2>
+<p>用 const 修饰指针可能有两种用例:</p>
+<ol class="arabic simple">
+<li><p>指针不能指向其他位置</p></li>
+<li><p>不能修改指针所指向的值</p></li>
+</ol>
+<p>前者 <code class="docutils literal notranslate"><span class="pre">const</span></code> 在前, 称为常量指针:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="kt">int</span> <span class="o">*</span><span class="n">ptr</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>后者 <code class="docutils literal notranslate"><span class="pre">const</span></code> 在后, 称为指针常量:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="o">*</span><span class="k">const</span> <span class="n">ptr</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>或者同时使用:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="kt">int</span> <span class="o">*</span><span class="k">const</span> <span class="n">ptr</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id12">
+<h2>指针与数组的关系<a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h2>
+<p>定义一个数组:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">array</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">};</span>
+</pre></div>
+</div>
+<p>定义一个指针:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="o">*</span><span class="n">array_p</span> <span class="o">=</span> <span class="n">array</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>数组名这个标识符的类型并非对应类型的指针, 而是 数组类型, 其中包含了此数组的长度信息.
+只不过它可以在运算时隐式转换为指针, 指向数组第一个元素的首地址.
+它不能被修改(指向其他位置).</p>
+<p>在使用 <code class="docutils literal notranslate"><span class="pre">sizeof</span></code> 运算符时, 对数组会得到整个数组的长度,
+对指针只会得到指针的长度(一个字长).</p>
+<p>下标访问会被编译为指针解引用的形式:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="c1">// *(array + 2)</span>
+</pre></div>
+</div>
+<p>由于加法满足交换律, 这样的语法也是可以通过编译的:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span><span class="p">[</span><span class="n">array</span><span class="p">]</span> <span class="c1">// *(2 + array)</span>
+</pre></div>
+</div>
+<p>在 <a class="reference internal" href="#id10">常量指针与指针常量</a> 中, 提到了常量指针不能被指向其他位置, 同样的, 数组名也不能被修改.</p>
+<p>数组和指针也存在区别, 当使用 sizeof 运算符时, 操作数组将会得到整个数组的大小 (单位: 字节),
+而操作指针, 只会得到这个指针变量的大小.</p>
+<div class="literal-block-wrapper docutils container" id="id19">
+<div class="code-block-caption"><span class="caption-number">代码清单 11 </span><span class="caption-text">test.sizeof.c</span><a class="headerlink" href="#id19" title="永久链接至代码">¶</a></div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * 探究 sizeof 运算符是如何处理数组的</span>
+<span class="cm"> */</span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+   <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">array</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">};</span>
+   <span class="kt">size_t</span> <span class="o">*</span><span class="n">array_p</span> <span class="o">=</span> <span class="p">(</span><span class="kt">size_t</span> <span class="o">*</span><span class="p">)</span> <span class="n">array</span><span class="p">;</span>
+   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;array&#39;s address: %p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">array</span><span class="p">);</span>
+   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;array&#39;s previous value: %lu</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="o">*</span><span class="p">(</span><span class="n">array_p</span> <span class="o">-</span> <span class="mi">1</span><span class="p">));</span>
+   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;array&#39;s length: %lu</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="k">sizeof</span> <span class="n">array</span><span class="p">);</span>
+   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id13">
+<span id="id14"></span><h2>动态数组<a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h2>
+<p>在一些用例中, 可能需要根据情况调整数组的大小.
+而普通的数组在栈上分配空间, 一旦分配, 不能修改.</p>
+<p>要使用动态数组, 就必须采用指针 + 堆内存分配的策略.</p>
+<p><em>堆(Heap)</em> 是有别于 <em>栈(Stack)</em> 的内存区域, 它也被称作 “自由存储区”.
+它的特点就是, 其生命周期可编程控制, 独立于作用域规则之外.</p>
+<p>要在堆上分配内存, 可以使用 stdlib.h 中的 <a class="reference internal" href="../standard-lib/c/stdlib.html#c.calloc" title="calloc"><code class="xref c c-func docutils literal notranslate"><span class="pre">calloc()</span></code></a> 以及 <a class="reference internal" href="../standard-lib/c/stdlib.html#c.malloc" title="malloc"><code class="xref c c-func docutils literal notranslate"><span class="pre">malloc()</span></code></a> 函数.
+前者会将分配的内存初始化(置零), 而后者不会进行初始化.</p>
+<p>但是, 指针不能存储所分到的内存大小, 因此, 还需要另一个变量来存储数组的大小.</p>
+<div class="highlight-c notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;time.h&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+   <span class="c1">// 初始化随机数生成器</span>
+   <span class="n">srand</span><span class="p">(</span><span class="n">time</span><span class="p">(</span><span class="nb">NULL</span><span class="p">));</span>
+   <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">12</span><span class="p">;</span> <span class="c1">// 随机设置数组长度</span>
+   <span class="kt">int</span> <span class="o">*</span><span class="n">array</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">calloc</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">i</span> <span class="o">=</span> <span class="n">array</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">array</span> <span class="o">+</span> <span class="n">length</span><span class="p">);</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+      <span class="o">*</span><span class="n">i</span> <span class="o">=</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">1000</span><span class="p">;</span>
+   <span class="p">}</span>
+   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;length: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">length</span><span class="p">);</span>
+   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// 下标访问会被编译为指针访问, 对指针或数组都是如此</span>
+      <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d &quot;</span><span class="p">,</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+   <span class="p">}</span>
+   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>另外, 指针可以作为函数参数传递.
+虽然数组也可以, 但只有一维数组可以这么做,
+多维数组需要将数组名作为维度相同的指针传递给函数,
+并且, 需要在参数中提供每一个维度的长度:</p>
+<div class="literal-block-wrapper docutils container" id="id20">
+<div class="code-block-caption"><span class="caption-number">代码清单 12 </span><span class="caption-text">show.array.dynamic</span><a class="headerlink" href="#id20" title="永久链接至代码">¶</a></div>
+<div class="highlight-c notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;time.h&gt;</span><span class="cp"></span>
+
+<span class="c1">// 在形式参数中, 指针与数组表示同样的意思</span>
+<span class="c1">// 但是只能定义一维数组, 因为不知道数组每一维的长度</span>
+<span class="c1">// 但是可以定义多级指针.</span>
+<span class="kt">void</span> <span class="nf">add_one</span><span class="p">(</span><span class="kt">int</span> <span class="n">array</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">length</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+   <span class="c1">// 初始化随机数生成器</span>
+   <span class="n">srand</span><span class="p">(</span><span class="n">time</span><span class="p">(</span><span class="nb">NULL</span><span class="p">));</span>
+   <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">12</span><span class="p">;</span> <span class="c1">// 随机设置数组长度</span>
+   <span class="kt">int</span> <span class="o">*</span><span class="n">array</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">calloc</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">i</span> <span class="o">=</span> <span class="n">array</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">array</span> <span class="o">+</span> <span class="n">length</span><span class="p">);</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+      <span class="o">*</span><span class="n">i</span> <span class="o">=</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">1000</span><span class="p">;</span>
+   <span class="p">}</span>
+   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;length: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">length</span><span class="p">);</span>
+   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// 下标访问会被编译为指针访问, 对指针或数组都是如此</span>
+      <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d &quot;</span><span class="p">,</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+   <span class="p">}</span>
+   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+
+   <span class="c1">// 指针可作为函数实参</span>
+   <span class="n">add_one</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">length</span><span class="p">);</span>
+
+   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d &quot;</span><span class="p">,</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+   <span class="p">}</span>
+
+   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="restrict">
+<h2>restrict 指针<a class="headerlink" href="#restrict" title="永久链接至标题">¶</a></h2>
+<p>restrict 指针表示所声明的指针是访问对应元素的唯一途径,
+两个 restrict 指针不允许指向同一地址</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="function.html" class="btn btn-neutral float-right" title="函数" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="control-statement.html" class="btn btn-neutral float-left" title="控制语句" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Zombie110year
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,849 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>stdio.h &mdash; C 与 C++ 0.1.0rc 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/logo.cpp.iso.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="stdlib.h" href="stdlib.html" />
+    <link rel="prev" title="stddef.h" href="stddef.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> C 与 C++
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../prepost.html">前言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../start/index.html">C 语言入门</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C 语言标准库</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="assert.html">assert.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math.html">math.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stdarg.html">stdarg.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stddef.html">stddef.h</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">stdio.h</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">宏</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#c99">C99 说它们是宏, 让他们高兴</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">类型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">函数</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">标准输入输出</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">读写文件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">文件定位</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">缓冲设置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">处理字符串</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">无需打开的文件操作</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">临时文件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#va-list">va_list 相关</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">格式化输入输出</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id12">格式化输入时的说明符</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">格式化输出时的说明符</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="stdlib.html">stdlib.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="string.html">string.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="time.html">time.h</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C++ 标准库与标准模板库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">词汇对照表</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">C 与 C++</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">C 语言标准库</a> &raquo;</li>
+        
+      <li>stdio.h</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/standard-lib/c/stdio.rst" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="stdio-h">
+<h1>stdio.h<a class="headerlink" href="#stdio-h" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id1">
+<h2>宏<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<dl class="macro">
+<dt id="c.EOF">
+<code class="descname">EOF</code><a class="headerlink" href="#c.EOF" title="永久链接至目标">¶</a></dt>
+<dd><p>定义为文件结束符, <code class="docutils literal notranslate"><span class="pre">#define</span> <span class="pre">-1</span> <span class="pre">EOF</span></code>.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.FOPEN_MAX">
+<code class="descname">FOPEN_MAX</code><a class="headerlink" href="#c.FOPEN_MAX" title="永久链接至目标">¶</a></dt>
+<dd><p>可以同时打开的最大文件数目</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.FILENAME_MAX">
+<code class="descname">FILENAME_MAX</code><a class="headerlink" href="#c.FILENAME_MAX" title="永久链接至目标">¶</a></dt>
+<dd><p>文件名的最大长度</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.SEEK_CUR">
+<code class="descname">SEEK_CUR</code><a class="headerlink" href="#c.SEEK_CUR" title="永久链接至目标">¶</a></dt>
+<dd><p>用在 <a class="reference internal" href="#c.fseek" title="fseek"><code class="xref c c-func docutils literal notranslate"><span class="pre">fseek()</span></code></a> 函数中, 用于定位文件读写位置.
+此宏表示 “当前读写位置”</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.SEEK_SET">
+<code class="descname">SEEK_SET</code><a class="headerlink" href="#c.SEEK_SET" title="永久链接至目标">¶</a></dt>
+<dd><p>用在 <a class="reference internal" href="#c.fseek" title="fseek"><code class="xref c c-func docutils literal notranslate"><span class="pre">fseek()</span></code></a> 函数中, 用于定位文件读写位置.
+此宏表示 “文件开头”</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.SEEK_END">
+<code class="descname">SEEK_END</code><a class="headerlink" href="#c.SEEK_END" title="永久链接至目标">¶</a></dt>
+<dd><p>用在 <a class="reference internal" href="#c.fseek" title="fseek"><code class="xref c c-func docutils literal notranslate"><span class="pre">fseek()</span></code></a> 函数中, 用于定位文件读写位置.
+此宏表示 “文件结尾”</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.BUFSIZ">
+<code class="descname">BUFSIZ</code><a class="headerlink" href="#c.BUFSIZ" title="永久链接至目标">¶</a></dt>
+<dd><p>当前系统设置的标准文件缓冲区大小. 单位: 字节.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c._IOFBF">
+<code class="descname">_IOFBF</code><a class="headerlink" href="#c._IOFBF" title="永久链接至目标">¶</a></dt>
+<dd><p>全缓冲模式, 当缓冲区满时才会发生真实 I/O, 同时清空缓冲区.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c._IOLBF">
+<code class="descname">_IOLBF</code><a class="headerlink" href="#c._IOLBF" title="永久链接至目标">¶</a></dt>
+<dd><p>行缓冲模式, 当缓冲区满或者遇到换行符时, 发生真实 I/O, 同时清空缓冲区.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c._IONBF">
+<code class="descname">_IONBF</code><a class="headerlink" href="#c._IONBF" title="永久链接至目标">¶</a></dt>
+<dd><p>不缓冲模式, 直接进行真实 I/O.</p>
+</dd></dl>
+
+<div class="section" id="c99">
+<h3>C99 说它们是宏, 让他们高兴<a class="headerlink" href="#c99" title="永久链接至标题">¶</a></h3>
+<dl class="macro">
+<dt id="c.stdin">
+<code class="descname">stdin</code><a class="headerlink" href="#c.stdin" title="永久链接至目标">¶</a></dt>
+<dd><p>标准输入流.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.stdout">
+<code class="descname">stdout</code><a class="headerlink" href="#c.stdout" title="永久链接至目标">¶</a></dt>
+<dd><p>标准输出流.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.stderr">
+<code class="descname">stderr</code><a class="headerlink" href="#c.stderr" title="永久链接至目标">¶</a></dt>
+<dd><p>标准错误流.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="id2">
+<h2>类型<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<dl class="type">
+<dt id="c.fpos_t">
+<code class="descname">fpos_t</code><a class="headerlink" href="#c.fpos_t" title="永久链接至目标">¶</a></dt>
+<dd><p>用于存储文件读写位置的类型. 为整数的别名. 可能是 <code class="xref c c-type docutils literal notranslate"><span class="pre">int</span></code> 或 <code class="docutils literal notranslate"><span class="pre">long</span> <span class="pre">long</span></code>.</p>
+</dd></dl>
+
+<dl class="type">
+<dt id="c.FILE">
+<code class="descname">FILE</code><a class="headerlink" href="#c.FILE" title="永久链接至目标">¶</a></dt>
+<dd><p>一个打开的文件类型.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id3">
+<h2>函数<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id4">
+<h3>标准输入输出<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<dl class="function">
+<dt id="c.getchar">
+int <code class="descname">getchar</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#c.getchar" title="永久链接至目标">¶</a></dt>
+<dd><p>从 <a class="reference internal" href="#c.stdin" title="stdin"><code class="xref c c-macro docutils literal notranslate"><span class="pre">stdin</span></code></a> 读取一个字节, 作为返回值返回.</p>
+<p>将读写位置正向移动一个字节.</p>
+</dd></dl>
+
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>C 语言中没有严谨的 “字符串” 类型. 对于大家常称为字符串的以 <code class="docutils literal notranslate"><span class="pre">\0</span></code> 结尾的字符数组,
+它也是以字节为单位进行处理的.
+如果使用了超过 0xff 的编码, 那么一个字符也需要进行多次读取.</p>
+</div>
+<dl class="function">
+<dt id="c.gets">
+char* <code class="descname">gets</code><span class="sig-paren">(</span>char*<em> buffer</em><span class="sig-paren">)</span><a class="headerlink" href="#c.gets" title="永久链接至目标">¶</a></dt>
+<dd><p>从 <a class="reference internal" href="#c.stdin" title="stdin"><code class="xref c c-macro docutils literal notranslate"><span class="pre">stdin</span></code></a> 读取一行, 存入到 <code class="docutils literal notranslate"><span class="pre">buffer</span></code> 中. 并且将 <code class="docutils literal notranslate"><span class="pre">buffer</span></code> 作为返回值返回.
+如果发生错误, 则返回值为 <a class="reference internal" href="stddef.html#c.NULL" title="NULL"><code class="xref c c-macro docutils literal notranslate"><span class="pre">NULL</span></code></a>, 包含换行符.</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>由于未限制行的长度, 可能存在内存溢出的风险, 不推荐使用.</p>
+<p>应当使用 <a class="reference internal" href="#c.fgets" title="fgets"><code class="xref c c-func docutils literal notranslate"><span class="pre">fgets()</span></code></a>, 可以限制一次读取的字节量.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.putchar">
+int <code class="descname">putchar</code><span class="sig-paren">(</span>int<em> ch</em><span class="sig-paren">)</span><a class="headerlink" href="#c.putchar" title="永久链接至目标">¶</a></dt>
+<dd><p>将 <code class="docutils literal notranslate"><span class="pre">ch</span></code> 写入到 <a class="reference internal" href="#c.stdout" title="stdout"><code class="xref c c-macro docutils literal notranslate"><span class="pre">stdout</span></code></a> 中. 如果失败, 返回非零值.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.puts">
+int <code class="descname">puts</code><span class="sig-paren">(</span>char*<em> str</em><span class="sig-paren">)</span><a class="headerlink" href="#c.puts" title="永久链接至目标">¶</a></dt>
+<dd><p>将 <code class="docutils literal notranslate"><span class="pre">str</span></code> 写入到 <a class="reference internal" href="#c.stdout" title="stdout"><code class="xref c c-macro docutils literal notranslate"><span class="pre">stdout</span></code></a> 中. 如果失败, 返回非零值.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.perror">
+void <code class="descname">perror</code><span class="sig-paren">(</span>char*<em> error_name</em><span class="sig-paren">)</span><a class="headerlink" href="#c.perror" title="永久链接至目标">¶</a></dt>
+<dd><p>将 <code class="docutils literal notranslate"><span class="pre">error_name</span></code> 输出到 <a class="reference internal" href="#c.stderr" title="stderr"><code class="xref c c-macro docutils literal notranslate"><span class="pre">stderr</span></code></a> 中. <code class="docutils literal notranslate"><span class="pre">error_name</span></code> 作为输出的错误信息的前缀.
+在前缀后, 会根据全局数组 <code class="docutils literal notranslate"><span class="pre">sys_errlist</span></code> 的最后一个值, 附加 <code class="docutils literal notranslate"><span class="pre">error_msg</span></code>.</p>
+<p>实际上的输出信息是:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>${error_name}: ${error_msg}
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.scanf">
+int <code class="descname">scanf</code><span class="sig-paren">(</span>char*<em> fmt</em>, ...<span class="sig-paren">)</span><a class="headerlink" href="#c.scanf" title="永久链接至目标">¶</a></dt>
+<dd><p>从 <a class="reference internal" href="#c.stdin" title="stdin"><code class="xref c c-macro docutils literal notranslate"><span class="pre">stdin</span></code></a> 读取格式化信息. 格式化字符串参考后文的 <a class="reference internal" href="#id11">格式化输入输出</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.printf">
+int <code class="descname">printf</code><span class="sig-paren">(</span>char*<em> fmt</em>, ...<span class="sig-paren">)</span><a class="headerlink" href="#c.printf" title="永久链接至目标">¶</a></dt>
+<dd><p>向 <a class="reference internal" href="#c.stdout" title="stdout"><code class="xref c c-macro docutils literal notranslate"><span class="pre">stdout</span></code></a> 输出格式化信息. 格式化字符串参考后文的 <a class="reference internal" href="#id11">格式化输入输出</a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="id5">
+<h3>读写文件<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>文件的打开模式</p>
+<p>文件的打开模式使用选项字符串来指定, 会有三种不同角度的选项:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// 读写方式</span>
+<span class="s">&quot;r&quot;</span>     <span class="c1">// 只读, 可读不可泄, 读写指针在文件头部, 如果文件不存在则报错.</span>
+<span class="s">&quot;w&quot;</span>     <span class="c1">// 只写, 可写不可读, 读写指针在文件头部, 如果文件不存在则创建, 如果文件已存在则覆盖.</span>
+<span class="s">&quot;a&quot;</span>     <span class="c1">// 追加, 可写不可读, 读写指针在文件末尾, 如果文件不存在则会创建.</span>
+
+<span class="c1">// 打开方式</span>
+<span class="s">&quot;t&quot;</span>     <span class="c1">// 以文本文件方式打开, 根据系统换行符设置进行换行.</span>
+<span class="s">&quot;b&quot;</span>     <span class="c1">// 以二进制模式打开, 不做任何多余的事.</span>
+
+<span class="s">&quot;+&quot;</span>     <span class="c1">// 可更新, 加上此符号, 取消掉读或写的限制, 但其他设置不变.</span>
+</pre></div>
+</div>
+</div>
+<dl class="function">
+<dt id="c.fopen">
+FILE* <code class="descname">fopen</code><span class="sig-paren">(</span>const char<em> *path</em>, const char<em> *mode</em><span class="sig-paren">)</span><a class="headerlink" href="#c.fopen" title="永久链接至目标">¶</a></dt>
+<dd><p>以 <code class="docutils literal notranslate"><span class="pre">mode</span></code> 方式打开 <code class="docutils literal notranslate"><span class="pre">path</span></code> 路径对应的文件. 返回 <code class="docutils literal notranslate"><span class="pre">FILE</span> <span class="pre">*</span></code> 类型的指针,
+之后的读写等操作通过这个指针进行.</p>
+<p>文件操作完毕后需要 <a class="reference internal" href="#c.fclose" title="fclose"><code class="xref c c-func docutils literal notranslate"><span class="pre">fclose()</span></code></a> 来关闭此文件.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.freopen">
+FILE* <code class="descname">freopen</code><span class="sig-paren">(</span>const char<em> *path</em>, const char<em> *mode</em>, FILE<em> *stream</em><span class="sig-paren">)</span><a class="headerlink" href="#c.freopen" title="永久链接至目标">¶</a></dt>
+<dd><p>将 <code class="docutils literal notranslate"><span class="pre">stream</span></code> 指针指向一个新打开的文件.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> – 将被打开的新文件</p></li>
+<li><p><strong>mode</strong> – 文件打开模式</p></li>
+<li><p><strong>stream</strong> – 原有的文件指针</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.fclose">
+int <code class="descname">fclose</code><span class="sig-paren">(</span>FILE<em> *stream</em><span class="sig-paren">)</span><a class="headerlink" href="#c.fclose" title="永久链接至目标">¶</a></dt>
+<dd><p>关闭 <code class="docutils literal notranslate"><span class="pre">stream</span></code> 所指的文件. 会先刷新该文件读写的缓冲区.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.fgetc">
+int <code class="descname">fgetc</code><span class="sig-paren">(</span>FILE*<em> stream</em><span class="sig-paren">)</span><a class="headerlink" href="#c.fgetc" title="永久链接至目标">¶</a></dt>
+<dd><p>从打开的可读的文本或二进制流 <code class="docutils literal notranslate"><span class="pre">stream</span></code> 中读取一个字节, 将其返回并将读写指针后移一个字节.</p>
+<p>如果读取到文件末尾, 那么会得到 <a class="reference internal" href="#c.EOF" title="EOF"><code class="xref c c-macro docutils literal notranslate"><span class="pre">EOF</span></code></a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.fgets">
+char* <code class="descname">fgets</code><span class="sig-paren">(</span>char*<em> buffer</em>, int<em> size</em>, FILE*<em> stream</em><span class="sig-paren">)</span><a class="headerlink" href="#c.fgets" title="永久链接至目标">¶</a></dt>
+<dd><p>从打开的可读的文本流 <code class="docutils literal notranslate"><span class="pre">stream</span></code> 中读取一个字符串, 此字符串以换行符结尾(当然, 最末尾还是 <code class="docutils literal notranslate"><span class="pre">\0</span></code>),
+将其存入 <code class="docutils literal notranslate"><span class="pre">buffer</span></code> 中, <code class="docutils literal notranslate"><span class="pre">size</span></code> 通常代表 <code class="docutils literal notranslate"><span class="pre">buffer</span></code> 的大小,
+当读取到的字节数达到 <code class="docutils literal notranslate"><span class="pre">size</span> <span class="pre">-</span> <span class="pre">1</span></code> 后, 读取将中断.</p>
+<p>无论是 <code class="docutils literal notranslate"><span class="pre">\r\n</span></code> 还是 <code class="docutils literal notranslate"><span class="pre">\n</span></code> 换行, 在程序中都用 <code class="docutils literal notranslate"><span class="pre">\n</span></code> 存储换行符.</p>
+<ul class="simple">
+<li><p>如果读取成功, 那么读写指针将后移至下一行的行首, 函数将返回读取到的字符数组的首地址(指针).</p></li>
+<li><p>如果读取失败, 那么函数指针将返回空指针( <code class="docutils literal notranslate"><span class="pre">(void*)</span> <span class="pre">0</span></code>).</p></li>
+<li><p>如果读取到文件末尾, 也会返回空指针.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>buffer</strong> – 字节缓冲区</p></li>
+<li><p><strong>size</strong> – 字节数目</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.fscanf">
+int <code class="descname">fscanf</code><span class="sig-paren">(</span>FILE<em> *stream</em>, const char<em> *format</em>, ...<span class="sig-paren">)</span><a class="headerlink" href="#c.fscanf" title="永久链接至目标">¶</a></dt>
+<dd><p>类似于 <a class="reference internal" href="#c.scanf" title="scanf"><code class="xref c c-func docutils literal notranslate"><span class="pre">scanf()</span></code></a> 但是将从 <code class="docutils literal notranslate"><span class="pre">stream</span></code> 所指定的流中输入.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.fread">
+size_t <code class="descname">fread</code><span class="sig-paren">(</span>void<em> *ptr</em>, size_t<em> size</em>, size_t<em> n</em>, FILE<em> *stream</em><span class="sig-paren">)</span><a class="headerlink" href="#c.fread" title="永久链接至目标">¶</a></dt>
+<dd><p>从 <code class="docutils literal notranslate"><span class="pre">stream</span></code> 中读取 <code class="docutils literal notranslate"><span class="pre">n</span></code> 个 <code class="docutils literal notranslate"><span class="pre">size</span></code> 大小的字节块, 存入 <code class="docutils literal notranslate"><span class="pre">ptr</span></code> 所指的内存空间中.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.fputc">
+int <code class="descname">fputc</code><span class="sig-paren">(</span>int<em> ch</em>, FILE<em> *stream</em><span class="sig-paren">)</span><a class="headerlink" href="#c.fputc" title="永久链接至目标">¶</a></dt>
+<dd><p>将 <code class="docutils literal notranslate"><span class="pre">ch</span></code> 字符输出到 <code class="docutils literal notranslate"><span class="pre">stream</span></code> 流.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.fputs">
+int <code class="descname">fputs</code><span class="sig-paren">(</span>const char<em> *str</em>, FILE<em> *stream</em><span class="sig-paren">)</span><a class="headerlink" href="#c.fputs" title="永久链接至目标">¶</a></dt>
+<dd><p>将 <code class="docutils literal notranslate"><span class="pre">str</span></code> 字符串输出到 <code class="docutils literal notranslate"><span class="pre">stream</span></code> 流. <code class="docutils literal notranslate"><span class="pre">\0</span></code> 不会被输出.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.fprintf">
+int <code class="descname">fprintf</code><span class="sig-paren">(</span>FILE<em> *stream</em>, const char<em> *format</em>, ...<span class="sig-paren">)</span><a class="headerlink" href="#c.fprintf" title="永久链接至目标">¶</a></dt>
+<dd><p>类似于 <a class="reference internal" href="#c.printf" title="printf"><code class="xref c c-func docutils literal notranslate"><span class="pre">printf()</span></code></a> 但是将输出到 <code class="docutils literal notranslate"><span class="pre">stream</span></code> 所指定的流中.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.fwrite">
+int <code class="descname">fwrite</code><span class="sig-paren">(</span>void<em> *ptr</em>, size_t<em> size</em>, size_t<em> n</em>, FILE<em> *stream</em><span class="sig-paren">)</span><a class="headerlink" href="#c.fwrite" title="永久链接至目标">¶</a></dt>
+<dd><p>将指针 <code class="docutils literal notranslate"><span class="pre">ptr</span></code> 所指的内存空间中的前 <code class="docutils literal notranslate"><span class="pre">n</span></code> 个 <code class="docutils literal notranslate"><span class="pre">size</span></code> 大小的字节块输出到 <code class="docutils literal notranslate"><span class="pre">stream</span></code> 流中.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.fflush">
+int <code class="descname">fflush</code><span class="sig-paren">(</span>FILE<em> *stream</em><span class="sig-paren">)</span><a class="headerlink" href="#c.fflush" title="永久链接至目标">¶</a></dt>
+<dd><p>刷新 <code class="docutils literal notranslate"><span class="pre">stream</span></code> 的输出缓冲区.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id6">
+<h3>文件定位<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<dl class="function">
+<dt id="c.feof">
+int <code class="descname">feof</code><span class="sig-paren">(</span>FILE<em> *stream</em><span class="sig-paren">)</span><a class="headerlink" href="#c.feof" title="永久链接至目标">¶</a></dt>
+<dd><p>检测 <code class="docutils literal notranslate"><span class="pre">stream</span></code> 的读写指针是否已经到达 EOF 位置. 这并不会造成文件读写位置的移动.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.fgetpos">
+int <code class="descname">fgetpos</code><span class="sig-paren">(</span>FILE<em> *stream</em>, <a class="reference internal" href="#c.fpos_t" title="fpos_t">fpos_t</a><em> *pos</em><span class="sig-paren">)</span><a class="headerlink" href="#c.fgetpos" title="永久链接至目标">¶</a></dt>
+<dd><p>读取 <code class="docutils literal notranslate"><span class="pre">stream</span></code> 的读写位置, 将其存为 <a class="reference internal" href="#c.fpos_t" title="fpos_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">fpos_t</span></code></a> 的指针 <code class="docutils literal notranslate"><span class="pre">pos</span></code> 所指的值.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.fsetpos">
+int <code class="descname">fsetpos</code><span class="sig-paren">(</span>FILE<em> *stream</em>, const <a class="reference internal" href="#c.fpos_t" title="fpos_t">fpos_t</a><em> *pos</em><span class="sig-paren">)</span><a class="headerlink" href="#c.fsetpos" title="永久链接至目标">¶</a></dt>
+<dd><p>将 <code class="docutils literal notranslate"><span class="pre">stream</span></code> 的读写位置设置为 <code class="docutils literal notranslate"><span class="pre">pos</span></code> 所指的值.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.fseek">
+int <code class="descname">fseek</code><span class="sig-paren">(</span>FILE<em> *stream</em>, long<em> offset</em>, int<em> whence</em><span class="sig-paren">)</span><a class="headerlink" href="#c.fseek" title="永久链接至目标">¶</a></dt>
+<dd><p>将 <code class="docutils literal notranslate"><span class="pre">stream</span></code> 的读写位置设置为相对于 <code class="docutils literal notranslate"><span class="pre">whence</span></code> 的 <code class="docutils literal notranslate"><span class="pre">offset</span></code> 个字节的偏移量.</p>
+<p>whence 的值可选用</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SEEK_SET</span></code>    文件开始</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SEEK_CUR</span></code>    当前位置</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SEEK_END</span></code>    文件末尾</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>offset</strong> – 偏移量</p></li>
+<li><p><strong>whence</strong> – 基准位置</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.ftell">
+long <code class="descname">ftell</code><span class="sig-paren">(</span>FILE<em> *stream</em><span class="sig-paren">)</span><a class="headerlink" href="#c.ftell" title="永久链接至目标">¶</a></dt>
+<dd><p>返回 <code class="docutils literal notranslate"><span class="pre">stream</span></code> 所指的文件当前读写位置.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.rewind">
+void <code class="descname">rewind</code><span class="sig-paren">(</span>FILE<em> *stream</em><span class="sig-paren">)</span><a class="headerlink" href="#c.rewind" title="永久链接至目标">¶</a></dt>
+<dd><p>将 <code class="docutils literal notranslate"><span class="pre">stream</span></code> 的读写位置重设为文件开头.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id7">
+<h3>缓冲设置<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
+<dl class="function">
+<dt id="c.setbuf">
+void <code class="descname">setbuf</code><span class="sig-paren">(</span>FILE<em> *stream</em>, char<em> *buffer</em><span class="sig-paren">)</span><a class="headerlink" href="#c.setbuf" title="永久链接至目标">¶</a></dt>
+<dd><p>将 <code class="docutils literal notranslate"><span class="pre">stream</span></code> 的缓冲区设置为 <code class="docutils literal notranslate"><span class="pre">buffer</span></code> 所指的内存区域. 这个区域至少有 <a class="reference internal" href="#c.BUFSIZ" title="BUFSIZ"><code class="xref c c-macro docutils literal notranslate"><span class="pre">BUFSIZ</span></code></a> 字节大小.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.setvbuf">
+int <code class="descname">setvbuf</code><span class="sig-paren">(</span>FILE<em> *stream</em>, char<em> *buffer</em>, int<em> bufmode</em>, size_t<em> size</em><span class="sig-paren">)</span><a class="headerlink" href="#c.setvbuf" title="永久链接至目标">¶</a></dt>
+<dd><p>更详细地设置缓冲区.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bufmode</strong> – <p>缓冲模式, 可选值:</p>
+<ul>
+<li><p><a class="reference internal" href="#c._IOFBF" title="_IOFBF"><code class="xref c c-macro docutils literal notranslate"><span class="pre">_IOFBF</span></code></a> : 全缓冲</p></li>
+<li><p><a class="reference internal" href="#c._IOLBF" title="_IOLBF"><code class="xref c c-macro docutils literal notranslate"><span class="pre">_IOLBF</span></code></a> : 行缓冲</p></li>
+<li><p><a class="reference internal" href="#c._IONBF" title="_IONBF"><code class="xref c c-macro docutils literal notranslate"><span class="pre">_IONBF</span></code></a> : 不缓冲, size 参数将被忽略</p></li>
+</ul>
+</p></li>
+<li><p><strong>size</strong> – 设置缓冲区大小, 单位: 字节.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="id8">
+<h3>处理字符串<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
+<dl class="function">
+<dt id="c.sprintf">
+int <code class="descname">sprintf</code><span class="sig-paren">(</span>const char*<em> str</em>, const char*<em> fmt</em>, ...<span class="sig-paren">)</span><a class="headerlink" href="#c.sprintf" title="永久链接至目标">¶</a></dt>
+<dd><p>类似于 <a class="reference internal" href="#c.printf" title="printf"><code class="xref c c-func docutils literal notranslate"><span class="pre">printf()</span></code></a>, 不过是将格式化的结果存储到 <code class="docutils literal notranslate"><span class="pre">str</span></code> 字符串中.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.sscanf">
+int <code class="descname">sscanf</code><span class="sig-paren">(</span>const char*<em> str</em>, const char*<em> fmt</em>, ...<span class="sig-paren">)</span><a class="headerlink" href="#c.sscanf" title="永久链接至目标">¶</a></dt>
+<dd><p>类似 <a class="reference internal" href="#c.scanf" title="scanf"><code class="xref c c-func docutils literal notranslate"><span class="pre">scanf()</span></code></a>, 不过是从 <code class="docutils literal notranslate"><span class="pre">str</span></code> 字符串中读取格式化信息.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id9">
+<h3>无需打开的文件操作<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
+<dl class="function">
+<dt id="c.remove">
+int <code class="descname">remove</code><span class="sig-paren">(</span>const char<em> *filepath</em><span class="sig-paren">)</span><a class="headerlink" href="#c.remove" title="永久链接至目标">¶</a></dt>
+<dd><p>将 <code class="docutils literal notranslate"><span class="pre">filepath</span></code> 路径所指的文件删除</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.rename">
+int <code class="descname">rename</code><span class="sig-paren">(</span>const char<em> *old</em>, const char<em> *new</em><span class="sig-paren">)</span><a class="headerlink" href="#c.rename" title="永久链接至目标">¶</a></dt>
+<dd><p>将 <code class="docutils literal notranslate"><span class="pre">old</span></code> 路径所指的文件重命名(移动)</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id10">
+<h3>临时文件<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
+<dl class="function">
+<dt id="c.tmpfile">
+FILE *<code class="descname">tmpfile</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#c.tmpfile" title="永久链接至目标">¶</a></dt>
+<dd><p>以 <code class="docutils literal notranslate"><span class="pre">wb+</span></code> 模式创建一个临时文件, 文件名由操作系统决定.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.tmpnam">
+char *<code class="descname">tmpnam</code><span class="sig-paren">(</span>char<em> *buffer</em><span class="sig-paren">)</span><a class="headerlink" href="#c.tmpnam" title="永久链接至目标">¶</a></dt>
+<dd><p>生成一个可用的临时文件路径, 之后可以自行使用 <a class="reference internal" href="#c.fopen" title="fopen"><code class="xref c c-func docutils literal notranslate"><span class="pre">fopen()</span></code></a> 创建并打开.</p>
+<p><code class="docutils literal notranslate"><span class="pre">buffer</span></code> 将存储生成的文件名. 如果传入 <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, 则会在返回值中返回文件路径字符串的首地址.</p>
+<p>如果生成失败, 返回值为 <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="va-list">
+<h3>va_list 相关<a class="headerlink" href="#va-list" title="永久链接至标题">¶</a></h3>
+<dl class="function">
+<dt id="c.vprintf">
+<code class="descname">vprintf</code><span class="sig-paren">(</span>const char<em> *fmt</em>, <a class="reference internal" href="stdarg.html#c.va_list" title="va_list">va_list</a><em> args</em><span class="sig-paren">)</span><a class="headerlink" href="#c.vprintf" title="永久链接至目标">¶</a></dt>
+<dd><p>将 <a class="reference internal" href="stdarg.html#c.va_list" title="va_list"><code class="xref c c-type docutils literal notranslate"><span class="pre">va_list</span></code></a> 格式的参数格式化输出.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.vfprintf">
+<code class="descname">vfprintf</code><span class="sig-paren">(</span>FILE<em> *stream</em>, const char<em> *fmt</em>, <a class="reference internal" href="stdarg.html#c.va_list" title="va_list">va_list</a><em> args</em><span class="sig-paren">)</span><a class="headerlink" href="#c.vfprintf" title="永久链接至目标">¶</a></dt>
+<dd><p>格式化输出到指定的流.</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descname">vfprintf</code><span class="sig-paren">(</span>char<em> *str</em>, const char<em> *fmt</em>, <a class="reference internal" href="stdarg.html#c.va_list" title="va_list">va_list</a><em> args</em><span class="sig-paren">)</span></dt>
+<dd><p>格式化输出到指定的字符串.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="id11">
+<h2>格式化输入输出<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id12">
+<h3>格式化输入时的说明符<a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h3>
+<p>格式化输入时一个格式化说明符由 <code class="docutils literal notranslate"><span class="pre">%[*][宽度][修饰符]&lt;类型符&gt;</span></code> 组成, 类型符是必须的, 其他的可选.</p>
+<p>格式化类型符用于限定数据的类型, 决定了字符串的解析方式:</p>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>格式化类型符</p></td>
+<td><p>含义</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">d</span></code></p></td>
+<td><p><code class="xref c c-type docutils literal notranslate"><span class="pre">int</span></code> 类型的整数</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">c</span></code></p></td>
+<td><p><code class="xref c c-type docutils literal notranslate"><span class="pre">char</span></code> 类型的字符. 但只能有一个字节长.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">f</span></code></p></td>
+<td><p><code class="xref c c-type docutils literal notranslate"><span class="pre">float</span></code> 类型的浮点数. 是 <code class="docutils literal notranslate"><span class="pre">整数.小数</span></code> 形式的</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">e</span></code> <code class="docutils literal notranslate"><span class="pre">E</span></code></p></td>
+<td><p><code class="xref c c-type docutils literal notranslate"><span class="pre">float</span></code> 类型的浮点数. 是 <code class="docutils literal notranslate"><span class="pre">有效数字e幂次</span></code> 形式的,
+<code class="docutils literal notranslate"><span class="pre">E</span></code> 表示 <code class="docutils literal notranslate"><span class="pre">有效数字E幂次</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">s</span></code></p></td>
+<td><p>一个 <code class="docutils literal notranslate"><span class="pre">\0</span></code> 结尾的 C-style 字符串</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">u</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">int</span></code> 类型的无符号整数</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">o</span></code></p></td>
+<td><p><code class="xref c c-type docutils literal notranslate"><span class="pre">int</span></code> 类型的八进制整数</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">x</span></code></p></td>
+<td><p><code class="xref c c-type docutils literal notranslate"><span class="pre">int</span></code> 类型的十六进制整数</p></td>
+</tr>
+</tbody>
+</table>
+<p>格式化修饰符修饰了数据的类型:</p>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>格式化修饰符</p></td>
+<td><p>含义</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">l</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">long</span></code> 修饰符, 可将整型转为长整型, 单精度浮点数转为双精度</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">L</span></code></p></td>
+<td><p>修饰 <code class="docutils literal notranslate"><span class="pre">f</span></code>, <code class="docutils literal notranslate"><span class="pre">e</span></code>, 表示 <code class="docutils literal notranslate"><span class="pre">long</span> <span class="pre">double</span></code> 类型</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">h</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">short</span></code> 修饰符, 可将整型转为短整型.</p></td>
+</tr>
+</tbody>
+</table>
+<p>宽度限定了读入/输出的字符串的最大宽度: “n” 表示最多读取 n 个字符</p>
+<p><code class="docutils literal notranslate"><span class="pre">*</span></code> 表示这个说明符仅做占位, 不会将值保存到参数中.</p>
+</div>
+<div class="section" id="id13">
+<h3>格式化输出时的说明符<a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h3>
+<p>格式化输出时, 一个格式说明符由 <code class="docutils literal notranslate"><span class="pre">%[标志][宽度][.精度][修饰符]&lt;类型符&gt;</span></code> 组成, 类型符是必须的.</p>
+<p>格式化类型符用于限定数据的类型, 决定了字符串的解析方式:</p>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>格式化类型符</p></td>
+<td><p>含义</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">d</span></code></p></td>
+<td><p><code class="xref c c-type docutils literal notranslate"><span class="pre">int</span></code> 类型的整数</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">c</span></code></p></td>
+<td><p><code class="xref c c-type docutils literal notranslate"><span class="pre">char</span></code> 类型的字符. 但只能有一个字节长.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">f</span></code></p></td>
+<td><p><code class="xref c c-type docutils literal notranslate"><span class="pre">float</span></code> 类型的浮点数. 是 <code class="docutils literal notranslate"><span class="pre">整数.小数</span></code> 形式的</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">e</span></code> <code class="docutils literal notranslate"><span class="pre">E</span></code></p></td>
+<td><p><code class="xref c c-type docutils literal notranslate"><span class="pre">float</span></code> 类型的浮点数. 是 <code class="docutils literal notranslate"><span class="pre">有效数字e幂次</span></code> 形式的</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">g</span></code> <code class="docutils literal notranslate"><span class="pre">G</span></code></p></td>
+<td><p>根据浮点数位数不同, 选择输出宽度最短的 e 或 f 表示法</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">s</span></code></p></td>
+<td><p>一个 <code class="docutils literal notranslate"><span class="pre">\0</span></code> 结尾的 C-style 字符串</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">u</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">int</span></code> 类型的无符号整数</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">o</span></code></p></td>
+<td><p><code class="xref c c-type docutils literal notranslate"><span class="pre">int</span></code> 类型的八进制整数</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">x</span></code></p></td>
+<td><p><code class="xref c c-type docutils literal notranslate"><span class="pre">int</span></code> 类型的十六进制整数</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">p</span></code></p></td>
+<td><p>指针类型, 根据字长的不同, 输出对应位数的十六进制无符号整数</p></td>
+</tr>
+</tbody>
+</table>
+<p>格式化修饰符修饰了数据的类型:</p>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>格式化修饰符</p></td>
+<td><p>含义</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">l</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">long</span></code> 修饰符, 可将整型转为长整型, 单精度浮点数转为双精度</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">L</span></code></p></td>
+<td><p>修饰 <code class="docutils literal notranslate"><span class="pre">f</span></code>, <code class="docutils literal notranslate"><span class="pre">e</span></code>, 表示 <code class="docutils literal notranslate"><span class="pre">long</span> <span class="pre">double</span></code> 类型</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">h</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">short</span></code> 修饰符, 可将整型转为短整型.</p></td>
+</tr>
+</tbody>
+</table>
+<p>宽度决定了整个输出字符段的长度, 如果输出长度短于此值, 则用前导空格填充, 如果长于此值, 则输出不会截断.
+如果该位置为一个 <code class="docutils literal notranslate"><span class="pre">*</span></code> 星号, 则表示在参数列表中增加一个整型参数, 用于指定此说明符的宽度.</p>
+<p>精度对于整数, f 型浮点数和 e 型浮点数等的影响不同:</p>
+<ul class="simple">
+<li><p>整数: 同宽度</p></li>
+<li><p>f, e 型浮点数: 保留的小数位数</p></li>
+<li><p>g 型浮点数: 有效位数</p></li>
+<li><p>s 字符串: 最大的字节数. 如果采用了超过 0xff 的字节编码, 会导致超过限定的字符被截断.</p></li>
+<li><p>如果该位置为一个 <code class="docutils literal notranslate"><span class="pre">*</span></code> 星号, 则表示在参数列表中增加一个整型参数, 用于指定此说明符的精度.</p></li>
+</ul>
+<p>标志用于确定该输出字段的样式:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-</span></code> 指定左对齐, 默认右对齐</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">+</span></code> 显示正号, 默认只显示负号</p></li>
+<li><p>`` `` 空格, 当此说明符不输出字符时, 用一个空格代替</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">#</span></code> 强制保留一些数据特征:</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>八进制保留前缀 <code class="docutils literal notranslate"><span class="pre">0</span></code></p></li>
+<li><p>十六进制保留前缀 <code class="docutils literal notranslate"><span class="pre">0x</span></code></p></li>
+<li><p>浮点数保留小数点, 即便小数位全部为 0</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> 指定用 0 填充空位, 默认用空格</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="stdlib.html" class="btn btn-neutral float-right" title="stdlib.h" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="stddef.html" class="btn btn-neutral float-left" title="stddef.h" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Zombie110year
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

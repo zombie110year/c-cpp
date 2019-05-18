@@ -1,0 +1,487 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>函数 &mdash; C 与 C++ 0.1.0rc 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/logo.cpp.iso.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="结构体与联合体" href="struct-union.html" />
+    <link rel="prev" title="数组与指针" href="array-pointer.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> C 与 C++
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../prepost.html">前言</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C 语言入门</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="compile.html">编译 C 程序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grammar.html">C 语言语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variable-const-expr.html">变量、常量与表达式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="control-statement.html">控制语句</a></li>
+<li class="toctree-l2"><a class="reference internal" href="array-pointer.html">数组与指针</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">函数</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">函数的声明与定义</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">函数帧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">参数的值传递与引用传递</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">函数指针</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">常量与函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">内联函数</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="struct-union.html">结构体与联合体</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scope.html">作用域</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debug.html">调试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="library.html">链接库文件</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../standard-lib/c/index.html">C 语言标准库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../standard-lib/cpp/index.html">C++ 标准库与标准模板库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">词汇对照表</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">C 与 C++</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">C 语言入门</a> &raquo;</li>
+        
+      <li>函数</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/start/function.rst" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>函数<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id2">
+<h2>函数的声明与定义<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>函数和变量类似, 可以进行声明或定义. 在进行声明时, 需要提供函数的返回类型, 函数名和函数的形参表.
+声明时的形参表可以只设置类型, 而不设置形式参数的名称:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">swap</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="p">);</span>
+
+<span class="cm">/* 返回类型 */</span> <span class="cm">/* 函数名 */</span><span class="p">(</span><span class="cm">/* 形参表 */</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>在定义时, 除了提供以上三者之外, 还需要提供函数体, 并且, 形参必须命名:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">swap</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="kt">int</span> <span class="n">tmp</span><span class="p">;</span>
+   <span class="n">tmp</span> <span class="o">=</span> <span class="o">*</span><span class="n">a</span><span class="p">;</span>
+   <span class="o">*</span><span class="n">a</span> <span class="o">=</span> <span class="o">*</span><span class="n">b</span><span class="p">;</span>
+   <span class="o">*</span><span class="n">b</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/* 返回类型 */</span> <span class="cm">/* 函数名 */</span><span class="p">(</span><span class="cm">/* 命名形参表 */</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="cm">/* 函数体 */</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>关于函数的参数, 存在两种称呼: <em>形式参数(Parameter)</em> 和 <em>实际参数(Argument)</em>.</p>
+<p>所谓的形式参数, 就像变量名一样, 是函数执行时定义的变量标识符.
+而实际参数则是指调用函数时由调用者传递给被调用函数的变量, 有 “已经存储了值的变量” 的意思.</p>
+<p>和其他标识符一样, 函数也必须先声明, 后调用.</p>
+<p>错误:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+   <span class="n">hello</span><span class="p">();</span>    <span class="c1">// 找不到符号 hello</span>
+   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">hello</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello World</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>正确:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="kt">void</span> <span class="nf">hello</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello World</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+   <span class="n">hello</span><span class="p">();</span>
+   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>将声明与定义分离也是正确的:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="kt">void</span> <span class="nf">hello</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+   <span class="n">hello</span><span class="p">();</span>
+   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">hello</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello World</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl>
+<dt>返回值</dt><dd><p>函数在运行后, 能够向调用位置返回一个值. 这个值的类型需要在声明时指定.
+在函数体中, 使用 <code class="docutils literal notranslate"><span class="pre">return</span></code> 关键字返回结果.</p>
+</dd>
+<dt>函数名</dt><dd><p>函数名也是一种标识符.
+一个函数, 在可执行文件中对应了一段只读的数据, 这段数据就是函数将执行的机器码.</p>
+<p>因此, 函数名也可以被引用, 详见 <a class="reference internal" href="#id5">函数指针</a>.</p>
+</dd>
+<dt>形参表</dt><dd><p>形参表决定了函数调用时可以接受的参数以及它们的类型.
+在函数的声明中, 参数的名称是无意义的, 可以省略, 也可以设置,
+不过, 在函数的定义处, 形参的名字可以被重新设置.</p>
+<p>一个函数, 将由 返回值类型、函数名、形参类型 唯一确定.</p>
+</dd>
+<dt>函数体</dt><dd><p>函数将执行的指令.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="id3">
+<h2>函数帧<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>函数帧是当函数被调用时, 在栈上创建的一片内存区域.
+这个栈又被称为 “帧栈” 或 “调用栈”.
+这个区域中存储了该函数的作用域中定义的变量以及它们的符号.
+帧在函数执行时被创建, 在函数结束时被销毁.</p>
+<div class="highlight-c notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">swap</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="kt">int</span> <span class="n">tmp</span> <span class="o">=</span> <span class="o">*</span><span class="n">a</span><span class="p">;</span>
+   <span class="o">*</span><span class="n">a</span> <span class="o">=</span> <span class="o">*</span><span class="n">b</span><span class="p">;</span>
+   <span class="o">*</span><span class="n">b</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+   <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+   <span class="n">swap</span><span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">);</span>
+   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>main 函数的形参设为 <code class="xref c c-type docutils literal notranslate"><span class="pre">void</span></code>,
+在函数体中定义了 a, b 两个 <code class="xref c c-type docutils literal notranslate"><span class="pre">int</span></code> 型变量.
+因此, main 函数的帧上分配了两个 int 型变量的值.</p>
+<p>在函数 swap 中, 定义了两个 <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">*</span></code> 型的指针 <code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">b</span></code>,
+而在函数体中定义了一个 <code class="xref c c-type docutils literal notranslate"><span class="pre">int</span></code> 型的变量 <code class="docutils literal notranslate"><span class="pre">tmp</span></code>.
+在 swap 函数的帧上分配了这三个变量的空间.</p>
+<p>程序从 main 函数的起点开始, 当运行到 <code class="docutils literal notranslate"><span class="pre">swap(&amp;a,</span> <span class="pre">&amp;b);</span></code> 语句时,
+调用了这个函数, 具体的流程如下:</p>
+<div class="figure align-center" id="id9">
+<a class="reference internal image-reference" href="../_images/show.frame.function.svg"><img alt="../_images/show.frame.function.svg" src="../_images/show.frame.function.svg" width="400px" /></a>
+<p class="caption"><span class="caption-number">图 5 </span><span class="caption-text">show.frame.function</span><a class="headerlink" href="#id9" title="永久链接至图片">¶</a></p>
+</div>
+<ol class="arabic simple">
+<li><p>创建了一个新的帧, 其大小可以储存两个 <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">*</span></code> 和一个 <code class="xref c c-type docutils literal notranslate"><span class="pre">int</span></code>.</p></li>
+<li><p>这个帧被追加到帧栈上属于 main 函数的帧之后.</p></li>
+<li><p>从 main 函数的帧上取到变量 a, b 的地址,
+将其复制到 swap 帧上 <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">*a</span></code> 和 <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">*b</span></code> 对应的空间处.</p></li>
+<li><p>由于 <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">tmp</span></code> 是在运行时才赋值, 在调用时仅分配空间但不初始化.</p></li>
+<li><p>运行函数体.</p></li>
+<li><p>函数运行结束. 返回返回值(如果有), 之后销毁当前帧.</p></li>
+</ol>
+</div>
+<div class="section" id="id4">
+<h2>参数的值传递与引用传递<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>正如 <a class="reference internal" href="#id3">函数帧</a> 中所描述的. 在调用函数时, 会将传入的参数 <strong>复制</strong> 到帧中,
+而在函数执行结束后, 销毁函数的帧.
+因此, 函数中的变量, 和传递的实际参数并非同一个实体.
+C 语言中的函数都是 “值传递” 的.</p>
+<p>引用传递则是传递一个指针.
+被调用的函数可以通过这个指针找到上级函数帧中的变量, 并对它进行修改.</p>
+<p>引用传递实际上也是值传递, 只不过这个值是一个指针罢了.
+当函数的帧被销毁, 这个指针也被销毁. 但由于指针所指向的位置在帧的外面,
+因此修改可以被保存下来.</p>
+<p>如果将 swap 函数的形参修改以下, 不再传递指针:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">swap</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>那么, 在 main 函数中的 变量 a, b 在调用 swap 之后, 值仍然是 1, 2.</p>
+</div>
+<div class="section" id="id5">
+<h2>函数指针<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>如同 <a class="reference internal" href="#id2">函数的声明与定义</a> 所述,
+函数名本身也是一个标识符, 表示一个可执行机器码的内存空间.
+因此, 函数名可以被指针引用, 甚至作为参数传递给函数使用.</p>
+<p>一个函数的指针具有它的类型, 这个类型是由函数的返回值与形参类型所决定的.
+函数的返回值和形参类型决定了此函数构造函数帧的方式.</p>
+<p>例如, 对于之前定义的 swap 函数, 它的声明如下:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">swap</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">,</span> <span class="kt">int</span><span class="o">*</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>那么, 声明它对应的函数指针的语句为:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="p">(</span><span class="o">*</span> <span class="n">fp</span><span class="p">)</span> <span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">,</span> <span class="kt">int</span><span class="o">*</span><span class="p">);</span>
+
+<span class="cm">/* 返回类型 */</span> <span class="p">(</span><span class="o">*</span> <span class="cm">/* 指针变量的标识符 */</span><span class="p">)</span> <span class="p">(</span><span class="cm">/* 形参类型 */</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">fp</span></code> 是声明的函数指针的名称, 函数类型不能直接表示, 但是可以用一个 typedef 语句创建一个别名:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="nf">void</span><span class="p">(</span><span class="o">*</span> <span class="n">alias</span><span class="p">)(</span><span class="kt">int</span> <span class="o">*</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<span id="id7"></span><h2>常量与函数<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<p>用 const 修饰函数的形参和返回值类型会发生什么?</p>
+<p>修饰形参:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">do_something</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>其作用类似于:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">do_something</span><span class="p">(</span><span class="kt">int</span> <span class="n">para</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">const</span> <span class="kt">int</span> <span class="n">arg</span> <span class="o">=</span> <span class="n">para</span><span class="p">;</span>
+   <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>所以, 修饰形参, 就和修饰变量(以及指针变量) 一样, 让此标识符所表示的值不能被修改.</p>
+<p>修饰返回值:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>内联函数<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h2>
+<p>C99 提供了 <code class="docutils literal notranslate"><span class="pre">inline</span></code> 关键字用于声明内联函数:</p>
+<div class="literal-block-wrapper docutils container" id="id10">
+<div class="code-block-caption"><span class="caption-number">代码清单 13 </span><span class="caption-text">show.function.inline</span><a class="headerlink" href="#id10" title="永久链接至代码">¶</a></div>
+<div class="highlight-c notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+
+<span class="c1">// 判断是否为奇数</span>
+<span class="kr">inline</span> <span class="kt">int</span> <span class="nf">is_even</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">is_even</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+   <span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">};</span>
+   <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">is_even</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span> <span class="p">{</span>
+         <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d 是奇数</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>只能用于声明, 不能用于定义</p>
+</div>
+<p>内联函数的调用将在编译期间被展开为代码块, 而不像普通的函数一样被调用.
+由于没有调用函数时生成帧与销毁帧的损耗, 内联函数有助于提高运行效率,
+但由于生成了代码, 会导致目标代码文件的体积增加.</p>
+<p>适用于经常调用并且比较简短的代码.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="struct-union.html" class="btn btn-neutral float-right" title="结构体与联合体" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="array-pointer.html" class="btn btn-neutral float-left" title="数组与指针" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Zombie110year
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

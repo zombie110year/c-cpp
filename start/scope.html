@@ -1,0 +1,368 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>作用域 &mdash; C 与 C++ 0.1.0rc 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/logo.cpp.iso.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="调试" href="debug.html" />
+    <link rel="prev" title="结构体与联合体" href="struct-union.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> C 与 C++
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../prepost.html">前言</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C 语言入门</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="compile.html">编译 C 程序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grammar.html">C 语言语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variable-const-expr.html">变量、常量与表达式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="control-statement.html">控制语句</a></li>
+<li class="toctree-l2"><a class="reference internal" href="array-pointer.html">数组与指针</a></li>
+<li class="toctree-l2"><a class="reference internal" href="function.html">函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct-union.html">结构体与联合体</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">作用域</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">内存布局</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">变量的存储类型与生存周期</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">作用域分级</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="debug.html">调试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="library.html">链接库文件</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../standard-lib/c/index.html">C 语言标准库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../standard-lib/cpp/index.html">C++ 标准库与标准模板库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">词汇对照表</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">C 与 C++</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">C 语言入门</a> &raquo;</li>
+        
+      <li>作用域</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/start/scope.rst" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<span id="id2"></span><h1>作用域<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>首先, 让我们来了解一下单进程单线程的程序在运行时是什么状况.</p>
+<p>编译得到的可执行文件称为 <em>镜像(Image)</em>, 在运行时, 一个程序会创建一个进程, 它所占用的内存空间被称为 <em>进程地址空间</em></p>
+<p>镜像中, 会存储程序的数据段, 在加载到内存中运行时会新增会动态改变的空间.
+镜像中的 “段” 也被称为 <em>节(Section)</em>.</p>
+<div class="section" id="id3">
+<h2>内存布局<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>程序运行时被加载到内存中, 可以被分为几个数据 <em>段(Segment)</em>:</p>
+<dl class="simple">
+<dt>.text (Code/Text Segment)</dt><dd><p>代码段. 此段中存储了可被执行的机器码.</p>
+</dd>
+<dt>.rodata (Read-Only Data Segment)</dt><dd><p>只读数据段. 被 const 修饰的具有静态存储类型的变量将在此段中存储.</p>
+</dd>
+<dt>.rwdata (Read-Write Data Segment)</dt><dd><p>已初始化可读写数据段. 具有静态存储类型且被初始化的变量将在此段中存储.</p>
+</dd>
+<dt>.bss (Block Started by Symbol)</dt><dd><p>未初始化数据段. 具有静态存储类型且未被初始化(只声明)的变量将在此段中存储.
+此段将在运行时分配空间.
+extern 修饰的变量将在链接步骤被重新定位,
+不一定就处于 .bss 段.</p>
+</dd>
+<dt>heap</dt><dd><p>堆. 在运行时分配空间.</p>
+</dd>
+<dt>stack</dt><dd><p>栈. 在运行时分配空间.</p>
+</dd>
+</dl>
+<p>其中, <code class="docutils literal notranslate"><span class="pre">.text</span></code>, <code class="docutils literal notranslate"><span class="pre">.rodata</span></code>, <code class="docutils literal notranslate"><span class="pre">.rwdata</span></code> 以及 <code class="docutils literal notranslate"><span class="pre">.bss</span></code> 四个段属于静态存储区.
+<code class="docutils literal notranslate"><span class="pre">.text</span></code>, <code class="docutils literal notranslate"><span class="pre">.rodata</span></code>, <code class="docutils literal notranslate"><span class="pre">.rwdata</span></code> 三个段在可执行文件中保存为对应的节 . 而 <code class="docutils literal notranslate"><span class="pre">heap</span></code> 和 <code class="docutils literal notranslate"><span class="pre">stack</span></code> 则不会在文件中保存, 只在运行时才分配空间.</p>
+<p>在代码不同位置声明/定义的变量的存储类型大致如下:</p>
+<div class="highlight-c notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> *  这个程序没有实际意义, 只是展示变量的存储类型而已.</span>
+<span class="cm"> */</span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+
+<span class="c1">// 在全局作用域中, 关键字 static 可省略</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">in_rodata</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// .rodata</span>
+<span class="kt">int</span> <span class="n">in_rwdata</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>       <span class="c1">// .rwdata</span>
+<span class="kt">int</span> <span class="n">in_bss</span><span class="p">;</span>            <span class="c1">// .bss</span>
+
+<span class="kt">void</span> <span class="nf">increase</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+   <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// a 位于 stack, 而字面量 1 将被保存在 .rodata</span>
+   <span class="kt">int</span> <span class="o">*</span><span class="n">b</span><span class="p">;</span>    <span class="c1">// b 位于 stack</span>
+   <span class="kt">char</span> <span class="o">*</span><span class="n">str</span> <span class="o">=</span> <span class="s">&quot;你好&quot;</span><span class="p">;</span>
+   <span class="c1">// 字面量 &quot;你好&quot; 位于 .rodata 段</span>
+   <span class="c1">// 指针 str 位于 stack</span>
+   <span class="n">b</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span> <span class="c1">// 字面量将保存在 .rodata</span>
+   <span class="c1">// 通过 malloc 分配的数据位于 heap</span>
+   <span class="c1">// 指针 b 位于 stack</span>
+   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">increase</span><span class="p">();</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">increase</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">static</span> <span class="kt">int</span> <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// .rwdata</span>
+   <span class="k">static</span> <span class="kt">int</span> <span class="n">goal</span><span class="p">;</span>        <span class="c1">// .bss</span>
+   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">counter</span><span class="o">++</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<ol class="arabic simple">
+<li><p>函数编译得到的机器码将被存储在 <code class="docutils literal notranslate"><span class="pre">.text</span></code> 节</p></li>
+<li><p>被初始化的 static 变量存储在 <code class="docutils literal notranslate"><span class="pre">.rwdata</span></code> 节</p></li>
+<li><p>被 const 修饰且初始化的 static 变量存储在 <code class="docutils literal notranslate"><span class="pre">.rodata</span></code> 节</p></li>
+<li><p>程序中使用的字面量也存储在 <code class="docutils literal notranslate"><span class="pre">.rodata</span></code> 节</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>静态存储类型的未初始化变量, 将位于 <code class="docutils literal notranslate"><span class="pre">.bss</span></code> 段中,
+这个段不会保存在可执行文件中, 只有运行时在内存中创建.</p>
+</div>
+<p>当程序运行起来后, <code class="docutils literal notranslate"><span class="pre">.text</span></code>, <code class="docutils literal notranslate"><span class="pre">.*data</span></code> 节都被加载到内存中,
+被加载到内存后, 称其为 “段”,
+并且, 会创建以下段:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.bss</span></code> 段. 这个段也是静态的, 在程序一开始就分配空间, 而在函数调用时修改其中的值.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">heap</span></code> 与 <code class="docutils literal notranslate"><span class="pre">stack</span></code>. 这两个段将在程序启动时分配到同一个段中, 此段具有确定的大小.
+在程序运行过程中, 段的容量不会改变,
+而其中 stack 和 heap 的大小会发生变化.</p></li>
+</ol>
+<div class="figure align-center" id="id6">
+<a class="reference internal image-reference" href="../_images/intro.memory.layout.typical.svg"><img alt="../_images/intro.memory.layout.typical.svg" height="400px" src="../_images/intro.memory.layout.typical.svg" /></a>
+<p class="caption"><span class="caption-number">图 6 </span><span class="caption-text">典型内存布局</span><a class="headerlink" href="#id6" title="永久链接至图片">¶</a></p>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>变量的存储类型与生存周期<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>变量的 <em>生存周期(Life Cycle)</em> 指的是此变量可以被使用的一段时期.
+在栈上的变量, 其生存周期受到作用域的限制,
+在堆上的变量, 其生存周期由程序手动控制.</p>
+</div>
+<div class="section" id="id5">
+<h2>作用域分级<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>对于一个 C 文件, 可以分为全局作用域, 函数作用域, 块作用域三个等级.
+它们在语法上具有一个共同特征, 就是使用 <em>花括号(braces)</em> <code class="docutils literal notranslate"><span class="pre">{}</span></code> 进行界定.</p>
+<p>全局作用域上的数据, 存储在程序的 静态
+函数作用域上的数据, 会存储在随着函数调用而产生的栈帧上,
+而块作用域上的数据, 会存储在函数的栈帧上.</p>
+<p>即, 只有函数作用域的进入与退出会导致栈帧的变化.
+块级作用域上的数据, 虽然也具有在作用域外无法访问的性质,
+但是没有新的帧产生, 它的存储位置和函数作用域是一致的.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="debug.html" class="btn btn-neutral float-right" title="调试" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="struct-union.html" class="btn btn-neutral float-left" title="结构体与联合体" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Zombie110year
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

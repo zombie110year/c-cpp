@@ -1,0 +1,330 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>C 语言标准库 &mdash; C 与 C++ 0.1.0rc 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/logo.cpp.iso.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="assert.h" href="assert.html" />
+    <link rel="prev" title="链接库文件" href="../../start/library.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> C 与 C++
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../prepost.html">前言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../start/index.html">C 语言入门</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">C 语言标准库</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="assert.html">assert.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math.html">math.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stdarg.html">stdarg.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stddef.html">stddef.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stdio.html">stdio.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stdlib.html">stdlib.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="string.html">string.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="time.html">time.h</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C++ 标准库与标准模板库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">词汇对照表</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">C 与 C++</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>C 语言标准库</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/standard-lib/c/index.rst" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="c">
+<span id="id1"></span><h1>C 语言标准库<a class="headerlink" href="#c" title="永久链接至标题">¶</a></h1>
+<p>对于 Linux 系统, 标准库头文件处于目录
+<code class="docutils literal notranslate"><span class="pre">/usr/include</span></code> 之下.
+对应的链接库则位于 <code class="docutils literal notranslate"><span class="pre">/lib/x86_64-linux-gnu/libc.so.6</span></code>.</p>
+<p>实际上这是个符号链接, 指向了 <code class="docutils literal notranslate"><span class="pre">/lib/x86_64-linux-gnu/libc-2.27.so</span></code>.
+(或者其他版本)</p>
+<p>Linux 下的 C 标准库由 GNU 实现, 被称作 “glibc”.
+由于 Linux 操作系统对 libc 由很强的依赖, 所以不建议更新到最新版本.</p>
+<p>libc 一般都可执行以显示版本信息:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>$ /lib/x86_64-linux-gnu/libc.so.6
+
+GNU C Library (Debian GLIBC 2.27-3) stable release version 2.27.
+Copyright (C) 2018 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.
+There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.
+Compiled by GNU CC version 7.3.0.
+libc ABIs: UNIQUE IFUNC
+For bug reporting instructions, please see:
+&lt;http://www.debian.org/Bugs/&gt;.
+</pre></div>
+</div>
+<p>从路径上可以看出不同的 CPU 架构会影响系统存放库文件的路径.
+<code class="docutils literal notranslate"><span class="pre">x86_64-linux-gnu</span></code> 这个命名就表示, CPU 架构为 <code class="docutils literal notranslate"><span class="pre">x86_64</span></code>, linux 操作系统, GNU 工具链.</p>
+<p>标准库根据用途不同分成了 15 个不同的头文件.
+但在编译时都是链接同一个二进制库文件.
+链接指令是默认且隐藏的, 也可以在链接时显式添加选项 <code class="docutils literal notranslate"><span class="pre">-lc</span></code> 以链接到 libc.</p>
+<dl class="simple">
+<dt>assert.h</dt><dd><p>提供一个宏, 验证一个表达式的布尔值, 当值为假时中断并输出诊断信息.</p>
+</dd>
+<dt>ctype.h</dt><dd><p>提供了检查变量数值类型的函数.</p>
+</dd>
+<dt>errno.h</dt><dd><p>提供整数变量 <code class="docutils literal notranslate"><span class="pre">errno</span></code>, 此变量由系统维护,
+其值对应了不同的错误类型, 可用指令 <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">errno</span></code> 查看</p>
+</dd>
+<dt>float.h</dt><dd><p>提供了当前平台关于浮点数标准的常量. 只提供信息, 不提供功能.</p>
+</dd>
+<dt>limits.h</dt><dd><p>提供了当前平台关于各类型数值极限的常量. 只提供信息, 不提供功能.</p>
+</dd>
+<dt>locale.h</dt><dd><p>与本地化相关的数据结构与函数. 可用于设定日期格式, 货币符号等等.</p>
+</dd>
+<dt>math.h</dt><dd><p>一系列数学计算函数. 参数与返回值都是 double 类型.</p>
+</dd>
+<dt>setjmp.h</dt><dd><p>强大的跳转功能. 比 goto 语句更强大也更难用. 不推荐使用.</p>
+</dd>
+<dt>signal.h</dt><dd><p>处理系统信号.</p>
+</dd>
+<dt>stdarg.h</dt><dd><p>提供了一个变长参数列表类型用于函数定义.</p>
+</dd>
+<dt>stddef.h</dt><dd><p>定义的标准扩展类型与宏. 其他头文件大多包含了此头文件.</p>
+</dd>
+<dt>stdio.h</dt><dd><p>与输入输出相关的类型, 函数与宏.</p>
+</dd>
+<dt>stdlib.h</dt><dd><p>通用工具. 与随机数相关的函数与宏也在此头文件中.</p>
+</dd>
+<dt>string.h</dt><dd><p>处理字符串(字符数组).</p>
+</dd>
+<dt>time.h</dt><dd><p>操作日期与时间.</p>
+</dd>
+</dl>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="assert.html">assert.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="math.html">math.h</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="math.html#id1">概览</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math.html#id2">宏</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math.html#id3">函数</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="stdarg.html">stdarg.h</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="stdarg.html#id1">类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stdarg.html#id2">宏</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stdarg.html#id3">示例</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="stddef.html">stddef.h</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="stddef.html#id1">类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stddef.html#id2">宏</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="stdio.html">stdio.h</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="stdio.html#id1">宏</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stdio.html#id2">类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stdio.html#id3">函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stdio.html#id11">格式化输入输出</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="stdlib.html">stdlib.h</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="stdlib.html#id1">宏</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stdlib.html#id2">类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stdlib.html#id3">函数</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="string.html">string.h</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="string.html#id1">函数</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="time.html">time.h</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="time.html#id1">类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="time.html#id2">宏</a></li>
+<li class="toctree-l2"><a class="reference internal" href="time.html#id3">函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="time.html#id4">示例</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="assert.html" class="btn btn-neutral float-right" title="assert.h" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../../start/library.html" class="btn btn-neutral float-left" title="链接库文件" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Zombie110year
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,400 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>控制语句 &mdash; C 与 C++ 0.1.0rc 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/logo.cpp.iso.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="数组与指针" href="array-pointer.html" />
+    <link rel="prev" title="变量、常量与表达式" href="variable-const-expr.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> C 与 C++
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../prepost.html">前言</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C 语言入门</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="compile.html">编译 C 程序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grammar.html">C 语言语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variable-const-expr.html">变量、常量与表达式</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">控制语句</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#if-else">if-else 分支</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#switch">switch 分支</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#while">while 循环</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#for">for 循环</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#break-continue">break 与 continue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">三目条件表达式</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="array-pointer.html">数组与指针</a></li>
+<li class="toctree-l2"><a class="reference internal" href="function.html">函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct-union.html">结构体与联合体</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scope.html">作用域</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debug.html">调试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="library.html">链接库文件</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../standard-lib/c/index.html">C 语言标准库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../standard-lib/cpp/index.html">C++ 标准库与标准模板库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">词汇对照表</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">C 与 C++</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">C 语言入门</a> &raquo;</li>
+        
+      <li>控制语句</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/start/control-statement.rst" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>控制语句<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="section" id="if-else">
+<h2>if-else 分支<a class="headerlink" href="#if-else" title="永久链接至标题">¶</a></h2>
+<p>如果要在某个情况下才运行某段代码, 可以使用一个 <code class="docutils literal notranslate"><span class="pre">if</span></code> 结构:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span> <span class="p">{</span>
+   <span class="c1">// expr == true 时运行</span>
+<span class="p">}</span>
+<span class="c1">// 其他代码</span>
+</pre></div>
+</div>
+<p>只有在 表达式 <code class="docutils literal notranslate"><span class="pre">expr</span></code> 的值为 true 时, 花括号中的代码才会被运行.
+而当 expr 为 false 时, 花括号中的代码不会被运行, 将会被跳过.</p>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>true 和 false 称作 <em>布尔数</em>, 只有 “真”, “假” 两个值.</p>
+<p>在 C 语言中, 任何整数都可以当作布尔数使用,
+当它们为 0 时, 等于 “假”,
+在其他情况下都为 “真”.</p>
+<p>C 标准使用整数 1, 0.</p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">if</span></code> 结构也可以不使用花括号, 但是这样只能控制一个语句的执行条件:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+   <span class="c1">// 一行语句</span>
+</pre></div>
+</div>
+<p>也可以不换行:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span> <span class="c1">// 一行语句</span>
+</pre></div>
+</div>
+<p>当只需要控制一条语句时, 当然可以不使用花括号, 但是如果之后需要修改,
+要增添一些语句, 那么再加花括号是很麻烦的.
+为了少些麻烦, 推荐在任意时刻都使用花括号.</p>
+<p>如果要求这样的一个结构: 当条件满足时, 执行分支 A, 条件不满足时执行分支 B,
+那么可以使用 <code class="docutils literal notranslate"><span class="pre">if-else</span></code> 的分支结构:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span> <span class="p">{</span>
+   <span class="c1">// true</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+   <span class="c1">// false</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>如果要对一个区间进行判断与控制, 可以嵌套 if-else 结构:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="n">assignment</span> <span class="o">&lt;</span> <span class="mi">60</span><span class="p">)</span> <span class="p">{</span>
+   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;不及格</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">assignment</span> <span class="o">&lt;</span> <span class="mi">80</span><span class="p">)</span> <span class="p">{</span>
+   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;C</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">assignment</span> <span class="o">&lt;</span> <span class="mi">90</span><span class="p">)</span> <span class="p">{</span>
+   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;B</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;A</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>在每一层 if-else 结构中, else 部分没有使用花括号, 如果加上花括号, 就能更明显地看出嵌套关系:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">assignment</span> <span class="o">&lt;</span> <span class="mi">60</span><span class="p">)</span> <span class="p">{</span>
+   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;不及格</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+   <span class="k">if</span> <span class="p">(</span><span class="n">assignment</span> <span class="o">&lt;</span> <span class="mi">80</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">printf</span><span class="p">(</span><span class="s">&quot;C</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+   <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">assignment</span> <span class="o">&lt;</span> <span class="mi">90</span><span class="p">)</span> <span class="p">{</span>
+         <span class="n">printf</span><span class="p">(</span><span class="s">&quot;B</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+         <span class="n">printf</span><span class="p">(</span><span class="s">&quot;A</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="switch">
+<h2>switch 分支<a class="headerlink" href="#switch" title="永久链接至标题">¶</a></h2>
+<p>switch 分支和 if-else 相比, 同样适合对多分支情形进行处理, 不过, switch 只能处理离散情况:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">switch</span> <span class="p">(</span><span class="n">expr</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">case</span> <span class="nl">cond_1</span><span class="p">:</span> <span class="c1">// 分支 1</span>
+   <span class="k">case</span> <span class="nl">cond_2</span><span class="p">:</span> <span class="c1">// 分支 2</span>
+   <span class="k">case</span> <span class="nl">cond_3</span><span class="p">:</span> <span class="c1">// 分支 3</span>
+      <span class="k">break</span><span class="p">;</span>
+   <span class="k">default</span><span class="o">:</span>
+      <span class="c1">// 默认分支</span>
+      <span class="k">break</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>switch 语句中的判断表达式 expr 应当具有整数值,
+将从上到下地与 <code class="docutils literal notranslate"><span class="pre">cond_1</span></code>, <code class="docutils literal notranslate"><span class="pre">cond_2</span></code> 等分支进行比较,
+如果 expr 的值与 cond_x 相等, 则会进入此分支向下执行,
+直到 <code class="docutils literal notranslate"><span class="pre">break;</span></code> 或者到达语句末尾.
+<code class="docutils literal notranslate"><span class="pre">break</span></code> 是 C 语言关键字, 用于中断 switch 分支或者循环结构.
+如果一个分支中没有 break, 则程序在执行完此分支后, 会跳入下一个分支继续执行.
+有些时候这个特性很有用.</p>
+<p>关键字 <code class="docutils literal notranslate"><span class="pre">case</span></code> 后的判别量必须是编译期间可以确定的常量 (const 或者 字面值).</p>
+<p>default 分支不是必须的, 它的作用是当 expr 的值无法与任何分支匹配时, 进入此分支执行.</p>
+</div>
+<div class="section" id="while">
+<h2>while 循环<a class="headerlink" href="#while" title="永久链接至标题">¶</a></h2>
+<p>要循环执行一段语句, 可以使用 while 循环或者 <a class="reference internal" href="#for">for 循环</a>,
+while 循环的语法如下:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">while</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span> <span class="p">{</span>
+   <span class="c1">// loop-body</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>另外还有一个 do-while 循环:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">do</span> <span class="p">{</span>
+   <span class="c1">// loop-body</span>
+<span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>while 循环将会判断表达式 expr 的值, 当 expr 为 “真” 的时候, 就会执行 loop-body 中的语句.
+而 do-while 呢, 则是先执行一遍, 再进行判断.</p>
+</div>
+<div class="section" id="for">
+<h2>for 循环<a class="headerlink" href="#for" title="永久链接至标题">¶</a></h2>
+<p>for 循环比 while 循环更复杂一点, 它可以使用三个表达式:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="cm">/* init */</span><span class="p">;</span> <span class="n">expr</span> <span class="p">;</span> <span class="cm">/* loop-end */</span><span class="p">)</span> <span class="p">{</span>
+   <span class="c1">// loop-body</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">init</span></code> 表达式会在整个循环开始时执行一次, 总共只会执行这一次.
+在大多数使用情况下, 会在这里进行循环控制变量的定义.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">expr</span></code> 表达式就是此循环的判定表达式, 和其他控制结构相同.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">loop-end</span></code> 是在每一次 loop-body 执行完毕后执行一次,
+一般在这里进行循环控制变量的修改.</p></li>
+</ul>
+<p>下面是一个求 1-100 的整数和的例子:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">100</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+   <span class="n">sum</span> <span class="o">+=</span> <span class="n">i</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>值得注意的是, 在 init 表达式中定义的变量只能在这个 for 结构中访问.
+处于 for 循环的块级作用域中.
+在其他控制结构中也可以定义变量, 但是都不能在花括号外访问,
+这是因为花括号就是作用域的界定符.
+详细讨论见 <a class="reference internal" href="scope.html#id1"><span class="std std-ref">作用域</span></a>.</p>
+</div>
+<div class="section" id="break-continue">
+<h2>break 与 continue<a class="headerlink" href="#break-continue" title="永久链接至标题">¶</a></h2>
+<p>break 和 continue 是用于控制条件分支或者循环语句的关键字.
+和它们的字面含义一致, 分别表示 “中断”, “继续” 的含义.</p>
+<p>break 可以使用在 switch 分支和 while, do-while, for 循环之中,
+将会中断并跳出当前控制结构.</p>
+<p>continue 可以使用在循环结构中, 作用是在此处中断, 并提前进入下一回合循环.
+对于 for 语句, loop-end 仍然会被执行.</p>
+</div>
+<div class="section" id="id2">
+<span id="id3"></span><h2>三目条件表达式<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>操作符 <code class="docutils literal notranslate"><span class="pre">?:</span></code> 可以起到类似于 if-else 语句的效果:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">c</span> <span class="o">?</span> <span class="nl">x</span> <span class="p">:</span> <span class="n">y</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>等价于:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+   <span class="n">result</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+   <span class="n">result</span> <span class="o">=</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="array-pointer.html" class="btn btn-neutral float-right" title="数组与指针" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="variable-const-expr.html" class="btn btn-neutral float-left" title="变量、常量与表达式" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Zombie110year
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

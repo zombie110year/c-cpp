@@ -1,0 +1,473 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>string.h &mdash; C 与 C++ 0.1.0rc 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/logo.cpp.iso.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="time.h" href="time.html" />
+    <link rel="prev" title="stdlib.h" href="stdlib.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> C 与 C++
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../prepost.html">前言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../start/index.html">C 语言入门</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C 语言标准库</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="assert.html">assert.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math.html">math.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stdarg.html">stdarg.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stddef.html">stddef.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stdio.html">stdio.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stdlib.html">stdlib.h</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">string.h</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">函数</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">内存区域</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">字符串</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="time.html">time.h</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">C++ 标准库与标准模板库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">词汇对照表</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">C 与 C++</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">C 语言标准库</a> &raquo;</li>
+        
+      <li>string.h</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/standard-lib/c/string.rst" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="string-h">
+<h1>string.h<a class="headerlink" href="#string-h" title="永久链接至标题">¶</a></h1>
+<p>string.h 中的功能, 与其说是处理字符串, 不如说是在处理字节数组, 像复制一块内存之类的函数.</p>
+<p>如果想要格式化字符串, 需要使用 <a class="reference internal" href="stdio.html"><span class="doc">stdio.h</span></a> 中的 <a class="reference internal" href="stdio.html#c.sprintf" title="sprintf"><code class="xref c c-func docutils literal notranslate"><span class="pre">sprintf()</span></code></a> 函数.</p>
+<div class="section" id="id1">
+<h2>函数<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id2">
+<h3>内存区域<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h3>
+<dl class="function">
+<dt id="c.memchr">
+void *<code class="descname">memchr</code><span class="sig-paren">(</span>const void<em> *str</em>, int<em> ch</em>, size_t<em> size</em><span class="sig-paren">)</span><a class="headerlink" href="#c.memchr" title="永久链接至目标">¶</a></dt>
+<dd><p>在 str 所指的内存区域前 size 字节中查找第一个出现 ch 字节的位置</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>第一次出现 ch 的地址 (包括此字节)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.memcmp">
+int <code class="descname">memcmp</code><span class="sig-paren">(</span>const void<em> *a</em>, const void<em> *b</em>, size_t<em> size</em><span class="sig-paren">)</span><a class="headerlink" href="#c.memcmp" title="永久链接至目标">¶</a></dt>
+<dd><p>比较 a, b 的前 size 个字节. 从低位到高位一个字节一个字节地比较,
+当低位出现一个较小的字节时, 判断为小于, 以此类推.</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p>-1, 表示 a &lt; b</p></li>
+<li><p>0, 表示 a == b</p></li>
+<li><p>1, 表示 a &gt; b</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.memcpy">
+void *<code class="descname">memcpy</code><span class="sig-paren">(</span>void<em> *dest</em>, const void<em> *src</em>, size_t<em> size</em><span class="sig-paren">)</span><a class="headerlink" href="#c.memcpy" title="永久链接至目标">¶</a></dt>
+<dd><p>从 src 到 dest 复制前 size 个字节.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>src</strong> – 源内存区域</p></li>
+<li><p><strong>dest</strong> – 目标内存区域</p></li>
+<li><p><strong>size</strong> – 将复制的字节数目</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.memmove">
+void *<code class="descname">memmove</code><span class="sig-paren">(</span>void<em> *dest</em>, const void<em> *src</em>, size_t<em> size</em><span class="sig-paren">)</span><a class="headerlink" href="#c.memmove" title="永久链接至目标">¶</a></dt>
+<dd><p>从 src 移动 size 个字节到 dest 中. 如果 dest 与 src 在 size 字节内有重叠,
+则此函数将保证 dest 被正确的修改, 而 src 函数可能被更改.
+否则此函数作用与 <a class="reference internal" href="#c.memcpy" title="memcpy"><code class="xref c c-func docutils literal notranslate"><span class="pre">memcpy()</span></code></a> 相同.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.memset">
+void *<code class="descname">memset</code><span class="sig-paren">(</span>void<em> *dest</em>, int<em> ch</em>, size_t<em> size</em><span class="sig-paren">)</span><a class="headerlink" href="#c.memset" title="永久链接至目标">¶</a></dt>
+<dd><p>将 dest 的前 size 字节用 ch 填充. 这个函数也常用于设置其他类型的数组.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ch</strong> – ch 虽然用 int 类型传入, 但是实际却是当作 unsigned int 类型.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="id3">
+<h3>字符串<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+<dl class="function">
+<dt id="c.strcat">
+char *<code class="descname">strcat</code><span class="sig-paren">(</span>char<em> *dest</em>, const char<em> *src</em><span class="sig-paren">)</span><a class="headerlink" href="#c.strcat" title="永久链接至目标">¶</a></dt>
+<dd><p>将 src 追加到 dest 后. dest 是一个 C-style 字符串, 要求能够容纳追加后的字符串.</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>dest 的地址</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.strncat">
+char *<code class="descname">strncat</code><span class="sig-paren">(</span>char<em> *dest</em>, const char<em> *src</em>, size_t<em> n</em><span class="sig-paren">)</span><a class="headerlink" href="#c.strncat" title="永久链接至目标">¶</a></dt>
+<dd><p>将 src 追加到 dest 后. dest 是一个 C-style 字符串, 要求能够容纳追加后的字符串.
+最多追加 n 个字节.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n</strong> (<em>size_t</em>) – 最大追加的字节数</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>dest 的地址</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.strchr">
+char *<code class="descname">strchr</code><span class="sig-paren">(</span>const char<em> *str</em>, int<em> ch</em><span class="sig-paren">)</span><a class="headerlink" href="#c.strchr" title="永久链接至目标">¶</a></dt>
+<dd><p>在参数 str 所指的字符串中搜索第一次出现字符 ch 的位置</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ch</strong> – 虽然以 int 类型传入, 但是实际上用作 unsigned int 类型.</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>返回 ch 出现的地址(包括此字符)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.strrchr">
+char *<code class="descname">strrchr</code><span class="sig-paren">(</span>const char<em> *str</em>, int<em> ch</em><span class="sig-paren">)</span><a class="headerlink" href="#c.strrchr" title="永久链接至目标">¶</a></dt>
+<dd><p>搜索 str 中最后一次出现字符 ch 的地址.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.strcspn">
+size_t <code class="descname">strcspn</code><span class="sig-paren">(</span>const char<em> *a</em>, const char<em> *b</em><span class="sig-paren">)</span><a class="headerlink" href="#c.strcspn" title="永久链接至目标">¶</a></dt>
+<dd><p>搜索 a 中第一次出现 b 中字符的位置. 返回的是偏移量, 基准位置是 a 的首地址.</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>b 中包含的字符第一次在 a 中出现的地址偏移量</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.strspn">
+size_t <code class="descname">strspn</code><span class="sig-paren">(</span>const char<em> *a</em>, const char<em> *b</em><span class="sig-paren">)</span><a class="headerlink" href="#c.strspn" title="永久链接至目标">¶</a></dt>
+<dd><p>在 a 中检索第一个不在 b 中出现的字符的地址偏移量</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.strpbrk">
+char *<code class="descname">strpbrk</code><span class="sig-paren">(</span>const char<em> *a</em>, const char<em> *b</em><span class="sig-paren">)</span><a class="headerlink" href="#c.strpbrk" title="永久链接至目标">¶</a></dt>
+<dd><p>类似于 <a class="reference internal" href="#c.strcspn" title="strcspn"><code class="xref c c-func docutils literal notranslate"><span class="pre">strcspn()</span></code></a>, 在 a 中检索 b 中的字符, 返回第一次出现的字符的地址.</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>b 中包含的字符第一次在 a 中出现的地址</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.strstr">
+char *<code class="descname">strstr</code><span class="sig-paren">(</span>const char<em> *str</em>, const char<em> *target</em><span class="sig-paren">)</span><a class="headerlink" href="#c.strstr" title="永久链接至目标">¶</a></dt>
+<dd><p>在 str 中搜索第一次出现 target 字串的地址.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.strtok">
+char *<code class="descname">strtok</code><span class="sig-paren">(</span>char<em> *str</em>, const char<em> *delimeter</em><span class="sig-paren">)</span><a class="headerlink" href="#c.strtok" title="永久链接至目标">¶</a></dt>
+<dd><p>将 str 拆分成子字符串, delimeter 作为分隔符.
+一次调用将会返回一个子串, 当字符串无法再被拆分将会返回 NULL.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>delimeter</strong> – 分隔符</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>一次调用返回一个子串, 当无法继续拆分时返回 NULL.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.strcmp">
+char *<code class="descname">strcmp</code><span class="sig-paren">(</span>const char<em> *a</em>, const char<em> *b</em><span class="sig-paren">)</span><a class="headerlink" href="#c.strcmp" title="永久链接至目标">¶</a></dt>
+<dd><p>类似于 <a class="reference internal" href="#c.memcmp" title="memcmp"><code class="xref c c-func docutils literal notranslate"><span class="pre">memcmp()</span></code></a>, 但只针对字符串, 以 <code class="docutils literal notranslate"><span class="pre">\0</span></code> 终止.</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+char *<code class="descname">strcmp</code><span class="sig-paren">(</span>const char<em> *a</em>, const char<em> *b</em>, size_t<em> n</em><span class="sig-paren">)</span></dt>
+<dd><p>类似于 <a class="reference internal" href="#c.memcmp" title="memcmp"><code class="xref c c-func docutils literal notranslate"><span class="pre">memcmp()</span></code></a>, 但只针对字符串, 比较前 n 个字节.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.strcoll">
+int <code class="descname">strcoll</code><span class="sig-paren">(</span>const char<em> *a</em>, const char<em> *a</em><span class="sig-paren">)</span><a class="headerlink" href="#c.strcoll" title="永久链接至目标">¶</a></dt>
+<dd><p>比较两个字符串的 “大小”, 根据 <code class="docutils literal notranslate"><span class="pre">LC_COLLATE</span></code> 的设置 <a class="footnote-reference brackets" href="#id6" id="id4">2</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.strcpy">
+char *<code class="descname">strcpy</code><span class="sig-paren">(</span>char<em> *dest</em>, const char<em> *src</em><span class="sig-paren">)</span><a class="headerlink" href="#c.strcpy" title="永久链接至目标">¶</a></dt>
+<dd><p>将 src 复制到 dest</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.strncpy">
+char *<code class="descname">strncpy</code><span class="sig-paren">(</span>char<em> *dest</em>, const char<em> *src</em>, size_t<em> n</em><span class="sig-paren">)</span><a class="headerlink" href="#c.strncpy" title="永久链接至目标">¶</a></dt>
+<dd><p>将 src 复制到 dest, 最多 n 个字节.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.strerror">
+char *<code class="descname">strerror</code><span class="sig-paren">(</span>int<em> errno</em><span class="sig-paren">)</span><a class="headerlink" href="#c.strerror" title="永久链接至目标">¶</a></dt>
+<dd><p>传入 C 错误码, 在内部数组中搜索并返回对应的错误信息.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>errno</strong> – 常用 errno.h 中的 errno 宏.</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>错误码对应的字符串消息</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.strlen">
+size_t <code class="descname">strlen</code><span class="sig-paren">(</span>const char<em> *str</em><span class="sig-paren">)</span><a class="headerlink" href="#c.strlen" title="永久链接至目标">¶</a></dt>
+<dd><p>返回 str 的长度, 单位字节. 以 <code class="docutils literal notranslate"><span class="pre">\0</span></code> 结束.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.strxfrm">
+size_t <code class="descname">strxfrm</code><span class="sig-paren">(</span>char<em> *dest</em>, const char<em> *src</em>, size_t<em> n</em><span class="sig-paren">)</span><a class="headerlink" href="#c.strxfrm" title="永久链接至目标">¶</a></dt>
+<dd><p>根据 LC_COLLATE 区域设置 <a class="footnote-reference brackets" href="#id6" id="id5">2</a> , 将 src 转换, 并将结果存入 dest 中.</p>
+</dd></dl>
+
+<dl class="footnote brackets">
+<dt class="label" id="id6"><span class="brackets">2</span><span class="fn-backref">(<a href="#id4">1</a>,<a href="#id5">2</a>)</span></dt>
+<dd><p>参考 <a class="reference external" href="https://zh.cppreference.com/w/c/locale/LC_categories">https://zh.cppreference.com/w/c/locale/LC_categories</a>, 定义在 locale.h 中.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="time.html" class="btn btn-neutral float-right" title="time.h" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="stdlib.html" class="btn btn-neutral float-left" title="stdlib.h" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Zombie110year
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

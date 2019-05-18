@@ -1,0 +1,22 @@
+digraph compile {
+   bgcolor = "#ffffff00";
+   graph [fontname = "Sarasa UI SC"];
+   node [fontname = "Sarasa UI SC"];
+   edge [fontname = "Sarasa UI SC"];
+
+   source_code [label="源代码.c"];
+   preprocessed_code [label="预处理后代码.i"];
+   assembly_code [label="汇编代码.s"];
+   object_code [label="目标代码.o"];
+   executable [label="可执行文件.out"];
+   preprocesser [label="预处理器", shape="rect"];
+   compiler [label="编译器", shape="rect"];
+   assembler [label="汇编器", shape="rect"];
+   linker [label="链接器", shape="rect"];
+
+   source_code -> preprocesser -> preprocessed_code;
+   preprocessed_code -> compiler -> assembly_code;
+   assembly_code -> assembler -> object_code;
+   object_code -> linker -> executable;
+   "其他目标代码" -> linker;
+}

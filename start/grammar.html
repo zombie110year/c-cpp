@@ -1,0 +1,956 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>C 语言语法 &mdash; C 与 C++ 0.1.0rc 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/logo.cpp.iso.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="变量、常量与表达式" href="variable-const-expr.html" />
+    <link rel="prev" title="编译 C 程序" href="compile.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> C 与 C++
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../prepost.html">前言</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C 语言入门</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="compile.html">编译 C 程序</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">C 语言语法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">从自然语言到形式语言</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">C 语言中的语素</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">注释</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">内置类型与变量定义</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">不同类型的字面量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">操作符构成表达式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">操作符优先级与结合性</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">类型别名</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="variable-const-expr.html">变量、常量与表达式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="control-statement.html">控制语句</a></li>
+<li class="toctree-l2"><a class="reference internal" href="array-pointer.html">数组与指针</a></li>
+<li class="toctree-l2"><a class="reference internal" href="function.html">函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct-union.html">结构体与联合体</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scope.html">作用域</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debug.html">调试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="library.html">链接库文件</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../standard-lib/c/index.html">C 语言标准库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../standard-lib/cpp/index.html">C++ 标准库与标准模板库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">词汇对照表</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">C 与 C++</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">C 语言入门</a> &raquo;</li>
+        
+      <li>C 语言语法</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/start/grammar.rst" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="c">
+<h1>C 语言语法<a class="headerlink" href="#c" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id1">
+<h2>从自然语言到形式语言<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<p>我们日常生活中所讲所书的语言就是 <em>自然语言</em> , 例如汉语, 英语等.
+自然语言是经过长时间的自然演化而形成的. 在演化过程中, 没有完善的规则
+(虽然也有人希望能够总结出规则, 但总有例外情况, 并且总会有词语的含义不可预料的发生变化).
+在很多时候, 只能依靠学习经验来从语言中提取信息.
+这也就是为什么我们要花十几年的时间学习语文, 才能与人流畅的交流.</p>
+<p>而 <em>形式语言</em> 则是在设计时就拥有了严格的语法, 在各个层次上对语言的表达进行规定.</p>
+<p>形式语言与自然语言在结构上具有一些相同的要素, 例如:</p>
+<span id="id2"></span><table class="docutils align-center" id="id12">
+<caption><span class="caption-number">表 2 </span><span class="caption-text">语法的要素</span><a class="headerlink" href="#id12" title="永久链接至表格">¶</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>文法(Grammar)</p></td>
+<td><p>句子组成段落、文章的规则</p></td>
+</tr>
+<tr class="row-even"><td><p>句法(Syntax)</p></td>
+<td><p>词与词之间组成句的规则</p></td>
+</tr>
+<tr class="row-odd"><td><p>词法(Lexical)</p></td>
+<td><p>字与字之间组成词的规则</p></td>
+</tr>
+<tr class="row-even"><td><p>字(Token)</p></td>
+<td><p>最小语素</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>文法/语法/句法 经常混淆.</p>
+<ul class="simple">
+<li><p>Grammar 可译作 文法 或 语法</p></li>
+<li><p>Syntax 也可译作 句法 或 语法</p></li>
+</ul>
+<p>为了避免歧义, 本书使用 语法 作为上述内容的统称.
+文法和句法单独使用.</p>
+</div>
+<p>编程语言就是形式语言的一种, 而其他的形式语言还有数学表达式, 化学式等等.
+例如, <span class="math notranslate nohighlight">\(1+1=3\)</span> 是一个符合数学表达式的语法的 <em>句</em> , 而 <span class="math notranslate nohighlight">\(1 a 1 = 2\)</span> 就不是.
+虽然 <span class="math notranslate nohighlight">\(1+1=3\)</span> 不是一个正确的等式, 但它的错误出在 <strong>语义(Semantic)</strong> 而非 <strong>语法</strong>,
+而 <span class="math notranslate nohighlight">\(1 a 1 = 3\)</span> 呢? 它缺少了运算符, 或者说在运算符的位置插入了一个代数符号.
+这就是语法的错误了.</p>
+<p>常见的语法错误有:</p>
+<ul class="simple">
+<li><p>无效的 <em>字</em>, 例如, 在化学式中 <span class="math notranslate nohighlight">\(￥_2O\)</span> 是错误的,
+化学式中没有定义 <span class="math notranslate nohighlight">\(￥\)</span> 的含义.</p></li>
+<li><p>错误的 <em>词</em>, 例如, <span class="math notranslate nohighlight">\(\mathrm{Zm}^{2+}\)</span>,
+没有元素的缩写是 <span class="math notranslate nohighlight">\(\mathrm{Zm}\)</span>.</p></li>
+<li><p>错误的 <em>句</em>, 例如 <span class="math notranslate nohighlight">\(1+=3 \; 2\)</span>, 词之间的顺序出现了错误.</p></li>
+</ul>
+<p>自然语言和形式语言也存在不同之处.</p>
+<dl>
+<dt>歧义性(Ambiguity)</dt><dd><p>自然语言充满歧义, 人们通过上下文的线索和自己的常识来消除歧义
+(或者不能消除而造成误解).
+形式语言的设计要求是清晰的、毫无歧义的, 这意味着每个语句都必须有确切的含义, 与上下文无关.</p>
+</dd>
+<dt>冗余性(Redundancy)</dt><dd><p>为了消除歧义减少误解或者提高艺术性, 自然语言引入了相当多的冗余.
+而形式语言只负责基本表意, 更加紧凑, 极少有冗余.</p>
+</dd>
+<dt>与字面意思的一致性</dt><dd><p>自然语言充斥着成语和隐喻(Metaphor) , 我在某种场合下说 “葡萄架子倒了”,
+可能并不是说哪里的葡萄架子倒了, 而是说某某人怕老婆.
+在某些语境下, 连 “睿智” 这种词也可以用来骂人.</p>
+<p>而形式语言中字面 (Literal) 意思就是真实意思.
+虽然表面上看起来存在例外, 例如转义序列.
+但实际上, 转义序列表示的也是它这个词所对应的字面含义.</p>
+<p>例如, C 语言用 <code class="docutils literal notranslate"><span class="pre">\n</span></code> 符号表示 <em>换行符</em>, 但是它和 <code class="docutils literal notranslate"><span class="pre">n</span></code> 并没有关系,
+<code class="docutils literal notranslate"><span class="pre">\n</span></code> 是换行符的字面量, 而 <code class="docutils literal notranslate"><span class="pre">n</span></code> 是字母 n 的字面量.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="id3">
+<h2>C 语言中的语素<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>在 <a class="reference internal" href="#id2"><span class="std std-ref">语法的要素</span></a> 中, 提到了形式语言中存在的语素有: <em>字</em>, <em>词</em>, <em>句</em>, <em>文</em>.
+让我们一一对应到 <a class="reference internal" href="compile.html#hello-c"><span class="std std-ref">hello.c</span></a> 中来看一看, C 代码中的哪些元素属于哪种语素.</p>
+<p>第一行是预处理语句, 它和 C 代码遵循不同的语法规则, 我们只关注 main 函数的部分:</p>
+<div class="highlight-c notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>在上面显示的代码中, 每一个字符,
+例如 <code class="docutils literal notranslate"><span class="pre">i</span></code> , <code class="docutils literal notranslate"><span class="pre">n</span></code>, <code class="docutils literal notranslate"><span class="pre">t</span></code>, 空格 … 等等,
+就是 C 中的 <em>字</em>. 它们组合在一起、或者独立成词
+(例如 <code class="docutils literal notranslate"><span class="pre">for</span></code> 循环中的变量 <code class="docutils literal notranslate"><span class="pre">i</span></code>),
+空白字符在词法分析中是被抛弃的,
+编译器不认为空格这类空白字符能组词:</p>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 32%" />
+<col style="width: 68%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>词</p></td>
+<td><p>类型</p></td>
+</tr>
+<tr class="row-even"><td><p>int</p></td>
+<td><p>类型名称</p></td>
+</tr>
+<tr class="row-odd"><td><p>main</p></td>
+<td><p>函数名称</p></td>
+</tr>
+<tr class="row-even"><td><p>(</p></td>
+<td><p>开圆括号</p></td>
+</tr>
+<tr class="row-odd"><td><p>int</p></td>
+<td><p>类型名称</p></td>
+</tr>
+<tr class="row-even"><td><p>argc</p></td>
+<td><p>变量名称</p></td>
+</tr>
+<tr class="row-odd"><td><p>,</p></td>
+<td><p>逗号分隔符</p></td>
+</tr>
+<tr class="row-even"><td><p>char</p></td>
+<td><p>类型名称</p></td>
+</tr>
+<tr class="row-odd"><td><p>…</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>等等, 组成了代码中的 <em>词</em></p>
+<p>而语法分析则将词组成 <em>句</em>, 在 C 语言中, 一般将句称为 “表达式”, 例如:</p>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>句</p></td>
+<td><p>含义</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">printf(&quot;Hello</span> <span class="pre">World\n&quot;)</span></code></p></td>
+<td><p>调用一个名为 <code class="docutils literal notranslate"><span class="pre">printf</span></code> 的函数,
+并将 <code class="docutils literal notranslate"><span class="pre">&quot;Hello</span> <span class="pre">World!\n&quot;</span></code> 作为参数传递</p></td>
+</tr>
+</tbody>
+</table>
+<p>语义分析就会将 <em>句</em> 组成 <em>文</em> 了,
+涉及到的主要结构有:</p>
+<ul class="simple">
+<li><p>以 <code class="docutils literal notranslate"><span class="pre">;</span></code> 结尾的表达式构成 <em>语句</em></p></li>
+<li><p>包括在 <code class="docutils literal notranslate"><span class="pre">{}</span></code> 中的众多语句构成 <em>语句块</em></p></li>
+<li><p>各独立的语句, 语句块构成整个程序的 <em>文</em>.</p></li>
+</ul>
+<p>C 语言中的词根据用途的不同, 可以分为:</p>
+<dl>
+<dt>标识符</dt><dd><p>标识符是用来标识一个结构的符号, 类似于数学中的代数符号.
+C 语言中的标识符可以是 变量名、函数名、类型名等.</p>
+</dd>
+<dt>操作符</dt><dd><p>操作符用来表示一个操作,
+例如 +-*/ 等四则运算, 调用函数 <code class="docutils literal notranslate"><span class="pre">()</span></code>, 访问数组 <code class="docutils literal notranslate"><span class="pre">[]</span></code> 等等.
+操作符一定需要操作数的存在,
+不同的操作符需要的操作数数目和位置不一定相同.</p>
+<p>操作数可以是标识符或者字面量这种能用来表示数据的符号.</p>
+</dd>
+<dt>界定符</dt><dd><p>像 <code class="docutils literal notranslate"><span class="pre">{}</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">'</span></code> 这种用于分隔其他词或划分一个范围的符号.</p>
+</dd>
+<dt>字面量</dt><dd><p>在程序中直接表示数据的量.</p>
+</dd>
+<dt>关键字</dt><dd><p>语言预先定义的有特殊作用的词, 用户不能修改其定义.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="id4">
+<h2>注释<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>C 语言可以在代码中添加说明性的 <em>注释(Comment)</em>,
+注释在预处理阶段会被清除, 从而不影响程序的编译.</p>
+<p>可用行注释, 从 <code class="docutils literal notranslate"><span class="pre">//</span></code> 符号到换行符都是注释:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// 单行注释</span>
+</pre></div>
+</div>
+<p>块注释, 从 <code class="docutils literal notranslate"><span class="pre">/*</span></code> 到 <code class="docutils literal notranslate"><span class="pre">*/</span></code> 都是注释:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/* 块注释 */</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * 也可以写成更好看的形式</span>
+<span class="cm"> */</span>
+</pre></div>
+</div>
+<p>块注释不能嵌套, 当遇到第一个 <code class="docutils literal notranslate"><span class="pre">*/</span></code> 时, 就会退出注释.</p>
+</div>
+<div class="section" id="id5">
+<h2>内置类型与变量定义<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>在 C 语言中, 一个 <em>变量</em> 就如同数学中的代数符号一般. 代数符号表示一个数值,
+而变量则代表一个内存区域, 在这个内存区域中, 计算机能够存储、修改数值.</p>
+<p>而 <em>类型</em> , 则是为了确定这个内存区域的大小, 以及计算机解读这个内存中数据的方式.</p>
+<p>内置的类型, 总体上可以分为 <em>整数(Integer)</em>, <em>浮点数(Floating)</em> 两大类.
+整数和浮点数在数据解析上有着本质上的差别, 可以参阅 <a class="reference internal" href="../todo.html#id13"><span class="std std-ref">未完成 …</span></a>, <a class="reference internal" href="../todo.html#id14"><span class="std std-ref">未完成 …</span></a> 来详细了解.
+目前, 我们可以先忽略这些细节, 看看它们在 C 语言中的类型名是什么:</p>
+<ul class="simple">
+<li><p><code class="xref c c-type docutils literal notranslate"><span class="pre">int</span></code></p></li>
+<li><p><code class="xref c c-type docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref c c-type docutils literal notranslate"><span class="pre">double</span></code></p></li>
+</ul>
+<p><code class="xref c c-type docutils literal notranslate"><span class="pre">int</span></code> 是标准整数, <code class="xref c c-type docutils literal notranslate"><span class="pre">float</span></code> 是单精度浮点数, 而 <code class="xref c c-type docutils literal notranslate"><span class="pre">double</span></code> 是双精度浮点数.
+<code class="xref c c-type docutils literal notranslate"><span class="pre">int</span></code> 的长度通常为 32 bit, 这是在 32 位平台和 64 位平台的情形.
+如果在 16 位, 甚至更低的 8 位平台上, <code class="xref c c-type docutils literal notranslate"><span class="pre">int</span></code> 的长度可能不同.</p>
+<p><code class="xref c c-type docutils literal notranslate"><span class="pre">float</span></code> 和 <code class="xref c c-type docutils literal notranslate"><span class="pre">double</span></code> 的长度通常为 32 bit, 64 bit.
+它们的有效数字(对应到 10 进制)分别为 6~7 位和 15~16 位.</p>
+<p>需要注意的是, 由于存储数据的空间有限,
+当计算过程中的数据超出了范围, 就会发生 <em>溢出(Overflow)</em>,
+从而导致数据失去其意义.</p>
+<p><code class="xref c c-type docutils literal notranslate"><span class="pre">int</span></code> 类型的数据最多可以表示 <span class="math notranslate nohighlight">\([-2^{16}, 2^{16} - 1]\)</span> 范围的数值,
+当数值已经到达 <span class="math notranslate nohighlight">\(2^{16} - 1\)</span> (65535) 时,
+如果再加一, 则所发生的就是未定义行为, C 标准中没有对此行为进行规定.</p>
+<p>整数有 <em>有符号</em> 和 <em>无符号</em> 两种模式, <code class="xref c c-type docutils literal notranslate"><span class="pre">int</span></code> 默认是有符号的,
+如果要使用无符号的整数, 则用 <code class="docutils literal notranslate"><span class="pre">unsigned</span></code> 修饰它.</p>
+<p><code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">int</span></code> 的范围为 <span class="math notranslate nohighlight">\([0, 2^{32}-1]\)</span>.
+而当无符号整数发生溢出时, C 标准规定要将溢出的部分舍弃, 只留下后 32 bit 数值.
+也就是当数值已经到达 <span class="math notranslate nohighlight">\(2^{32}-1\)</span> (4294967295) 时, 再加 1 就变成了 0.
+如此循环.</p>
+<p>C 语言还提供了 <code class="docutils literal notranslate"><span class="pre">short</span></code>, <code class="docutils literal notranslate"><span class="pre">long</span></code> 修饰符用来修饰 <code class="xref c c-type docutils literal notranslate"><span class="pre">int</span></code> 或 <code class="xref c c-type docutils literal notranslate"><span class="pre">double</span></code>
+类型, 分别表示 <em>短</em>, <em>长</em>.</p>
+<p>另外还有一个 <code class="xref c c-type docutils literal notranslate"><span class="pre">char</span></code> 类型, 用来存储一个 <em>字节(Byte)</em>.
+它就是一个只占一个字节的无符号整数.
+它也被称为 <em>字符(Character)</em>, 不过这是在 ASCII 时代留下的称呼.
+那个时候, 一个字符只需要一个字节就可存储,
+而对于现代 Unicode 时代, 全球数以万计的各种字符, 已经远远不是一个字节就可存储的了.
+因此, char 类型的 “字符” 含义已经不准确了.</p>
+<p>不同长度的整数、浮点数占用了不同大小的内存空间, 在 x86_64 架构下, 这些类型所占的字节数分别为:</p>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 84%" />
+<col style="width: 16%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>char</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>short int</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>int</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>long int</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-odd"><td><p>long long int</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-even"><td><p>float</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p>double</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-even"><td><p>long double</p></td>
+<td><p>16</p></td>
+</tr>
+<tr class="row-odd"><td><p>unsigned short int</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>unsigned int</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p>unsigned long int</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-even"><td><p>unsigned long long int</p></td>
+<td><p>8</p></td>
+</tr>
+</tbody>
+</table>
+<p>如果 short, long 修饰符修饰了 int 类型,
+那么也可以省略 <code class="xref c c-type docutils literal notranslate"><span class="pre">int</span></code> 这个单词, 表示的仍然是被修饰的 int.</p>
+<p>变量可以通过 <strong>类型名</strong> <strong>变量名</strong> 的方式来进行定义:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">example</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>也可以在定义时为变量赋值, 这被称为 <em>初始化(Initialization)</em>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">example</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>一个未初始化变量所分配到的内存空间里可能已经存在垃圾值,
+即此内存上次被使用后留下的值.</p>
+<p>C 语言中, 存在 <em>定义(Define)</em> 与 <em>声明(Declare)</em> 的区别.
+声明仅仅在程序中增加一个符号, 而定义则在声明符号之后, 为这个符号分配内存空间.</p>
+<p>声明变量常应用于从其他目标代码中引入全局变量情形. 可以使用关键字 <code class="docutils literal notranslate"><span class="pre">extern</span></code> 来进行声明:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">int</span> <span class="n">ANATHOR</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>当然, 由于未分配空间, 一个声明的符号是不能在此初始化的.
+它应当在其他位置被 <strong>定义</strong>, 在此声明之后引用它.</p>
+<p>可以在一个值之前使用 <code class="docutils literal notranslate"><span class="pre">(类型)</span></code> 的语法对数据进行强制类型转换.
+从 浮点数 转换到 整数时会发生数据损失, 小数部分将被舍弃.
+(并不是所想的那种将浮点数二进制数据强制用整数方法解析)</p>
+<p>从短类型到长类型的转换是无损的, 而从长类型到短类型的转换也会发生损失,
+超出范围的部分会被舍弃, 并且编译器会提出警告, 这种转换是不被提倡的.
+如果确定从长到短的转换是必须的, 可以直接忽略此警告,
+不过大多数情况下这种转换都是不合理的设计.</p>
+</div>
+<div class="section" id="id6">
+<h2>不同类型的字面量<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<p>在程序中, 可以用字面量的形式将数据直接写在源码中.
+编译器会将字面量按照其大小、形式解析为对应类型的数据.</p>
+<p>例如, <code class="docutils literal notranslate"><span class="pre">1</span></code> 会被解析成 int 类型, 而当数值超过 int 的表示范围, 则会扩展为 long int.
+而 <code class="docutils literal notranslate"><span class="pre">1.0</span></code> 则会被解析成 double 类型.
+如果需要使用 float 类型的字面量, 需要后缀 f: <code class="docutils literal notranslate"><span class="pre">1.0f</span></code>, 这一类后缀字符被称作字面量修饰符:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="mf">1.0f</span><span class="p">;</span> <span class="c1">// float</span>
+<span class="mf">1.0</span><span class="n">l</span><span class="p">;</span> <span class="c1">// long double</span>
+<span class="mf">1.0</span><span class="p">;</span>  <span class="c1">// double</span>
+
+<span class="mi">1l</span><span class="p">;</span>   <span class="c1">// long int</span>
+<span class="mi">1u</span><span class="p">;</span>   <span class="c1">// unsigned int</span>
+<span class="mi">1ll</span><span class="p">;</span>  <span class="c1">// long long int</span>
+<span class="mi">1lu</span><span class="p">;</span>  <span class="c1">// unsigned long int</span>
+<span class="mi">1llu</span><span class="p">;</span> <span class="c1">// unsigned long long int</span>
+<span class="mi">1</span><span class="p">;</span>    <span class="c1">// int</span>
+</pre></div>
+</div>
+<p>一般来说, <code class="docutils literal notranslate"><span class="pre">l</span></code> 表示 long, <code class="docutils literal notranslate"><span class="pre">u</span></code> 表示 unsigned, <code class="docutils literal notranslate"><span class="pre">f</span></code> 表示 float.</p>
+<p>关于浮点数, 还有一种科学计数法的表示方法:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span> <span class="n">c</span> <span class="o">=</span> <span class="mf">2.99792458e8</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>用字母 <code class="docutils literal notranslate"><span class="pre">e</span></code> 划分有效数字与幂次, 上式的含义是 <span class="math notranslate nohighlight">\(c = 2.99792458 \times 10^{8}\)</span>.</p>
+<p>也可以利用显式类型转换将字面量转换为需要的类型.</p>
+<p>比较特殊的两种字面量是字符与字符串, 它们分别使用单引号 <code class="docutils literal notranslate"><span class="pre">''</span></code> 和双引号 <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code> 来表示.</p>
+<p>在单引号中的被解析为字符, 例如 <code class="docutils literal notranslate"><span class="pre">'0'</span></code>, 它的 ASCII 码为 48, 从而被解析为 <code class="docutils literal notranslate"><span class="pre">(char)</span> <span class="pre">48</span></code>.
+C 语言中的字符只有一个字节, 所以只能存入 0~256 范围内的值, 也就是 ASCII 码中的符号.
+其中包括转义序列. ASCII 码表可以在网上轻松找到, 这里就不贴出了.</p>
+<p>在双引号中的被解析为字符串, 例如 <code class="docutils literal notranslate"><span class="pre">&quot;hello&quot;</span></code>,
+字符串就是字符所组成的有序序列, 其中的每一个元素都是字符, 也就是一个字节大小的无符号整数.
+在将源代码的字符编码设置为 <em>UTF-8</em> 时, <code class="docutils literal notranslate"><span class="pre">&quot;你好&quot;</span></code> 这样的字符串也是有效的,
+虽然 “你好” 这两个中文字符明显超出了 ASCII 的范围.
+由于 Unicode 的传输格式 UTF-8 将 Unicode 字符转换成多个字节组成的序列,
+因此正好可以用 char 这种类型来存储. “你好” 这两个字符占用 6 个字节.</p>
+<p>字符串的末尾用 ASCII[0] – <code class="docutils literal notranslate"><span class="pre">\0</span></code> 来标志, 这种方式被称为 C-style 字符串.
+因此, 字符串 “hello” 实际占用了 6 个字节.</p>
+<p>再讨论一下整数的表达方式, 可以用普通的写法, 这种情况将会使用十进制:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="mi">64</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>使用数字 <code class="docutils literal notranslate"><span class="pre">0</span></code> 和字母 <code class="docutils literal notranslate"><span class="pre">x</span></code>, 十六进制,</p></li>
+<li><p>使用数字 <code class="docutils literal notranslate"><span class="pre">0</span></code> 做前缀, 八进制,</p></li>
+<li><p>使用数字 <code class="docutils literal notranslate"><span class="pre">0</span></code> 和字母 <code class="docutils literal notranslate"><span class="pre">b</span></code>, 二进制:</p></li>
+</ul>
+<div class="literal-block-wrapper docutils container" id="id13">
+<div class="code-block-caption"><span class="caption-number">代码清单 6 </span><span class="caption-text">show.int.prefixies.c</span><a class="headerlink" href="#id13" title="永久链接至代码">¶</a></div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="mi">64</span><span class="p">);</span>
+   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="n">b1000000</span><span class="p">);</span>
+   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="mo">0100</span><span class="p">);</span>
+   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="mh">0x40</span><span class="p">);</span>
+   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="mi">64</span>
+<span class="mi">64</span>
+<span class="mi">64</span>
+<span class="mi">64</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>操作符构成表达式<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
+<p>操作符和操作数可构成表达式, 不同的操作符要求操作数的数目和操作符的位置不一定相同.
+所谓操作数, 可以是一个变量, 一个字面值, 或者一个表达式.
+所有的表达式都具有值, 可以参与到计算之中.</p>
+<p>为了方便讨论, 将操作数按照顺序编号: 0, 1, 2 …, 将操作符取别名为 <em>op</em>.
+并且, 将构成的表达式用 expr 表示.</p>
+<dl>
+<dt>四则运算与模运算</dt><dd><p><code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code>, <code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">/</span></code> 等操作符负责进行四则运算, 需要两个操作数, 位于操作符两侧.
+<code class="docutils literal notranslate"><span class="pre">%</span></code> 是模运算, 它的意思可以理解成 “取余数”, 但只能作用于整数间运算.
+同样需要两个操作数位于操作符两侧:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="n">op</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>表达式的值是它们的运算结果, 不再赘述.</p>
+</dd>
+<dt>赋值表达式</dt><dd><p>赋值操作符 <code class="docutils literal notranslate"><span class="pre">=</span></code> 是最常用的操作符了, 任何运算都必须将结果存入到内存空间中,
+否则得到的结果就消失在 CPU 的寄存器中了.</p>
+<p>它需要两个操作数, 位于操作符两侧:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>作用就是将操作数 1 的值赋给 操作数 0, 操作数 0 应当是一个可以被修改的变量,
+在很多情况下, 被称为 “左值”.</p>
+<p>赋值表达式的值是后方的操作数:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">expr</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</dd>
+<dt>位运算</dt><dd><p><code class="docutils literal notranslate"><span class="pre">&amp;</span></code>, <code class="docutils literal notranslate"><span class="pre">|</span></code>, <code class="docutils literal notranslate"><span class="pre">~</span></code>, <code class="docutils literal notranslate"><span class="pre">^</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code> <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> 是位运算符, 除了非运算之外, 都需要两个操作数位于两侧:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="n">op</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>非运算需要一个操作数, 位于操作符后:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="mi">0</span>
+</pre></div>
+</div>
+<p>位运算的操作数必须是整数.</p>
+<p>上面的操作符分别表示 与,或,非,异或,左移,右移运算.
+表达式的值是它们运算的结果, 关于位运算的详细讨论, 见 <a class="reference internal" href="../todo.html#id15"><span class="std std-ref">未完成 …</span></a>.</p>
+</dd>
+<dt>布尔算数</dt><dd><p>布尔数是指那种只有 “真”, “假” 两个值的数. 常用来进行逻辑判断.
+在 C 语言中, 任何整数都可以作为布尔数, 0 值为 “假”, 非 0 值都为 “真”</p>
+<p><code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code>, <code class="docutils literal notranslate"><span class="pre">||</span></code>, <code class="docutils literal notranslate"><span class="pre">!</span></code> 分别表示且, 或, 非. 除了非之外, 都需要两个操作数位于两侧:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="n">op</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>非运算需要一个操作数, 位于操作符后:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="mi">0</span>
+</pre></div>
+</div>
+<p>布尔运算的结果可以用真值表表示:</p>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 44%" />
+<col style="width: 28%" />
+<col style="width: 28%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code></p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 44%" />
+<col style="width: 28%" />
+<col style="width: 28%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">||</span></code></p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 44%" />
+<col style="width: 28%" />
+<col style="width: 28%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">!</span></code></p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>逗号表达式</dt><dd><p>逗号表达式可以将多个表达式在同一条语句中执行.
+它需要两个操作数, 位于操作符两侧.
+由于常常有多个逗号表达式嵌套使用, 因此, 有可能将逗号操作符与界定符相混淆.</p>
+<p>逗号表达式的值, 是前一个操作数的值.</p>
+</dd>
+<dt>指针运算</dt><dd><p>指针的概念见 <a class="reference internal" href="array-pointer.html#id5"><span class="std std-ref">指针</span></a>. 指针操作符有 引用 与 解引用 两种, 都只需要一个操作数位于操作符后.
+解引用的操作数必须是指针类型.</p>
+</dd>
+<dt>括号表达式</dt><dd><p>括号表达式就和算数中添加括号的效果是一样的, 提升了内部表达式的运算优先级.
+它的操作数就是内部的表达式, 值也是内部的表达式:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">expr</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</dd>
+<dt>函数调用</dt><dd><p>函数名是一个标识符, 作为函数调用操作符的一个操作数, 而函数的参数是剩下的操作数.
+它的使用方法就是在函数名后跟一对圆括号, 在其中填入要传入的实参, 实参之间用逗号分隔.
+不过, 这里面并不是逗号表达式:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">...)</span>
+</pre></div>
+</div>
+<p>函数调用表达式的值就是函数的返回值.</p>
+</dd>
+<dt>下标访问</dt><dd><p>从数组中查找值可以使用方括号+索引值的方式从中取出对应的值, 数组名是一个操作数, 索引值是另一个:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>实际上, 下标访问会被转换为指针访问, 见 <a class="reference internal" href="array-pointer.html"><span class="doc">数组与指针</span></a>.</p>
+</dd>
+<dt>sizeof 运算符</dt><dd><p>sizeof 运算符用于求一个实体的大小 (单位: 字节),
+接受一个操作数, 形式上看类似于函数调用, 但是也可省略括号:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">sizeof</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">sizeof</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>表达式的值为操作数 0 的大小. 对于数组, 值为整个数组的大小.</p>
+<p>sizeof 是一个在编译器级别被实现的运算符, 而不是函数.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="id8">
+<h2>操作符优先级与结合性<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h2>
+<p>操作符具有优先级, 就是在一个表达式中, 操作符参与计算的先后次序.
+而结合性则是在同优先级的操作符参与计算的先后次序.</p>
+<p>见下表 <a class="footnote-reference brackets" href="#table" id="id9">1</a>:</p>
+<dl class="footnote brackets">
+<dt class="label" id="table"><span class="brackets"><a class="fn-backref" href="#id9">1</a></span></dt>
+<dd><p><a class="reference external" href="https://en.cppreference.com/w/c/language/operator_precedence">https://en.cppreference.com/w/c/language/operator_precedence</a></p>
+</dd>
+</dl>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 24%" />
+<col style="width: 57%" />
+<col style="width: 10%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>优先级</p></th>
+<th class="head"><p>操作符</p></th>
+<th class="head"><p>含义</p></th>
+<th class="head"><p>结合性</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td rowspan="6"><p>1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">()</span></code></p></td>
+<td><p>界定表达式</p></td>
+<td rowspan="6"><p>左到右</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">[]</span></code></p></td>
+<td><p>数组的下标访问</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">.</span></code></p></td>
+<td><p>结构体或联合体的成员访问</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-&gt;</span></code></p></td>
+<td><p>结构体或联合体通过指针的成员访问</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">++</span></code> <code class="docutils literal notranslate"><span class="pre">--</span></code></p></td>
+<td><p>后缀自增/减运算符</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">(type){list}</span></code></p></td>
+<td><p>复合类型字面量</p></td>
+</tr>
+<tr class="row-even"><td rowspan="8"><p>2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">++</span></code> <code class="docutils literal notranslate"><span class="pre">--</span></code></p></td>
+<td><p>前缀自增/减运算符</p></td>
+<td rowspan="8"><p>右到左</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">+</span></code> <code class="docutils literal notranslate"><span class="pre">-</span></code></p></td>
+<td><p>一元正/负</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">!</span></code> <code class="docutils literal notranslate"><span class="pre">~</span></code></p></td>
+<td><p>逻辑/位运算 “非”</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">(type)</span></code></p></td>
+<td><p>显式类型转换</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">*</span></code></p></td>
+<td><p>解引用</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&amp;</span></code></p></td>
+<td><p>取地址</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sizeof</span></code></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">_Alignof</span></code></p></td>
+<td><p><a class="reference internal" href="../todo.html#id17"><span class="std std-ref">未完成 …</span></a> (C11)</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">*</span></code> <code class="docutils literal notranslate"><span class="pre">/</span></code> <code class="docutils literal notranslate"><span class="pre">%</span></code></p></td>
+<td><p>乘除法与模运算</p></td>
+<td rowspan="11"><p>左到右</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">+</span></code> <code class="docutils literal notranslate"><span class="pre">-</span></code></p></td>
+<td><p>二元加法/减法</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code> <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code></p></td>
+<td><p>位左移/右移</p></td>
+</tr>
+<tr class="row-odd"><td rowspan="2"><p>6</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code></p></td>
+<td><p>小于/不大于 逻辑运算符</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&gt;</span></code> <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code></p></td>
+<td><p>大于/不小于 逻辑运算符</p></td>
+</tr>
+<tr class="row-odd"><td><p>7</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">==</span></code> <code class="docutils literal notranslate"><span class="pre">!=</span></code></p></td>
+<td><p>等于/不等于 逻辑运算符</p></td>
+</tr>
+<tr class="row-even"><td><p>8</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;</span></code></p></td>
+<td><p>与 位运算符</p></td>
+</tr>
+<tr class="row-odd"><td><p>9</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">^</span></code></p></td>
+<td><p>异或 位运算符</p></td>
+</tr>
+<tr class="row-even"><td><p>10</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">|</span></code></p></td>
+<td><p>或 位运算符</p></td>
+</tr>
+<tr class="row-odd"><td><p>11</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code></p></td>
+<td><p>且 逻辑运算符</p></td>
+</tr>
+<tr class="row-even"><td><p>12</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">||</span></code></p></td>
+<td><p>或 逻辑运算符</p></td>
+</tr>
+<tr class="row-odd"><td><p>13</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">?:</span></code></p></td>
+<td><p>三目条件运算符 <a class="footnote-reference brackets" href="#tri-c" id="id10">2</a></p></td>
+<td rowspan="8"><p>右到左</p></td>
+</tr>
+<tr class="row-even"><td rowspan="7"><p>14</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">=</span></code></p></td>
+<td><p>赋值运算符</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">+=</span></code> <code class="docutils literal notranslate"><span class="pre">-=</span></code></p></td>
+<td><p>复合赋值运算符 加/减</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">*=</span></code> <code class="docutils literal notranslate"><span class="pre">/=</span></code></p></td>
+<td><p>复合赋值运算符 乘/除</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">%=</span></code></p></td>
+<td><p>复合赋值运算符 模</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&amp;=</span></code> <code class="docutils literal notranslate"><span class="pre">|=</span></code></p></td>
+<td><p>复合赋值运算符 与/或</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">^=</span></code></p></td>
+<td><p>复合赋值运算符 异或</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;&lt;=</span></code> <code class="docutils literal notranslate"><span class="pre">&gt;&gt;=</span></code></p></td>
+<td><p>复合赋值运算符 左/右移</p></td>
+</tr>
+<tr class="row-odd"><td><p>15</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">,</span></code></p></td>
+<td><p>逗号表达式</p></td>
+<td><p>左到右</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="footnote brackets">
+<dt class="label" id="tri-c"><span class="brackets"><a class="fn-backref" href="#id10">2</a></span></dt>
+<dd><p>使用方法见 <a class="reference internal" href="control-statement.html#id2"><span class="std std-ref">三目条件表达式</span></a></p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>优先级和结合性的记忆很繁琐, 也可以不去记忆, 加圆括号就完事了.</p>
+</div>
+</div>
+<div class="section" id="id11">
+<h2>类型别名<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h2>
+<p>可以使用 <code class="docutils literal notranslate"><span class="pre">typedef</span></code> 关键字为一个类型定义别名, 例如:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="kt">double</span> <span class="n">ElementType</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>上面这个语句给 <code class="xref c c-type docutils literal notranslate"><span class="pre">double</span></code> 类型定义了一个别名 <code class="docutils literal notranslate"><span class="pre">ElementType</span></code>,
+之后可以使用 ElementType 来声明 double 类型的实体.</p>
+<p>它的语法可以这么表示:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="cm">/* 原类型名 */</span> <span class="cm">/* 类型别名 */</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>别名通常用在这些场景中:</p>
+<ul>
+<li><p>便于维护与升级. 例如, 需要将 ElementType 类型修改从 double 修改为 float 时,
+只需要重新定义别名 <code class="docutils literal notranslate"><span class="pre">typedef</span> <span class="pre">float</span> <span class="pre">ElementType</span></code> 即可.</p></li>
+<li><p>为复合类型定义简短的别名. 例如, 为一个结构体(或联合体, 枚举体)定义别名:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">matrix</span> <span class="p">{</span>
+   <span class="kt">int</span> <span class="n">width</span><span class="p">;</span>
+   <span class="kt">int</span> <span class="n">height</span><span class="p">;</span>
+   <span class="n">ElementType</span> <span class="o">*</span><span class="n">body</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">typedef</span> <span class="k">struct</span> <span class="n">matrix</span> <span class="n">matrix_t</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>或者直接为匿名结构体定义别名:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+   <span class="kt">int</span> <span class="n">width</span><span class="p">;</span>
+   <span class="kt">int</span> <span class="n">height</span><span class="p">;</span>
+   <span class="n">ElementType</span> <span class="o">*</span><span class="n">body</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">matrix_t</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>模仿 Windows.</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="variable-const-expr.html" class="btn btn-neutral float-right" title="变量、常量与表达式" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="compile.html" class="btn btn-neutral float-left" title="编译 C 程序" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Zombie110year
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

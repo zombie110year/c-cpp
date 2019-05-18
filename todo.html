@@ -1,0 +1,228 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>未完成 … &mdash; C 与 C++ 0.1.0rc 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/logo.cpp.iso.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> C 与 C++
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="prepost.html">前言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start/index.html">C 语言入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="standard-lib/c/index.html">C 语言标准库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="standard-lib/cpp/index.html">C++ 标准库与标准模板库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">词汇对照表</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">C 与 C++</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>未完成 …</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/todo.rst" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id17">
+<span id="id16"></span><span id="id15"></span><span id="id14"></span><span id="id13"></span><span id="id12"></span><span id="id11"></span><span id="id10"></span><span id="id9"></span><span id="id8"></span><span id="id7"></span><span id="id6"></span><span id="id5"></span><span id="id4"></span><span id="id3"></span><span id="id2"></span><span id="c"></span><span id="id1"></span><span id="c-c"></span><span id="id18"></span><h1>未完成 …<a class="headerlink" href="#id17" title="永久链接至标题">¶</a></h1>
+</div>
+<div class="section" id="id19">
+<h1>在 C 可执行文件中嵌入资源文件<a class="headerlink" href="#id19" title="永久链接至标题">¶</a></h1>
+<p>例如, 图片, 文本文件, 音频等.</p>
+<p>最简单的做法是将文件保存在独立的文件中,
+但是这样的话, 在发布程序时需要保持目录结构, 只能发送一个文件夹(或压缩包).</p>
+<p>而要编译出一个包含了所有资源文件的可执行文件,
+可以考虑将其转化为字节数组, 以 const 限定存储在 static 段中.</p>
+<ol class="arabic simple">
+<li><p>使用程序 xxd 将文件转为 C include 形式, 保存在 <code class="docutils literal notranslate"><span class="pre">resource_name.inc</span></code> 文件中:</p></li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>xxd -i example.png &gt; example.png.inc
+</pre></div>
+</div>
+<p>添加 <code class="docutils literal notranslate"><span class="pre">inc</span></code> 后缀是一种习惯命名.</p>
+<ol class="arabic simple" start="2">
+<li><p>创建一个 <code class="docutils literal notranslate"><span class="pre">resource.c</span></code> 文件, 在其中 <code class="docutils literal notranslate"><span class="pre">include</span></code> 所有 <code class="docutils literal notranslate"><span class="pre">inc</span></code> 文件.</p></li>
+<li><p>为 <code class="docutils literal notranslate"><span class="pre">resource.c</span></code> 文件创建 <code class="docutils literal notranslate"><span class="pre">.h</span></code> 头文件,
+将资源在程序中的标识符以 <code class="docutils literal notranslate"><span class="pre">extern</span></code> 修饰.
+注意不能使用 <code class="docutils literal notranslate"><span class="pre">const</span></code>, 它和 <code class="docutils literal notranslate"><span class="pre">extern</span></code> 是冲突的.</p></li>
+<li><p>在需要引用资源的源代码中 <code class="docutils literal notranslate"><span class="pre">include</span></code> <code class="docutils literal notranslate"><span class="pre">resource.h</span></code>.</p></li>
+<li><p>在编译时链接 <code class="docutils literal notranslate"><span class="pre">resource.o</span></code> 目标代码.</p></li>
+</ol>
+<p>你可以下载 <a class="reference download internal" download="" href="_downloads/b0f7c83caa03c6ec174a19636ae3a1b4/sphinx-conf.master.zip"><code class="xref download docutils literal notranslate"><span class="pre">sphinx-conf</span></code></a> 的源代码来看看这个例子.</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Zombie110year
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,599 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>变量、常量与表达式 &mdash; C 与 C++ 0.1.0rc 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/logo.cpp.iso.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="控制语句" href="control-statement.html" />
+    <link rel="prev" title="C 语言语法" href="grammar.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> C 与 C++
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../prepost.html">前言</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C 语言入门</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="compile.html">编译 C 程序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grammar.html">C 语言语法</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">变量、常量与表达式</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">变量的声明与定义</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">常量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">枚举常量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">变量的类型转换</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="control-statement.html">控制语句</a></li>
+<li class="toctree-l2"><a class="reference internal" href="array-pointer.html">数组与指针</a></li>
+<li class="toctree-l2"><a class="reference internal" href="function.html">函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct-union.html">结构体与联合体</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scope.html">作用域</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debug.html">调试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="library.html">链接库文件</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../standard-lib/c/index.html">C 语言标准库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../standard-lib/cpp/index.html">C++ 标准库与标准模板库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">词汇对照表</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">C 与 C++</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">C 语言入门</a> &raquo;</li>
+        
+      <li>变量、常量与表达式</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/start/variable-const-expr.rst" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>变量、常量与表达式<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id2">
+<h2>变量的声明与定义<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p><em>声明</em> 声明符号, <em>定义</em> 分配内存</p>
+</div>
+<p>变量是编程语言中最重要的概念之一,
+一个变量, 在程序中是一个 <strong>代表着某个内存空间</strong> 的符号.
+至于符号所代表的内存空间在何处, 这是由程序和操作系统所管理的.</p>
+<p>变量具有类型, 不同类型的变量具有不同的大小, 也决定了对内存空间的解读方式.</p>
+<p>在 <a class="reference internal" href="grammar.html"><span class="doc">C 语言语法</span></a> 中, 已经提到了基本的内置类型以及它们所占用的空间大小,
+(单位: 字节):</p>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 84%" />
+<col style="width: 16%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>char</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>short int</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>int</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>long int</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-odd"><td><p>long long int</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-even"><td><p>float</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p>double</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-even"><td><p>long double</p></td>
+<td><p>16</p></td>
+</tr>
+<tr class="row-odd"><td><p>unsigned short int</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>unsigned int</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p>unsigned long int</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-even"><td><p>unsigned long long int</p></td>
+<td><p>8</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>如果想要确认本机的情况, 编译并运行这个程序:</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-number">代码清单 7 </span><span class="caption-text">show.sizeof.c</span><a class="headerlink" href="#id6" title="永久链接至代码">¶</a></div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;char: %lu</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">));</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;short int: %lu</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">short</span> <span class="kt">int</span><span class="p">));</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;int: %lu</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;long int: %lu</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">long</span> <span class="kt">int</span><span class="p">));</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;long long int: %lu</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="kt">int</span><span class="p">));</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;float: %lu</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">));</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;double: %lu</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">));</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;long double: %lu</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">long</span> <span class="kt">double</span><span class="p">));</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;unsigned short int: %lu</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">short</span> <span class="kt">int</span><span class="p">));</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;unsigned int: %lu</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">));</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;unsigned long int: %lu</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">int</span><span class="p">));</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;unsigned long long int: %lu</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="kt">int</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>void 类型</p>
+<p>注意到, 上面的代码 show.sizeof.c 中的 main 函数的形参表中不再是
+<code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">argc,</span> <span class="pre">char</span> <span class="pre">*argv[]</span></code>, 而是 <code class="xref c c-type docutils literal notranslate"><span class="pre">void</span></code>.</p>
+<p>这个类型只有两种使用情形:</p>
+<ol class="arabic simple">
+<li><p>用于函数形参, 表示此函数不接收任何参数</p></li>
+<li><p>用于指针, 表示此指针可以指向任何类型的值, 详见 <a class="reference internal" href="array-pointer.html#void"><span class="std std-ref">void 指针</span></a>.</p></li>
+</ol>
+</div>
+<p>在 C 语言中, 要使用一个标识符, 必须在使用处之前存在相关的声明, 否则, 编译器会无法找到符号.</p>
+<p>要进行变量的声明, 需要提供该变量的类型以及存储类型:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="kt">int</span> <span class="n">counter</span><span class="p">;</span> <span class="c1">// 声明一个 int 类型的自动变量.</span>
+</pre></div>
+</div>
+<p>所谓的存储类型, 就是该存储该变量的区域, 有以下四种:</p>
+<div class="sidebar">
+<p class="sidebar-title">生存周期</p>
+<p>一个实体从产生到消亡的区间.</p>
+</div>
+<dl>
+<dt>auto</dt><dd><p>在函数作用域中声明的变量默认为自动存储类型.
+关于作用域的详细解释, 见 <a class="reference internal" href="scope.html"><span class="doc">作用域</span></a>.</p>
+<p>所谓的自动变量, 就是当调用函数时, 在帧栈上创建,
+当函数调用结束, 则与帧一起被释放.</p>
+<p>也就是说, 生存周期为函数的生存周期.</p>
+</dd>
+<dt>static</dt><dd><p>在全局作用域中声明的变量默认为静态存储类型.
+静态变量存储在程序的 <em>静态存储区</em> 中, 在整个程序的运行过程中一直存在.</p>
+<p>关于静态存储区的讨论, 见 <a class="reference internal" href="../todo.html#id16"><span class="std std-ref">未完成 …</span></a>.</p>
+</dd>
+<dt>register</dt><dd><p>寄存器变量. 将会存储在 <em>寄存器(Register)</em> 中, 寄存器由 CPU 直接操作,
+并且容量和数目有限.</p>
+<p>当无法存入寄存器时, 此变量将降级为自动变量.</p>
+<p>常用于经常被修改的变量类型, 例如作为循环变量的整数或指针.
+并且, 此变量的实体大小必须在 CPU 的一个字长之内.</p>
+<p>x86_64 架构 CPU 的字长为 64 bit.</p>
+</dd>
+<dt>extern</dt><dd><p>外部变量. 此变量仅声明符号, 而不分配空间.
+在 <strong>链接</strong> 阶段时, 此符号指向另一个目标代码中的同名变量.</p>
+<p>此类型的变量必须声明在全局作用域中.</p>
+</dd>
+</dl>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-number">代码清单 8 </span><span class="caption-text">show.type.storage.c</span><a class="headerlink" href="#id7" title="永久链接至代码">¶</a></div>
+<div class="highlight-c notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+
+<span class="c1">// 静态变量, 全局作用域中 static 可省略</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="n">timer</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="c1">// 静态变量可在所有函数中被访问</span>
+<span class="kt">void</span> <span class="nf">counterAdd</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span> <span class="n">counter</span><span class="o">++</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="c1">// 函数声明</span>
+<span class="kt">void</span> <span class="nf">showTimer</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+   <span class="c1">// 自动变量, auto 可省略</span>
+   <span class="k">auto</span> <span class="kt">int</span> <span class="n">this</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+   <span class="n">timer</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+   <span class="c1">// 将循环控制变量声明为寄存器存储类型</span>
+   <span class="k">for</span> <span class="p">(</span><span class="k">register</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10000</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">counterAdd</span><span class="p">();</span>
+      <span class="n">this</span> <span class="o">++</span><span class="p">;</span>
+   <span class="p">}</span>
+   <span class="n">showTimer</span><span class="p">();</span>
+   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;counter: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">counter</span><span class="p">);</span>
+   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;this: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">this</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// 在 main 前方声明此函数, 以便 main 函数调用.</span>
+<span class="kt">void</span> <span class="nf">showTimer</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span> <span class="n">printf</span><span class="p">(</span><span class="s">&quot;timer: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">timer</span><span class="p">);</span> <span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>除了 <code class="docutils literal notranslate"><span class="pre">extern</span></code> 存储类型之外, 其他的变量都会在声明之后定义.</p>
+<p>在定义的同时为变量赋值被称为 <em>初始化(Initialization)</em>.</p>
+</div>
+<div class="section" id="id3">
+<h2>常量<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>如果要让一个变量在初始化之后不能再次被更改,
+可以使用 <code class="docutils literal notranslate"><span class="pre">const</span></code> 关键字修饰此变量:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="kt">int</span> <span class="n">CONST_EXAMPLE</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>这样的变量被称为 “常量”,
+在程序中, 常常使用大写字母来命名常量.</p>
+<p><code class="docutils literal notranslate"><span class="pre">const</span></code> 关键字同样可以修饰指针 (<a class="reference internal" href="array-pointer.html#id10"><span class="std std-ref">常量指针与指针常量</span></a>) 和函数 (<a class="reference internal" href="function.html#id6"><span class="std std-ref">常量与函数</span></a>).</p>
+<p>但实际上, 常量的含义是 “无法通过此标识符修改目标内存”,
+在一些情况下, 可以通过指针运算定位到常量所表示的内存空间进行修改,
+而编译器不会阻止.</p>
+<p>但这是 “未定义行为”, 不同的编译器有不同的表现,
+你可以将以下代码分别用 clang, gcc 或 msvc 编译并运行查看效果:</p>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-number">代码清单 9 </span><span class="caption-text">show.const.modify</span><a class="headerlink" href="#id8" title="永久链接至代码">¶</a></div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+
+<span class="cm">/**</span>
+<span class="cm"> * 不同的编译器具有不同的表现:</span>
+<span class="cm"> *</span>
+<span class="cm"> * -  gcc: a 的值被修改了</span>
+<span class="cm"> * -  clang: a 的值未被修改, 但可以通过 *y 访问到修改后的值</span>
+<span class="cm"> *    但奇怪的是, y 和 &amp;a 是相同的地址.</span>
+<span class="cm"> */</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">const</span> <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+   <span class="kt">int</span> <span class="o">*</span><span class="n">y</span> <span class="o">=</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
+   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%p: %d, %p: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="n">y</span><span class="p">);</span>
+   <span class="o">*</span><span class="n">y</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%p: %d, %p: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="n">y</span><span class="p">);</span>
+   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="o">*</span><span class="n">y</span><span class="p">);</span>
+   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>这不应当是程序中的正常情况, 这里提出仅仅是告知一种可能导致运行异常的情况.</p>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>枚举常量<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>在某些时候, 会需要用到一系列常量, 例如用来表示一周的星期名:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="kt">int</span> <span class="n">Monday</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">Tuesday</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="c1">// ...</span>
+</pre></div>
+</div>
+<p>或者, 定义错误处理时所需要的错误码:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="kt">int</span> <span class="n">PASS</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">UNKNOWN_ERROR</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="c1">// ...</span>
+</pre></div>
+</div>
+<p>这些都可以使用一个 <code class="docutils literal notranslate"><span class="pre">enum</span></code> 枚举体来进行定义:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">enum</span> <span class="n">status</span> <span class="p">{</span>
+   <span class="n">PASS</span><span class="p">,</span>               <span class="c1">// 0  成功</span>
+   <span class="n">UNKOWN_ERROR</span><span class="p">,</span>       <span class="c1">// 1  未知错误</span>
+   <span class="n">MEMORY_ALLOC_ERROR</span><span class="p">,</span> <span class="c1">// 2  内存分配错误</span>
+   <span class="n">OVERRANGE_ERROR</span>     <span class="c1">// 3 访问越界错误</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>enum 枚举体从 0 开始为其中的成员赋值. 每一个成员都是可直接使用的常量.
+它们的大小和数据解读方式和 <code class="xref c c-type docutils literal notranslate"><span class="pre">int</span></code> 一致.</p>
+<p>也可以为其中的某几个成员赋值, 接下来的成员会按照前一个成员的值进行递增:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="k">enum</span> <span class="p">{</span>
+   <span class="n">Monday</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="c1">// 1</span>
+   <span class="n">Tuesday</span><span class="p">,</span>    <span class="c1">// 2</span>
+   <span class="n">Wednesday</span><span class="p">,</span>  <span class="c1">// 3</span>
+   <span class="n">Thursday</span><span class="p">,</span>
+   <span class="n">Friday</span><span class="p">,</span>
+   <span class="n">Saturday</span><span class="p">,</span>
+   <span class="n">Sunday</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="p">}</span> <span class="n">week_t</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>每一个 enum 结构体的成员实际上都是 int 类型, 因此不同的 enum 结构体中定义的常量可以互相比较:</p>
+<div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-number">代码清单 10 </span><span class="caption-text">show.enum.c</span><a class="headerlink" href="#id9" title="永久链接至代码">¶</a></div>
+<div class="highlight-c notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+
+<span class="k">enum</span> <span class="n">status</span> <span class="p">{</span>
+   <span class="n">PASS</span><span class="p">,</span>               <span class="c1">// 0  成功</span>
+   <span class="n">UNKOWN_ERROR</span><span class="p">,</span>       <span class="c1">// 1  未知错误</span>
+   <span class="n">MEMORY_ALLOC_ERROR</span><span class="p">,</span> <span class="c1">// 2  内存分配错误</span>
+   <span class="n">OVERRANGE_ERROR</span>     <span class="c1">// 3 访问越界错误</span>
+<span class="p">};</span>
+
+<span class="k">typedef</span> <span class="k">enum</span> <span class="p">{</span>
+   <span class="n">Monday</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="c1">// 1</span>
+   <span class="n">Tuesday</span><span class="p">,</span>    <span class="c1">// 2</span>
+   <span class="n">Wednesday</span><span class="p">,</span>  <span class="c1">// 3</span>
+   <span class="n">Thursday</span><span class="p">,</span>
+   <span class="n">Friday</span><span class="p">,</span>
+   <span class="n">Saturday</span><span class="p">,</span>
+   <span class="n">Sunday</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="p">}</span> <span class="n">week_t</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+
+   <span class="k">for</span><span class="p">(</span><span class="k">enum</span> <span class="n">status</span> <span class="n">i</span> <span class="o">=</span> <span class="n">PASS</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">OVERRANGE_ERROR</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d &quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+   <span class="p">}</span>
+   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+   <span class="k">for</span><span class="p">(</span><span class="n">week_t</span> <span class="n">i</span> <span class="o">=</span> <span class="n">Sunday</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">Saturday</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d &quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+   <span class="p">}</span>
+   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">Monday</span> <span class="o">==</span> <span class="n">UNKOWN_ERROR</span><span class="p">);</span>
+   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>运行结果如下</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span>
+<span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span>
+<span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>变量的类型转换<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>变量的类型具有两个大类: 整数和浮点数,
+在这两个大类之下, 分了 int, unsigned int, long int, char; float, double 等小类.</p>
+<p>当一个变量将值赋给另一个变量时, 如果这两个变量的类型不同, 则有可能发生自动类型转换或者编译错误.</p>
+<p>自动类型转换时, 编译器会向不损失信息的方向进行转换. 也就是从尺寸小的类型向尺寸长的类型转换.</p>
+<p>char 可以向 int 自动转换, float 可以向 double 自动转换. 但反过来就会发出警告.</p>
+<p>可以手动指定转换格式, 采用在值前添加 <code class="docutils literal notranslate"><span class="pre">(类型名)</span></code> 的语法:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">char</span> <span class="n">ch</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="p">)</span> <span class="mf">10.0</span><span class="p">;</span>
+<span class="c1">// 否则会发出 double -&gt; char 的警告</span>
+</pre></div>
+</div>
+<p>这常常用于对 void 指针进行显式转换:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="o">*</span><span class="nf">getItem</span><span class="p">(</span><span class="cm">/* 形式参数 */</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="n">value</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">getItem</span><span class="p">(</span><span class="cm">/* 实际参数 */</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="control-statement.html" class="btn btn-neutral float-right" title="控制语句" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="grammar.html" class="btn btn-neutral float-left" title="C 语言语法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Zombie110year
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
