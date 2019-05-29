@@ -95,3 +95,5 @@
       -  Instruction Set
    *  -  调试
       -  Debug
+   *  -  段错误
+      - Segment Fault
