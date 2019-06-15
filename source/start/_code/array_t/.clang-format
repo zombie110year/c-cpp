@@ -1,0 +1,4 @@
+Language: Cpp
+BasedOnStyle: LLVM
+IndentWidth: 3
+ColumnLimit: 120

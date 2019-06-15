@@ -65,5 +65,28 @@ xxx_t 是 GNU 的命名习惯, 实际上可以命名为任何标识符.
       int *body;
    } array_t;
 
-联合体的实际用例
-================
+
+.. literalinclude:: _code/array_t/array.h
+   :language: c
+   :linenos:
+   :caption: array.h
+
+
+.. literalinclude:: _code/array_t/array.c
+   :language: c
+   :linenos:
+   :caption: array.c
+
+
+..literalinclude:: _code/array_t/test.c
+   :language: c
+   :linenos:
+   :caption: test.c
+
+
+.. code-block:: text
+   :caption: 输出
+
+   $ ./test.out
+   1.000000 2.000000 3.000000 4.000000 5.000000 6.000000 7.000000 8.000000
+   1.000000 2.000000 3.000000 4.000000 5.000000 6.000000 7.000000 8.000000
