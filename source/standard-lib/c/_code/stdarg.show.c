@@ -12,8 +12,9 @@ int sum(const int count, ...)
     va_list args;
     int sum = 0;
     int tmp;
-    // 初始化参数列表, 传入第二个参数表示
-    // 这个函数的最后一个固定参数.
+    // 初始化参数列表, 传入 count 表示
+    // 这是这个函数的最后一个固定参数的地址
+    // 可变参数应当从 count 之后开始
     va_start(args, count);
     for (int i = 0; i < count; i++){
         // 从参数列表中获取下一个 int 类型的值
