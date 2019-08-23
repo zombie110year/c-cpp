@@ -24,16 +24,44 @@
 
 也可以定义匿名结构体, 并同时声明变量::
 
-   struct { int length, int *body } array;
+   struct { int length; int *body;} array;
 
 这声明了一个名为 ``array`` 的变量, 它具有 ``length`` 与 ``body`` 两个成员.
 
 也可以使用 typedef 为结构体或匿名结构体类型声明别名::
 
    typedef struct name name_t;
-   typedef struct {int length, int *body} int_array_t;
+   typedef struct {int length; int *body;} int_array_t;
 
 xxx_t 是 GNU 的命名习惯, 实际上可以命名为任何标识符.
+
+在实例化结构体时，可以使用初始化表达式：
+
+.. code:: c
+
+   typedef struct Person {
+      char *name;
+      int age;
+   } person_t;
+
+   int main(void) {
+      person_t x = {"Hello", 18};
+   }
+
+当结构体中的成员增多时，有时候很难搞清楚各项的含义，
+通常会使用这样的注释来说明：
+
+.. code:: c
+
+   person_t x = {/* name */"Hello", /* age */ 18};
+
+.. versionadded:: C11
+
+   在 C11 标准中，可以使用命名字段来进行结构体的初始化：
+
+   .. code:: c
+
+      person_t x = {.name="Hello", .age=18};
 
 联合体
 ======
@@ -78,7 +106,7 @@ xxx_t 是 GNU 的命名习惯, 实际上可以命名为任何标识符.
    :caption: array.c
 
 
-..literalinclude:: _code/array_t/test.c
+.. literalinclude:: _code/array_t/test.c
    :language: c
    :linenos:
    :caption: test.c
