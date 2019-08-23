@@ -6,6 +6,6 @@
 
 
 .. toctree::
-   :max_depth: 2
+   :maxdepth: 2
 
    functions

@@ -14,7 +14,9 @@ C 语言标准库
 Linux 下的 C 标准库由 GNU 实现, 被称作 "glibc".
 由于 Linux 操作系统对 libc 由很强的依赖, 所以不建议更新到最新版本.
 
-libc 一般都可执行以显示版本信息::
+libc 一般都可执行以显示版本信息
+
+.. code:: text
 
    $ /lib/x86_64-linux-gnu/libc.so.6
 

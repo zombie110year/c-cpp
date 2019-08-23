@@ -87,44 +87,44 @@ stack
 
 例如，在 C 语言中，一个基本的声明，将会创建一对名字与实例，实例被分配在栈上：
 
-```c
-int main(void) {
-   int x = 1;
-   printf("%d\n", x);
-   {
-      int x = 2;
-      printf("%d\n", x);
-   }
-   printf("%d\n", x);
-   return 0;
-}
-```
+.. code:: c
+
+    int main(void) {
+        int x = 1;
+        printf("%d\n", x);
+        {
+            int x = 2;
+            printf("%d\n", x);
+        }
+        printf("%d\n", x);
+        return 0;
+    }
 
 名字具有遮蔽效应。在内层作用域中的同名变量，将会 **遮蔽** 外层作用域中的变量。
 但外层作用域的变量并没有消失或被修改。当内存作用域结束后，外层作用域中的同名变量被暴露出来，
 就可以继续使用了。
 在上面的例子中，程序将会输出
 
-```
-1
-2
-1
-```
+.. code:: text
+
+    1
+    2
+    1
 
 由于在栈上分配的实例会随着栈被释放，所以在函数间传递指针时，不应当向调用函数传递被调用函数中定义的数据的指针，
 这将访问到非法地址：
 
-```c
-int *hello(void) {
-   int x = 1;
-   return &x;
-}
-int main(void) {
-   int *x = hello();
-   printf("%d\n", *x);
-   return 0;
-}
-```
+.. code:: c
+
+    int *hello(void) {
+        int x = 1;
+        return &x;
+    }
+    int main(void) {
+        int *x = hello();
+        printf("%d\n", *x);
+        return 0;
+    }
 
 相信编译器也会对此提出警告的。
 

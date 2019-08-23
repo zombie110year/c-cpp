@@ -19,7 +19,7 @@ GDB 使用方法
 在开始调试之前, 先了解一些基础概念:
 
 .. list-table::
-   :header-columns: 1
+   :header-rows: 1
 
    *  -  名词
       -  含义

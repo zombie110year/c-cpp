@@ -1,0 +1,23 @@
+---
+BasedOnStyle: LLVM
+IndentWidth: 4
+---
+Language: Cpp
+# public: 等标记的额外缩进
+AccessModifierOffset: 0
+# 对齐赋值号
+AlignConsecutiveAssignments: true
+# 对齐类型声明
+AlignConsecutiveDeclarations: true
+# 对其操作数
+AlignOperands: true
+# 对齐注释
+AlignTrailingComments: true
+# 只允许将空的短函数体收缩到单行
+AllowShortFunctionsOnASingleLine: Empty
+# 最大行宽
+ColumnLimit: 120
+# Force pointers to the type for C++.
+DerivePointerAlignment: false
+PointerAlignment: Left
+---
