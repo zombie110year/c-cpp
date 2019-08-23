@@ -5,7 +5,7 @@
 函数重载
 ========
 
-在 C++ 中，一个函数名可以重复使用，但要求其返回类型以及参数类型不同。
+在 C++ 中，一个函数名可以重复使用，但要求其参数类型不同。对返回值类型没有要求。
 这种特性被称为 **函数重载**。
 
 .. code:: cpp
@@ -46,6 +46,20 @@
 实际上，在符号解析时，C++ 编译器会根据返回类型，形参类型以及形参顺序修改符号名，例如 ``int Max(int, int)`` 在解析后可能就变成了 `int_Max_int_int` 等等。
 
 C++ 的泛型和函数重载是一样的原理：编辑器统计调用泛型函数的情况，自动生成不同类型函数的代码。
+
+接下来，分别看一个重载的例子:
+
+.. literalinclude:: _code/overload.show.cpp
+    :language: cpp
+    :linenos:
+
+.. literalinclude:: _code/overload.show.s
+    :language: asm
+    :linenos:
+    :emphsize-lines: 6,37
+
+可以看到， ``int abs(int)`` 在编译时被命名为了 ``_Z3absi``, 而 ``double abs(double)`` 则被编译为 ``_Z3absd``。
+其返回值类型没有在符号名中体现出来，这也表达了 C++ 中函数重载对返回值类型不做要求的性质。
 
 泛型函数
 ========
