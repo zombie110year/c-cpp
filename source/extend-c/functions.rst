@@ -199,3 +199,29 @@ C++ 中的闭包（匿名函数）便是利用一个重载了调用运算符的�
     };
 
 虽然对于基本数据类型，编译器都能成功推导，但在把不准时建议还是手动指定返回类型。
+
+extern "C"
+==========
+
+上面 `函数重载`_ 中提到了 C++ 编译器会将函数的参数也编译进符号名中，这和 C 编译器的行为是不一样的。
+C 编译器只会将函数名编译进符号名。
+C 语言作为老前辈，有许多语言使用 C 风格的 FFI（Foreign Function Interface）调用 C 编译的库。
+为了让 C++ 也能为这些语言所用，编译器就提供了 ``extern "C"`` 声明::
+
+    extern "C" {
+        int add(int a, int b) {
+            return a + b;
+        }
+    }
+
+在 ``extern "C"`` 代码块中定义或声明的函数，将会使用 C 风格的符号命名，例如:
+
+
+.. literalinclude:: _code/extern_c.show.cpp
+    :language: cpp
+    :linenos:
+
+.. literalinclude:: _code/extern_c.show.s
+    :language: asm
+    :linenos:
+    :emphasize-lines: 15,38,61
