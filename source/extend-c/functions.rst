@@ -225,3 +225,14 @@ C 语言作为老前辈，有许多语言使用 C 风格的 FFI（Foreign Functi
     :language: asm
     :linenos:
     :emphasize-lines: 15,38,61
+
+类型名后置
+==========
+
+在 C++ 中，定义函数时可以将类型名写在后面：
+
+.. code:: cpp
+
+    auto one() -> int {
+        return 1;
+    }
