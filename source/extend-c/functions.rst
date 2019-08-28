@@ -122,6 +122,89 @@ C++ 的泛型和函数重载是一样的原理：编辑器统计调用泛型函�
 constexpr
 =========
 
+有一些表达式，无论在任何情况下都能求出唯一的值，并且没有任何副作用，这种表达式实际上在编译期间就会被编译器优化为静态常量。
+
+但是如果希望在程序中多处调用的话，就不得不重复书写相同的表达式。
+
+由于在栈上定义的数组是在编译期就分配内存的，因此它的长度必须是一个静态常量，我们可以利用这一性质来检验常量表达式。
+
+.. code:: cpp
+
+    int main(void) {
+        int arr[1 + 3 * 5]; // 长度为 16
+        return 0;
+    }
+
+在过去，常使用宏定义来解决这个问题:
+
+.. code:: cpp
+
+    #define LENGTH (1+3*5)
+
+    int main(void) {
+        int arr[LENGTH];
+        return 0;
+    }
+
+但是宏定义一方面比较复杂，另一方面又没有类型，容易出错。
+
+C++ 11 推出了 constexpr 声明，以解决这个问题。
+
+.. code:: cpp
+
+    constexpr int length () {
+        return 1 + 3 * 5;
+    }
+
+    int main(void) {
+        int arr[length()];
+        return 0;
+    }
+
+加了 constexpr 的函数将会被编译器优化掉，直接计算出值并存储在静态区。但是它只能是一个表达式，不能使用流程控制语句，定义局部变量等。
+
+接下来就是 constexpr 厉害的地方了。它可以：
+
+1. 传入参数，参数也必须是 static const 值
+2. 定义局部变量，但不能访问堆，而且栈只会在编译期存在。
+3. 递归调用，但只能调用同为 constexpr 的函数
+4. 在内部可以使用局部变量和流程控制语句（C++14）
+
+.. code:: cpp
+
+    constexpr int length() {
+        return 1 + 3 * 5;
+    }
+    constexpr int fib(const int n) {
+        return n == 1 || n == 2 ? 1 : fib(n - 1) + fib(n - 2);
+    }
+    int main(void) {
+        int arr0[length() + 10];
+        int arr1[fib(10)];
+        return 0;
+    }
+
+在 C++14 后， constexpr 就不局限于单独一条 return 语句了，它可以这么写:
+
+.. code:: cpp
+
+    #include <iostream>
+    constexpr int fib(const int n) {
+        switch (n) {
+        case 1:
+        case 2:
+            return 1;
+        default:
+            return fib(n - 1) + fib(n - 2);
+        }
+    }
+    int main(void) {
+        int arr1[fib(10)];
+        std::cout << fib(10) << std::endl;
+        return 0;
+    }
+
+
 inline
 ======
 
