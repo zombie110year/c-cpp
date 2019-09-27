@@ -12,4 +12,6 @@ C 与 C++
    standard-lib/c/index
    standard-lib/cpp/index
 
+   postscripts/index
+
    glossary
