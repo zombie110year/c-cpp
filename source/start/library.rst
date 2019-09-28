@@ -16,7 +16,8 @@
 创建动态链接库
 ==============
 
-DLL(Dynamic Linked Library) 是一种可在运行时被其他程序链接并执行的代码.
+静态库是一种可在运行时被其他程序链接并执行的目标代码, 在 Linux 中, 它被称为
+Shared Object(so), 在 Windows 中, 则称为 Dynamic Linked Library(dll).
 
 先以单个源文件为例, 将以下代码编译为动态链接库:
 
@@ -24,7 +25,7 @@ DLL(Dynamic Linked Library) 是一种可在运行时被其他程序链接并执�
    :language: c
    :caption: swap.c
 
-可以使用 ``-fPIC``, ``-shared`` 等参数直接创建 ``.so`` (Shared Object) 文件:
+可以使用 ``-fPIC``, ``-shared`` 等参数直接创建 ``.so`` 文件:
 
 .. code-block:: sh
 
@@ -35,7 +36,8 @@ DLL(Dynamic Linked Library) 是一种可在运行时被其他程序链接并执�
    ``-f`` 选项是很多拥有长名称的 flag 的前缀,
    PIC(Position Independent Code) 表示生成的代码不依赖于绝对地址,
    这样生成的可执行程序可以在一个动态的内存空间中执行相关的代码.
-   与之相对的还有 `PIE` (Position Independent Executable)
+   与之类似的还有 `PIE` (Position Independent Executable),
+   在直接编译为可执行文件时使用.
 
 ``-shared``
    表示创建共享库.
@@ -48,7 +50,7 @@ DLL(Dynamic Linked Library) 是一种可在运行时被其他程序链接并执�
 ``-o libswap.so``
    将输出写入文件 libswap.so 中
 
-类似于单源文件, 只不过将编译和链接步骤分开执行:
+多源文件的情景下和单源文件没什么区别, 只不过将编译和链接步骤分开执行:
 
 .. code-block:: sh
 
